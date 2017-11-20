@@ -1,0 +1,7 @@
+.idea/
+target/
+*.iml
+sexshop.iml
+web/web.iml
+core/core.iml
+out/
