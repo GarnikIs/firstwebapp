@@ -74,12 +74,12 @@ footer {
 }
 
 .dataTableImg {
-
     width: 100px;
     height: 100px;
-
 }
-
+#first {
+    position: unset;
+}
 .has-success {
     color: #4582ec;
 }
@@ -97,6 +97,25 @@ footer {
 /* Hide default HTML checkbox */
 .switch input {
     display: none;
+}
+
+/*Overriding native css to properly show the products table*/
+#actual_product_list_wrapper {
+    display: block;
+}
+/*Overriding native css to properly show the products table label and search attributes*/
+#actual_product_list_length, #actual_product_list_filter label {
+    display: inline-block;
+}
+/*Overriding native css to properly show the products table select attribute*/
+#actual_product_list_length select{
+    height:auto;
+    width: auto;
+    margin: 0 10px;
+}
+
+#actual_product_list th, td {
+    text-align: center  ;
 }
 
 /* The slider */

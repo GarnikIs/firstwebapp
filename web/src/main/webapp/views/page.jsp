@@ -30,6 +30,7 @@
     <script>
         window.menu = "${title}";
         window.category = "${category.name}";
+        window.contextRoot = "${contextRoot}";
     </script>
 
     <%-- START CSS --%>
@@ -37,6 +38,7 @@
     <!-- Bootstrap Core CSS -->
     <%--Somtimes it is being invisibel and all css fucked up--%>
     <link href="${css}/bootstrap.min.css" rel="stylesheet">
+    <%--<link href="${css}/bootstrap.css" rel="stylesheet">--%>
 
     <!-- Bootstrap Readable Theme CSS -->
     <%--Somtimes it is being invisibel and all css fucked up--%>
@@ -62,7 +64,7 @@
     <!-- JQuery Validate  -->
     <script src="${js}/jquery.validate.js"></script>
 
-    <%-- Propper in javascript --%>
+    <%-- Popper in javascript --%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 
     <!-- Bootstrap Core -->

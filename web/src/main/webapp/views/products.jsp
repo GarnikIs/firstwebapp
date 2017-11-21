@@ -19,11 +19,19 @@
             <div class="row">
                 <div class="col-md-12">
                     <c:if test="${userClickedAllProducts == true}">
+                        <%--TODO later - must be changed --%>
+                        <script>
+                            window.categoryId = '';
+                        </script>
                         <ol class="breadcrumb">
                             <li class="active">All Products</li>
                         </ol>
                     </c:if>
                     <c:if test="${userClickedCategoryProducts == true}">
+                        <%--TODO later - must be changed --%>
+                        <script>
+                            window.categoryId = ${category.categoryId};
+                        </script>
                         <ol class="breadcrumb">
                             <li class="active">All Products</li>
                             <li class="active">${category.name}</li>
@@ -31,17 +39,33 @@
                     </c:if>
                 </div>
             </div>
-
             <%-- Displaying actual products --%>
             <div class="row">
                 <div class="col-xs-12">
                     <table id="actual_product_list" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th id="first"></th>
                                 <th>Name</th>
+                                <th>Brand</th>
+                                <th>Price</th>
+                                <th>Available</th>
+                                <th>Details</th>
+                                <th>Add Cart</th>
                             </tr>
                         </thead>
+                        <%-- table body is going here--%>
+                        <%--<tfoot>--%>
+                            <%--<tr>--%>
+                                <%--<th></th>--%>
+                                <%--<th>Name</th>--%>
+                                <%--<th>Brand</th>--%>
+                                <%--<th>Price</th>--%>
+                                <%--<th>Available</th>--%>
+                                <%--<th>Details</th>--%>
+                                <%--<th>Add Cart</th>--%>
+                            <%--</tr>--%>
+                        <%--</tfoot>--%>
                     </table>
                 </div>
             </div>
