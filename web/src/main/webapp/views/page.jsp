@@ -98,7 +98,7 @@
 
 <body>
 
-    <div class="wrapper">
+<div class="wrapper">
     <!-- Navigation bar is included here -->
     <%@include file="./shared/navbar.jsp" %>
 
@@ -120,9 +120,14 @@
             <%@include file="contact.jsp" %>
         </c:if>
 
-        <%-- Product content only when user clicks Product or CategoryProducts --%>
+        <%-- Products content for All Products or Category Products --%>
         <c:if test="${userClickedAllProducts == true || userClickedCategoryProducts == true}">
             <%@include file="products.jsp" %>
+        </c:if>
+
+        <%-- Single product content --%>
+        <c:if test="${userClickedProductDetails == true}">
+            <%@include file="product_details.jsp" %>
         </c:if>
     </div>
 

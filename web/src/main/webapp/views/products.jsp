@@ -24,7 +24,7 @@
                             window.categoryId = '';
                         </script>
                         <ol class="breadcrumb">
-                            <li class="active">All Products</li>
+                            <li>All Products</li>
                         </ol>
                     </c:if>
                     <c:if test="${userClickedCategoryProducts == true}">
@@ -33,8 +33,12 @@
                             window.categoryId = ${category.categoryId};
                         </script>
                         <ol class="breadcrumb">
-                            <li class="active">All Products</li>
-                            <li class="active">${category.name}</li>
+                            <li>
+                                <a href="/web/show/all/products" class="link_black"title="Go to All Products">
+                                    All Products
+                                </a>
+                            </li>
+                            <li>${category.name}</li>
                         </ol>
                     </c:if>
                 </div>

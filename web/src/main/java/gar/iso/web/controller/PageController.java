@@ -1,7 +1,11 @@
 package gar.iso.web.controller;
 
 import gar.iso.core.dao.CategoryDao;
+import gar.iso.core.dao.ProductDao;
 import gar.iso.core.dto.Category;
+import gar.iso.core.dto.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,13 +18,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 
+    private static final Logger log = LoggerFactory.getLogger(PageController.class);
+
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private ProductDao productDao;
 
     @RequestMapping(value = {"/", "/home", "/index"})
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Home");
+
+        log.info("Inside page controller index method - INFO");
+        log.debug("Inside page controller index method - DEBUG");
 
 //        passing category list from core
         mv.addObject("categories", categoryDao.getCategoryList());
@@ -76,4 +88,24 @@ public class PageController {
         mv.addObject("userClickedCategoryProducts", true);
         return mv;
     }
+
+    /**
+     * Getting a single product
+     * @param productId
+     * @return product
+     */
+    @RequestMapping(value = "/product/{productId}/details")
+    public ModelAndView getProductDetailById(@PathVariable("productId") int productId) {
+        ModelAndView mv = new ModelAndView("page");
+        Product product = productDao.getProductById(productId);
+//        updating product views after it is viewed one more time
+        product.setViews(product.getViews() + 1);
+        productDao.updateProduct(product);
+//        retrieving product for view
+        mv.addObject("title", product.getName());
+        mv.addObject("product", product);
+        mv.addObject("userClickedProductDetails", true);
+        return mv;
+    }
+
 }

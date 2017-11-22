@@ -80,6 +80,11 @@ footer {
 #first {
     position: unset;
 }
+
+.link_black {
+    color: black;
+}
+
 .has-success {
     color: #4582ec;
 }
