@@ -4,6 +4,7 @@ import gar.iso.core.dao.CategoryDao;
 import gar.iso.core.dao.ProductDao;
 import gar.iso.core.dto.Category;
 import gar.iso.core.dto.Product;
+import gar.iso.web.exception.ProductNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,9 +96,14 @@ public class PageController {
      * @return product
      */
     @RequestMapping(value = "/product/{productId}/details")
-    public ModelAndView getProductDetailById(@PathVariable("productId") int productId) {
+    public ModelAndView getProductDetailById(@PathVariable("productId") int productId) throws ProductNotFoundException {
         ModelAndView mv = new ModelAndView("page");
         Product product = productDao.getProductById(productId);
+
+        if (product == null) {
+            throw new ProductNotFoundException();
+        }
+
 //        updating product views after it is viewed one more time
         product.setViews(product.getViews() + 1);
         productDao.updateProduct(product);

@@ -63,7 +63,15 @@ $(function () {
                         return '&#8377; ' + data
                     }
                 },
-                {data: 'quantity'},
+                {
+                    data: 'quantity',
+                    mRender: function (data, type, row) {
+                        if (data < 1) {
+                            return "<span style='color:red'>Out of Stock</span>";
+                        }
+                        return data;
+                    }
+                },
                 {
                     data: 'productId',
                     bSortable: false,
@@ -79,8 +87,13 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var src = '';
-                        src += "<a href='" + window.contextRoot + "/cart/add/" + data + "/product'" +
-                            "class='btn btn-success' title='Add to Cart'><span class='glyphicon glyphicon-shopping-cart'></span></a>";
+                        if (row.quantity < 1) {
+                            src += "<a href='javascript:void(0)' class='btn btn-success disabled'>" +
+                                "<span class='glyphicon glyphicon-shopping-cart'></span></a>";
+                        } else {
+                            src += "<a href='" + window.contextRoot + "/cart/add/" + data + "/product'" +
+                                "class='btn btn-success' title='Add to Cart'><span class='glyphicon glyphicon-shopping-cart'></span></a>";
+                        }
                         return src;
                     }
                 }

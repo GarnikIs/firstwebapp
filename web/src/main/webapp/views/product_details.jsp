@@ -30,11 +30,28 @@
             <hr/>
             <h4>Price:<strong>&#8377; ${product.unitPrice}</strong></h4>
             <hr/>
-            <h6>Available:${product.quantity}</h6>
-            <a href="${contextRoot}/cart/add/${product.productId}/product"
-               title="Add to Cart" class="btn btn-success">Add to Cart
-                <span class='glyphicon glyphicon-shopping-cart'></span>
-            </a>
+            <c:choose>
+                <c:when test="${product.quantity < 1}">
+                    <h6>Available:<span style="color:red">&nbsp; Out of Stock</span></h6>
+                </c:when>
+                <c:otherwise>
+                    <h6>Available:${product.quantity}</h6>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${product.quantity < 1}">
+                    <a href="javascript:void(0)"class="btn btn-success disabled"><strike>Add to Cart
+                        <span class='glyphicon glyphicon-shopping-cart'></span></strike>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${contextRoot}/cart/add/${product.productId}/product"
+                       title="Add to Cart" class="btn btn-success">Add to Cart
+                        <span class='glyphicon glyphicon-shopping-cart'></span>
+                    </a>
+                </c:otherwise>
+            </c:choose>
+
             <a href="${contextRoot}/show/all/products"
                title="Back to All Products" class="btn btn-primary">Back</a>
         </div>
