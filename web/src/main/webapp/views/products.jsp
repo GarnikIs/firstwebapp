@@ -46,7 +46,7 @@
             <%-- Displaying actual products --%>
             <div class="row">
                 <div class="col-xs-12">
-                    <table id="actual_product_list" class="table table-striped table-bordered">
+                    <table id="actualProductList" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th id="first"></th>

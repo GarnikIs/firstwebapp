@@ -15,6 +15,9 @@ $(function () {
         case "Products":
             $("#products").addClass("active");
             break;
+        case "Manage Products":
+            $("#manageProducts").addClass("active");
+            break;
         case "Contact":
             $("#contact").addClass("active");
             break;
@@ -28,7 +31,7 @@ $(function () {
     }
     ;
 
-    var $table = $("#actual_product_list");
+    var $table = $("#actualProductList");
     // TODO later - must be changed
     if ($table.length) {
         var jsonUrl = '';
@@ -99,5 +102,13 @@ $(function () {
                 }
             ]
         });
+    };
+
+    // Automatically close success dialog box after 3 seconds
+    var $alert = $(".alert");
+    if ($alert.length){
+        setTimeout(function () {
+            $alert.fadeOut('slow');
+        },3000);
     };
 });

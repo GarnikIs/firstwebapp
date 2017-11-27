@@ -1,8 +1,11 @@
 package gar.iso.core.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.UUID;
 
 /**
@@ -20,15 +23,19 @@ public class Product {
     private String code;
 
     @Column(name = "product_name")
+    @NotBlank(message = "Please enter product name")
     private String name;
 
+    @NotBlank(message = "Please enter product brand")
     private String brand;
 
     @JsonIgnore
     @Column(name = "product_description")
+    @NotBlank(message = "Please enter description for product")
     private String description;
 
     @Column(name = "unit_price")
+    @Min(value = 1, message = "Price cannot be less than 1")
     private int unitPrice;
 
     private int quantity;
@@ -45,9 +52,12 @@ public class Product {
     @Column(name = "product_supplier_id")
     private int productSupplierId;
 
-    private int purchase;
+    private int purchases;
 
     private int views;
+
+    @Transient
+    private MultipartFile file;
 
 //    Default construtor to initialize product code by UUID from java.util package
     public Product(){
@@ -134,12 +144,12 @@ public class Product {
         this.productSupplierId = productSupplierId;
     }
 
-    public int getPurchase() {
-        return purchase;
+    public int getPurchases() {
+        return purchases;
     }
 
-    public void setPurchase(int purchase) {
-        this.purchase = purchase;
+    public void setPurchases(int purchases) {
+        this.purchases = purchases;
     }
 
     public int getViews() {
@@ -148,6 +158,14 @@ public class Product {
 
     public void setViews(int views) {
         this.views = views;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     @Override
@@ -163,7 +181,7 @@ public class Product {
                 ", active=" + active +
                 ", productCategoryId=" + productCategoryId +
                 ", productSupplierId=" + productSupplierId +
-                ", purchase=" + purchase +
+                ", purchase=" + purchases +
                 ", views=" + views +
                 '}';
     }

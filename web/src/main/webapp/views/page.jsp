@@ -125,6 +125,11 @@
             <%@include file="products.jsp" %>
         </c:if>
 
+        <%-- Manage Products content --%>
+        <c:if test="${userClickedManageProducts == true}">
+            <%@include file="manage_products.jsp" %>
+        </c:if>
+
         <%-- Single product content --%>
         <c:if test="${userClickedProductDetails == true}">
             <%@include file="product_details.jsp" %>

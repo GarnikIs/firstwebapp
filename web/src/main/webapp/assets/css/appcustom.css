@@ -84,6 +84,43 @@ footer {
 .link_black {
     color: black;
 }
+/*
+* Custom css for View products page
+*/
+/*Overriding native css to properly show the products table*/
+#actualProductList_wrapper {
+    display: block;
+}
+/*Overriding native css to properly show the products table label and search attributes*/
+#actualProductList_length, #actualProductList_filter label {
+    display: inline-block;
+}
+/*Overriding native css to properly show the products table select attribute*/
+#actualProductList_length select {
+    height:auto;
+    width: auto;
+    margin: 0 10px;
+}
+
+#actualProductList th, td {
+    text-align: center  ;
+}
+/*End*/
+/*
+* Custom css for Manage products page
+*/
+#productCategoryId {
+    height:auto;
+}
+
+#description {
+    resize: none;
+}
+
+.help-block {
+    color: #ff0000;
+}
+/*End*/
 
 .has-success {
     color: #4582ec;
@@ -102,25 +139,6 @@ footer {
 /* Hide default HTML checkbox */
 .switch input {
     display: none;
-}
-
-/*Overriding native css to properly show the products table*/
-#actual_product_list_wrapper {
-    display: block;
-}
-/*Overriding native css to properly show the products table label and search attributes*/
-#actual_product_list_length, #actual_product_list_filter label {
-    display: inline-block;
-}
-/*Overriding native css to properly show the products table select attribute*/
-#actual_product_list_length select{
-    height:auto;
-    width: auto;
-    margin: 0 10px;
-}
-
-#actual_product_list th, td {
-    text-align: center  ;
 }
 
 /* The slider */
