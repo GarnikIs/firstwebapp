@@ -24,7 +24,7 @@ public class HibernateConfig {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/sexshop";
 
 //    database dialect
-    private static final String DATABASE_DIALECT = "org.hibernate.dialect.MySQLDialect";
+    private static final String DATABASE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
 
 //    database Driver
     private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
@@ -65,6 +65,8 @@ public class HibernateConfig {
         properties.put("hibernate.dialect", DATABASE_DIALECT);
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
+//        TODO must be removed or made update
+        properties.put("hibernate.hbm2ddl.auto", "create");
         return properties;
     }
 
