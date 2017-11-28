@@ -40,9 +40,9 @@ public class ProductDaoImplTest {
     public void testAddProduct(){
         product = new Product();
         product.setCode("ASD");
-        product.setName("Iphone 5s");
+        product.setProductName("Iphone 5s");
         product.setBrand("Apple");
-        product.setDescription("Some description to Iphone 5s");
+        product.setProductDescription("Some description to Iphone 5s");
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
@@ -64,9 +64,9 @@ public class ProductDaoImplTest {
 //        Adding product into DB
         product = new Product();
         product.setCode("ASD");
-        product.setName("Iphone 5s");
+        product.setProductName("Iphone 5s");
         product.setBrand("Apple");
-        product.setDescription("Some description to Iphone 5s");
+        product.setProductDescription("Some description to Iphone 5s");
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
@@ -90,9 +90,9 @@ public class ProductDaoImplTest {
 //        Adding product into DB
         product = new Product();
         product.setCode("ASD");
-        product.setName("Iphone 5s");
+        product.setProductName("Iphone 5s");
         product.setBrand("Apple");
-        product.setDescription("Some description to Iphone 5s");
+        product.setProductDescription("Some description to Iphone 5s");
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
@@ -116,9 +116,9 @@ public class ProductDaoImplTest {
 //        Adding product into DB
         product = new Product();
         product.setCode("ASD");
-        product.setName("Iphone 5s");
+        product.setProductName("Iphone 5s");
         product.setBrand("Apple");
-        product.setDescription("Some description to Iphone 5s");
+        product.setProductDescription("Some description to Iphone 5s");
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
@@ -130,7 +130,21 @@ public class ProductDaoImplTest {
         productDao.addProduct(product);
 //        Asserts true if returned product name is same as newly imported product name
         assertEquals("Something went wrong when fetching a new added single product from database: ",
-                product.getName(), productDao.getProductById(product.getProductId()).getName());
+                product.getProductName(), productDao.getProductById(product.getProductId()).getProductName());
+    }
+
+    /**
+     * Test  getting all product list for admin
+     */
+
+    @Test
+    public void testGetAllProductListForAdmin(){
+
+//        Asserts true if returned all product list size is same as
+//        currently actual all products which was 18 at that time
+        assertEquals("Something went wrong when fetching a all product list from database: ",
+                18,
+                productDao.getAllProductList().size());
     }
 
     /**
@@ -142,9 +156,9 @@ public class ProductDaoImplTest {
 //        First product
         product = new Product();
         product.setCode("ASD");
-        product.setName("Iphone 5s");
+        product.setProductName("Iphone 5s");
         product.setBrand("Apple");
-        product.setDescription("Some description to Iphone 5s");
+        product.setProductDescription("Some description to Iphone 5s");
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
@@ -157,9 +171,9 @@ public class ProductDaoImplTest {
 //        Second product
         product = new Product();
         product.setCode("QWE");
-        product.setName("SamsungTV");
+        product.setProductName("SamsungTV");
         product.setBrand("SAMSUG");
-        product.setDescription("Some description to SamsungTV");
+        product.setProductDescription("Some description to SamsungTV");
         product.setUnitPrice(400000);
         product.setQuantity(5);
         product.setActive(false);
@@ -172,9 +186,9 @@ public class ProductDaoImplTest {
 //        Third product
         product = new Product();
         product.setCode("ZXC");
-        product.setName("Toshiba C45");
+        product.setProductName("Toshiba C45");
         product.setBrand("TOSHIBA");
-        product.setDescription("Some description to Toshiba C45");
+        product.setProductDescription("Some description to Toshiba C45");
         product.setUnitPrice(600000);
         product.setQuantity(2);
         product.setActive(true);
@@ -199,9 +213,9 @@ public class ProductDaoImplTest {
 //        First product
         product = new Product();
         product.setCode("ASD");
-        product.setName("Iphone 5s");
+        product.setProductName("Iphone 5s");
         product.setBrand("Apple");
-        product.setDescription("Some description to Iphone 5s");
+        product.setProductDescription("Some description to Iphone 5s");
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
@@ -214,9 +228,9 @@ public class ProductDaoImplTest {
 //        Second product
         product = new Product();
         product.setCode("QWE");
-        product.setName("SamsungTV");
+        product.setProductName("SamsungTV");
         product.setBrand("SAMSUG");
-        product.setDescription("Some description to SamsungTV");
+        product.setProductDescription("Some description to SamsungTV");
         product.setUnitPrice(400000);
         product.setQuantity(11);
         product.setActive(false);
@@ -229,9 +243,9 @@ public class ProductDaoImplTest {
 //        Third product
         product = new Product();
         product.setCode("ZXC");
-        product.setName("Toshiba C45");
+        product.setProductName("Toshiba C45");
         product.setBrand("TOSHIBA");
-        product.setDescription("Some description to Toshiba C45");
+        product.setProductDescription("Some description to Toshiba C45");
         product.setUnitPrice(600000);
         product.setQuantity(2);
         product.setActive(true);

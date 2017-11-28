@@ -24,7 +24,7 @@ public class Product {
 
     @Column(name = "product_name")
     @NotBlank(message = "Please enter product name")
-    private String name;
+    private String productName;
 
     @NotBlank(message = "Please enter product brand")
     private String brand;
@@ -32,7 +32,7 @@ public class Product {
     @JsonIgnore
     @Column(name = "product_description")
     @NotBlank(message = "Please enter description for product")
-    private String description;
+    private String productDescription;
 
     @Column(name = "unit_price")
     @Min(value = 1, message = "Price cannot be less than 1")
@@ -40,7 +40,6 @@ public class Product {
 
     private int quantity;
 
-    @JsonIgnore
     @Column(name = "product_is_active")
     private boolean active;
 
@@ -80,12 +79,12 @@ public class Product {
         this.code = code;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getBrand() {
@@ -96,12 +95,12 @@ public class Product {
         this.brand = brand;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
     public int getUnitPrice() {
@@ -173,9 +172,9 @@ public class Product {
         return "Product{" +
                 "productId=" + productId +
                 ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + productName + '\'' +
                 ", brand='" + brand + '\'' +
-                ", description='" + description + '\'' +
+                ", description='" + productDescription + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", quantity=" + quantity +
                 ", active=" + active +

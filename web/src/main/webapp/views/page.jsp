@@ -29,7 +29,7 @@
     <title>Online Shop - ${title}</title>
     <script>
         window.menu = "${title}";
-        window.category = "${category.name}";
+        window.category = "${category.categoryName}";
         window.contextRoot = "${contextRoot}";
     </script>
 
@@ -61,7 +61,7 @@
     <!-- jQuery -->
     <script src="${js}/jquery.min.js"></script>
 
-    <!-- JQuery Validate  -->
+    <!-- JQuery Validator  -->
     <script src="${js}/jquery.validate.js"></script>
 
     <%-- Popper in javascript --%>

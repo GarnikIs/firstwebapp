@@ -30,7 +30,7 @@ public class ProductDaoImpl implements ProductDao{
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("DatabaseException occurred while adding product: " + product.getName() + ",/ " + e.getMessage());
+            System.out.println("DatabaseException occurred while adding product: " + product.getProductName() + ",/ " + e.getMessage());
             return false;
         }
     }
@@ -76,13 +76,30 @@ public class ProductDaoImpl implements ProductDao{
         return product;
     }
 
-//    Retrieving active pruduct list
+//    Retrieving active product list
     @Override
     public List<Product> getActiveProductList() {
         List<Product> products = null;
         String selectActiveProducts = "FROM Product WHERE product_is_active = 1";
         try{
             Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProducts);
+            products = query.list();
+            if (products == null || products.size() <= 0) {
+                throw new EntityNotFoundException("Category list is empty");
+            }
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("EntityNotFoundException is thrown while getting the list of products from the database: " + e.getMessage());
+        }
+        return products;
+    }
+//    Retrieving all product list
+    @Override
+    public List<Product> getAllProductList() {
+        List<Product> products = null;
+        String selectActiveProducts = "FROM Product";
+        try{
+            Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProducts, Product.class);
             products = query.list();
             if (products == null || products.size() <= 0) {
                 throw new EntityNotFoundException("Category list is empty");

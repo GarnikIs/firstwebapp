@@ -8,6 +8,6 @@
 <h1 class="my-4">Shop Name</h1>
 <div class="list-group">
     <c:forEach items="${categories}" var="category">
-        <a href="${contextRoot}/show/category/${category.categoryId}/products" id="${category.name}" class="list-group-item">${category.name}</a>
+        <a href="${contextRoot}/show/category/${category.categoryId}/products" id="${category.categoryName}" class="list-group-item">${category.categoryName}</a>
     </c:forEach>
 </div>

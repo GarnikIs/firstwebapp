@@ -11,7 +11,7 @@
         <div class="col-xs-12">
             <ol class="breadcrumb">
                 <li><a href="${contextRoot}/show/all/products" class="link_black">All Products</a></li>
-                <li>${product.name}</li>
+                <li>${product.productName}</li>
             </ol>
         </div>
     </div>
@@ -24,9 +24,9 @@
         </div>
         <%-- Displaying product description --%>
         <div class="col-xs-12 col-sm-8">
-            <h3>${product.name}</h3>
+            <h3>${product.productName}</h3>
             <hr/>
-            <p>${product.description}</p>
+            <p>${product.productDescription}</p>
             <hr/>
             <h4>Price:<strong>&#8377; ${product.unitPrice}</strong></h4>
             <hr/>

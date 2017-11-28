@@ -30,7 +30,7 @@ public class CategoryDaoImpl implements CategoryDao {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("DatabaseException is thrown while adding a category into database: " + category.getName() + ",/ " + e.getMessage());
+            System.out.println("DatabaseException is thrown while adding a category into database: " + category.getCategoryDescription() + ",/ " + e.getMessage());
             return false;
         }
     }

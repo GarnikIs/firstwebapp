@@ -79,7 +79,7 @@ public class PageController {
         Category category = null;
         category = categoryDao.getCategoryById(id);
 
-        mv.addObject("title", category.getName());
+        mv.addObject("title", category.getCategoryName());
 
 //        passing category list from core
         mv.addObject("categories", categoryDao.getCategoryList());
@@ -108,7 +108,7 @@ public class PageController {
         product.setViews(product.getViews() + 1);
         productDao.updateProduct(product);
 //        retrieving product for view
-        mv.addObject("title", product.getName());
+        mv.addObject("title", product.getProductName());
         mv.addObject("product", product);
         mv.addObject("userClickedProductDetails", true);
         return mv;

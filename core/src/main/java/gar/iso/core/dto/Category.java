@@ -1,5 +1,7 @@
 package gar.iso.core.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 /**
@@ -16,11 +18,11 @@ public class Category {
 
 //    category name
     @Column(name = "category_name")
-    private String name;
+    private String categoryName;
 
 //    category description
     @Column(name = "category_description")
-    private String description;
+    private String categoryDescription;
 
 //    image url of category
     @Column(name = "category_image_url")
@@ -38,20 +40,20 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategoryDescription() {
+        return categoryDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
     }
 
     public String getImageUrl() {
@@ -74,8 +76,8 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "id=" + categoryId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                ", name='" + categoryName + '\'' +
+                ", description='" + categoryDescription + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", isActive=" + active +
                 '}';

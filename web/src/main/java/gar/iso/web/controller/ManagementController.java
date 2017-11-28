@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +35,7 @@ public class ManagementController {
     private static final Logger log = LoggerFactory.getLogger(ManagementController.class);
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public ModelAndView showManageProducts(@RequestParam(name = "operation", required=false) String operation){
+    public ModelAndView showManageProducts(@RequestParam(name = "operation", required = false) String operation) {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Manage Products");
         mv.addObject("userClickedManageProducts", true);
@@ -48,41 +45,103 @@ public class ManagementController {
         nProduct.setActive(true);
         mv.addObject("product", nProduct);
         if (operation != null) {
-            if (operation.equals("product")) {
+            if (operation.equals("add_product")) {
                 mv.addObject("message", "Product is successfully added.");
+            } else if (operation.equals("update_product")) {
+                mv.addObject("message", "Product is successfully updated.");
+            } else if (operation.equals("add_category")) {
+                mv.addObject("message", "Category is successfully added.");
             }
         }
         return mv;
     }
 
-//    handling managing adding product
+    //    handle adding product
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,
-                                          BindingResult results, Model model, HttpServletRequest request){
+                                          BindingResult results, Model model, HttpServletRequest request) {
+        String operation = null;
 
-        new ProductValidator().validate(mProduct, results);
+        if (mProduct.getProductId() == 0) {
+            new ProductValidator().validate(mProduct, results);
+        } else {
+            if (!mProduct.getFile().getOriginalFilename().equals("")) {
+                new ProductValidator().validate(mProduct, results);
+            }
+        }
 
 //        checks if there are any errors
         if (results.hasErrors()) {
             model.addAttribute("title", "Manage Products");
             model.addAttribute("userClickedManageProducts", true);
-            model.addAttribute("message", "Validation is failed for product adding");
+            model.addAttribute("message", "Validation is failed for adding product");
             return "page";
         }
 
         log.info(mProduct.toString());
-        productDao.addProduct(mProduct);
+        if (mProduct.getProductId() == 0) {
+//            creating new product, which id is not set yet
+            productDao.addProduct(mProduct);
+            operation = "add_product";
+        } else {
+//            updating product, whi already has an id
+            productDao.updateProduct(mProduct);
+            operation = "update_product";
+        }
 
         if (!mProduct.getFile().getOriginalFilename().equals("")) {
             FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
         }
 
-        return "redirect:/manage/products?operation=product";
+        return "redirect:/manage/products?operation=" + operation;
+    }
+
+    //    handle activating or deactivating product
+    @RequestMapping(value = "/product/{productId}/activation", method = RequestMethod.POST)
+    @ResponseBody
+    public String handleProductActivation(@PathVariable int productId) {
+        Product product = productDao.getProductById(productId);
+        boolean isProductActive = product.isActive();
+        product.setActive(!product.isActive());
+        productDao.updateProduct(product);
+
+        String message = (isProductActive) ? "You have successfully deactivated '" + product.getProductName() + "'" :
+                "You have successfully activated '" + product.getProductName() + "'";
+
+        return message;
+    }
+
+    //    handle changing product details
+    @RequestMapping(value = "/{productId}/product", method = RequestMethod.GET)
+    public ModelAndView showEditProduct(@PathVariable int productId) {
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Manage Products");
+        mv.addObject("userClickedManageProducts", true);
+        Product nProduct = productDao.getProductById(productId);
+        mv.addObject("product", nProduct);
+        return mv;
+    }
+
+    //    handle category submission
+    @RequestMapping(value = "/category", method = RequestMethod.POST)
+    public String handleCategorySubmission(@ModelAttribute Category nCategory) {
+        String operation = null;
+
+        log.info(nCategory.toString());
+        operation = "add_category";
+
+        categoryDao.addCategory(nCategory);
+        return "redirect:/manage/products?operation=" + operation;
     }
 
     @ModelAttribute("categories")
     public List<Category> getCategories() {
         return categoryDao.getCategoryList();
+    }
+
+    @ModelAttribute("category")
+    public Category getCategory() {
+        return new Category();
     }
 
 }

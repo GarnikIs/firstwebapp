@@ -39,8 +39,8 @@ public class CategoryDaoImplTest {
     @Test
     public void testAddCategory(){
         category = new Category();
-        category.setName("Television");
-        category.setDescription("Some description to Television");
+        category.setCategoryName("Television");
+        category.setCategoryDescription("Some description to Television");
         category.setImageUrl("CAT_1.png");
         category.setActive(true);
         categoryList.add(category);
@@ -56,13 +56,13 @@ public class CategoryDaoImplTest {
     public void testUpdateCategory(){
 //        Adding category into DB
         category = new Category();
-        category.setName("Laptop");
-        category.setDescription("Some description to Laptop");
+        category.setCategoryName("Laptop");
+        category.setCategoryDescription("Some description to Laptop");
         category.setImageUrl("CAT_6.png");
         category.setActive(true);
         categoryDao.addCategory(category);
-        category.setName("Comminication");
-        category.setDescription("New description to Comminication");
+        category.setCategoryName("Comminication");
+        category.setCategoryDescription("New description to Comminication");
         category.setImageUrl("CAT_7.png");
         category.setActive(false);
         categoryList.add(category);
@@ -78,8 +78,8 @@ public class CategoryDaoImplTest {
     public void testDeleteCategory(){
 //        Adding category into DB
         category = new Category();
-        category.setName("Device");
-        category.setDescription("Some description to Device");
+        category.setCategoryName("Device");
+        category.setCategoryDescription("Some description to Device");
         category.setImageUrl("CAT_8.png");
         category.setActive(true);
         categoryList.add(category);
@@ -96,15 +96,15 @@ public class CategoryDaoImplTest {
     public void testGetCategoryById(){
 //        Adding category into DB
         category = new Category();
-        category.setName("Internet");
-        category.setDescription("Some description to Internet");
+        category.setCategoryName("Internet");
+        category.setCategoryDescription("Some description to Internet");
         category.setImageUrl("CAT_5.png");
         category.setActive(true);
         categoryList.add(category);
         categoryDao.addCategory(category);
 //        Asserts true if returned category name is same as newly imported category name
         assertEquals("Something went wrong when  fetching new added category from database: ",
-                category.getName(), categoryDao.getCategoryById(category.getCategoryId()).getName());
+                category.getCategoryName(), categoryDao.getCategoryById(category.getCategoryId()).getCategoryName());
     }
 
     /**
@@ -115,24 +115,24 @@ public class CategoryDaoImplTest {
     public void testGetCategoryList(){
 //        First category
         category = new Category();
-        category.setName("Cabel TV");
-        category.setDescription("Some description to Cabel TV");
+        category.setCategoryName("Cabel TV");
+        category.setCategoryDescription("Some description to Cabel TV");
         category.setImageUrl("CAT_2.png");
         category.setActive(true);
         categoryList.add(category);
         categoryDao.addCategory(category);
 //        Second category
         category = new Category();
-        category.setName("Mobile");
-        category.setDescription("Some description to Mobile");
+        category.setCategoryName("Mobile");
+        category.setCategoryDescription("Some description to Mobile");
         category.setImageUrl("CAT_3.png");
         category.setActive(false);
         categoryList.add(category);
         categoryDao.addCategory(category);
 //        Third category
         category = new Category();
-        category.setName("Computer");
-        category.setDescription("Some description to Computer");
+        category.setCategoryName("Computer");
+        category.setCategoryDescription("Some description to Computer");
         category.setImageUrl("CAT_4.png");
         category.setActive(true);
         categoryList.add(category);

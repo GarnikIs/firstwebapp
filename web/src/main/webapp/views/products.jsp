@@ -38,7 +38,7 @@
                                     All Products
                                 </a>
                             </li>
-                            <li>${category.name}</li>
+                            <li>${category.categoryName}</li>
                         </ol>
                     </c:if>
                 </div>

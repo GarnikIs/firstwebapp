@@ -15,6 +15,7 @@ public interface ProductDao {
     boolean deleteProduct(Product product);
     Product getProductById(int productId);
     List<Product> getActiveProductList();
+    List<Product> getAllProductList();
 
 //    business methods of product dao layer
     List<Product> getActiveProductListByCategoryId(int categoryId);
