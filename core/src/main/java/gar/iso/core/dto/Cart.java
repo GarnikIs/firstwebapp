@@ -1,12 +1,16 @@
 package gar.iso.core.dto;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Gor on 11/28/2017.
  */
 @Entity
-public class Cart {
+public class Cart implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")

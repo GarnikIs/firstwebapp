@@ -3,12 +3,15 @@ package gar.iso.core.dto;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Gor on 11/17/2017.
  */
 @Entity
-public class Category {
+public class Category implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
 //    category id
     @Id
