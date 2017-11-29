@@ -3,13 +3,16 @@ package gar.iso.core.dto;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Gor on 11/28/2017.
  */
 @Entity
 @Table(name = "user_detail")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +33,9 @@ public class User {
     private String role;
 
     private String password;
+
+    @Transient
+    private String confirmPassword;
 
     private boolean enabled = true;
 
@@ -90,6 +96,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public boolean isEnabled() {

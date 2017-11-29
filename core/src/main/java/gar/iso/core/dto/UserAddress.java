@@ -1,13 +1,17 @@
 package gar.iso.core.dto;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Gor on 11/28/2017.
  */
 @Entity
 @Table(name = "user_address")
-public class UserAddress {
+public class UserAddress implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
