@@ -17,8 +17,13 @@
     <name>web</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <javaee.version>7.0</javaee.version>
+        <spring.security.version>4.2.2.RELEASE</spring.security.version>
+    </properties>
+
     <dependencies>
-        <!-- Link to corebackend -->
+        <!-- Link to core -->
         <dependency>
             <groupId>gar.iso</groupId>
             <artifactId>core</artifactId>
@@ -52,6 +57,27 @@
             <groupId>org.springframework.webflow</groupId>
             <artifactId>spring-webflow</artifactId>
             <version>2.4.4.RELEASE</version>
+        </dependency>
+
+        <!-- Spring security config -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <!-- Spring security web -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <!-- Spring security taglibs -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
 
     </dependencies>

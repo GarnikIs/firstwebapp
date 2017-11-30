@@ -36,8 +36,8 @@ public class HibernateConfig {
     private static final String DATABASE_PASSWORD = "Myroot@1987!";
 
 
-    //    Intantiating DataSource Bean and returning its object
-    @Bean
+    //    Instantiate DataSource Bean and return its object
+    @Bean(name = "dataSource")
     public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
 
@@ -66,7 +66,7 @@ public class HibernateConfig {
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
 //        TODO must be removed or made update
-        properties.put("hibernate.hbm2ddl.auto", "create");
+//        properties.put("hibernate.hbm2ddl.auto", "create");
         return properties;
     }
 
