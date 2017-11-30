@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">Contact Number</label>
+                                <label class="control-label col-md-4">Phone Number</label>
                                 <div class="col-md-8">
                                     <sf:input type="text" path="phoneNumber" class="form-control"
                                               placeholder="XXXXXXXXXX" maxlength="10"/>
