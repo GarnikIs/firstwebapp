@@ -17,7 +17,7 @@
                         <sf:form method="POST" modelAttribute="user" class="form-horizontal"
                                  id="registerForm">
                             <div class="form-group">
-                                <label class="control-label col-md-4">First Name</label>
+                                <label for="firstName" class="control-label col-md-4">First Name</label>
                                 <div class="col-md-8">
                                     <sf:input type="text" path="firstName" class="form-control"
                                               placeholder="First Name"/>
@@ -26,7 +26,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">Last Name</label>
+                                <label for="lastName" class="control-label col-md-4">Last Name</label>
                                 <div class="col-md-8">
                                     <sf:input type="text" path="lastName" class="form-control"
                                               placeholder="Last Name"/>
@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">Email</label>
+                                <label for="email" class="control-label col-md-4">Email</label>
                                 <div class="col-md-8">
                                     <sf:input type="text" path="email" class="form-control"
                                               placeholder="abc@zyx.com"/>
@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">Phone Number</label>
+                                <label for="phoneNumber" class="control-label col-md-4">Phone Number</label>
                                 <div class="col-md-8">
                                     <sf:input type="text" path="phoneNumber" class="form-control"
                                               placeholder="XXXXXXXXXX" maxlength="10"/>
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">Password</label>
+                                <label for="password" class="control-label col-md-4">Password</label>
                                 <div class="col-md-8">
                                     <sf:input type="password" path="password" class="form-control"
                                               placeholder="Password"/>
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">Confirm Password</label>
+                                <label for="confirmPassword" class="control-label col-md-4">Confirm Password</label>
                                 <div class="col-md-8">
                                     <sf:input type="password" path="confirmPassword" class="form-control"
                                               placeholder="Retype password"/>
@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">Select Role</label>
+                                <label for="role" class="control-label col-md-4">Select Role</label>
                                 <div class="col-md-8">
                                     <label class="radio-inline">
                                         <sf:radiobutton path="role" value="USER" checked="checked"/> User
