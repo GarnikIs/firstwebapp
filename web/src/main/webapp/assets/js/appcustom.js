@@ -5,31 +5,33 @@
 $(function () {
 
 //  Switching menu and show active button
-    switch (menu) {
+        switch (menu) {
 
-        case "Home":
-            $("#home").addClass("active");
-            break;
-        case "About Us":
-            $("#about").addClass("active");
-            break;
-        case "Products":
-            $("#products").addClass("active");
-            break;
-        case "Manage Products":
-            $("#manageProducts").addClass("active");
-            break;
-        case "Contact":
-            $("#contact").addClass("active");
-            break;
-        case (category):
-            $("#products").addClass("active");
-            $("#" + category).addClass("active");
-            break;
-        default:
-            $("#products").addClass("active");
-            break;
-    };
+            case "Home":
+                $("#home").addClass("active");
+                break;
+            case "About Us":
+                $("#about").addClass("active");
+                break;
+            case "Products":
+                $("#products").addClass("active");
+                break;
+            case "Manage Products":
+                $("#manageProducts").addClass("active");
+                break;
+            case "Contact":
+                $("#contact").addClass("active");
+                break;
+            case (category):
+                $("#products").addClass("active");
+                if (category != "") {
+                    $("#" + category).addClass("active");
+                }
+                break;
+            default:
+                $("#products").addClass("active");
+                break;
+        };
     /*----------------------------------------------*/
 
 //  Jquery dataTable for user

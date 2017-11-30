@@ -1,14 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Gor
-  Date: 11/15/2017
-  Time: 18:58
+  Date: 11/30/2017
+  Time: 01:40
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
 <spring:url var="css" value="/resources/css"/>
 <spring:url var="js" value="/resources/js"/>
@@ -26,7 +27,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Online Shop - ${title}</title>
+    <title>Online Shop - Registration</title>
     <script>
         window.menu = "${title}";
         window.category = "${category.categoryName}";
@@ -36,12 +37,12 @@
     <%-- START CSS --%>
 
     <!-- Bootstrap Core CSS -->
-    <%-- Somtimes it is invisibel and all css is fucked up --%>
+    <%-- Somtimes it is invisible and all css is fucked up --%>
     <link href="${css}/bootstrap.min.css" rel="stylesheet">
     <%--<link href="${css}/bootstrap.css" rel="stylesheet">--%>
 
     <!-- Bootstrap Readable Theme CSS -->
-    <%-- Somtimes it is invisibel and all css is fucked up --%>
+    <%-- Somtimes it is invisible and all css is fucked up --%>
     <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
 
     <!-- Bootstrap DataTables CSS -->
@@ -98,49 +99,9 @@
 
 <body>
 
-<div class="wrapper">
     <!-- Navigation bar is included here -->
-    <%@include file="./shared/navbar.jsp" %>
+    <%@include file="flows_navbar.jsp" %>
 
-
-    <!-- Page Content -->
-    <div class="content">
-        <%-- Home Content only when user clicks home --%>
-        <c:if test="${userClickedHome == true}">
-            <%@include file="home.jsp" %>
-        </c:if>
-
-        <%-- About Us content only when user clicks About --%>
-        <c:if test="${userClickedAbout == true}">
-            <%@include file="about.jsp" %>
-        </c:if>
-
-        <%-- Contact Us content only when user clicks Contact --%>
-        <c:if test="${userClickedContact == true}">
-            <%@include file="contact.jsp" %>
-        </c:if>
-
-        <%-- Products content for All Products or Category Products --%>
-        <c:if test="${userClickedAllProducts == true || userClickedCategoryProducts == true}">
-            <%@include file="products.jsp" %>
-        </c:if>
-
-        <%-- Manage Products content --%>
-        <c:if test="${userClickedManageProducts == true}">
-            <%@include file="manage_products.jsp" %>
-        </c:if>
-
-        <%-- Single product content --%>
-        <c:if test="${userClickedProductDetails == true}">
-            <%@include file="product_details.jsp" %>
-        </c:if>
-    </div>
-
-    <!-- Footer is included here -->
-    <%@include file="./shared/footer.jsp" %>
-
-
-</div>
 </body>
 
 </html>

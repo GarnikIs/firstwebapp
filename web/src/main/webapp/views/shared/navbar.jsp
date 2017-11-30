@@ -7,7 +7,7 @@
 --%>
 
 <%-- Navidation --%>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
     <div class="container">
         <a class="navbar-brand" href="${contextRoot}/home">Online Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -30,6 +30,14 @@
                 </li>
                 <li id="contact" class="nav-item">
                     <a class="nav-link" href="${contextRoot}/contact">Contact</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
+                <li id="register" class="nav-item">
+                    <a class="nav-link" href="${contextRoot}/register">Registration</a>
+                </li>
+                <li id="login" class="nav-item">
+                    <a class="nav-link" href="${contextRoot}/login">Login</a>
                 </li>
             </ul>
         </div>
