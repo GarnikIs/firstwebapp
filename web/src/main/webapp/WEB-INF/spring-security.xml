@@ -11,9 +11,12 @@
 
     <context:component-scan base-package="gar.iso.core"/>
 
+    <http pattern="/resources/**" security="none"/>
+
     <http>
+        <intercept-url pattern="/login" access="permitAll"/>
         <intercept-url pattern="/**" access="hasAnyAuthority('USER')"/>
-        <form-login/>
+        <form-login login-page="/login"/>
         <logout/>
     </http>
 

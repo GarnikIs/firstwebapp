@@ -260,5 +260,37 @@ $(function () {
     };
     /*-----------------------------------------------------------*/
 
+    //  JQuery validation for login form
+
+    var $loginForm = $("#loginForm");
+    if ($loginForm.length) {
+        $loginForm.validate({
+            rules: {
+                username: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required:true,
+                }
+            },
+            messages: {
+                username: {
+                    required: "Username must not be blank",
+                    email: "Please enter valid email address"
+                },
+                password: {
+                    required: "Password must not be blank",
+                }
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                error.addClass("help-block");
+                error.insertAfter(element);
+            }
+        });
+    };
+    /*-----------------------------------------------------------*/
+
 
 });

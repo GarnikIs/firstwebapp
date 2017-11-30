@@ -114,4 +114,12 @@ public class PageController {
         return mv;
     }
 
+//    Request Mapping for login page
+    @RequestMapping(value = "/login")
+    public ModelAndView loginPage() {
+        ModelAndView mv = new ModelAndView("login");
+        mv.addObject("title", "Contact");
+        return mv;
+    }
+
 }
