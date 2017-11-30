@@ -24,17 +24,14 @@ public class UserAddress implements Serializable {
     @Column(name = "address_line")
     private String addressLine;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
     private String city;
 
     private String state;
 
-    private String country;
-
     @Column(name = "zip_code")
     private String zipCode;
+
+    private String country;
 
     private boolean shipping;
 
@@ -62,14 +59,6 @@ public class UserAddress implements Serializable {
 
     public void setAddressLine(String addressLine) {
         this.addressLine = addressLine;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getCity() {
@@ -126,7 +115,6 @@ public class UserAddress implements Serializable {
                 "addressId=" + addressId +
                 ", user='" + user + '\'' +
                 ", addressLineOne='" + addressLine + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
