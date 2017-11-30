@@ -1,5 +1,6 @@
 package gar.iso.core.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -20,21 +21,27 @@ public class User implements Serializable {
     private int userId;
 
     @Column(name = "first_name")
+    @NotBlank(message = "Please enter your first name")
     private String firstName;
 
     @Column(name = "last_name")
+    @NotBlank(message = "Please enter your last name")
     private String lastName;
 
+    @NotBlank(message = "Please enter your email")
     private String email;
 
     @Column(name = "phone_number")
+    @NotBlank(message = "Please enter your phone number")
     private String phoneNumber;
 
     private String role;
 
+    @NotBlank(message = "Please enter your password")
     private String password;
 
     @Transient
+    @NotBlank(message = "Confirmation password must be same")
     private String confirmPassword;
 
     private boolean enabled = true;

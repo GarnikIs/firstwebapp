@@ -1,5 +1,7 @@
 package gar.iso.core.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -22,15 +24,20 @@ public class UserAddress implements Serializable {
     private User user;
 
     @Column(name = "address_line")
+    @NotBlank(message = "Please enter your address")
     private String addressLine;
 
+    @NotBlank(message = "Please enter your city")
     private String city;
 
+    @NotBlank(message = "Please enter your state")
     private String state;
 
     @Column(name = "zip_code")
+    @NotBlank(message = "Please enter your zip code")
     private String zipCode;
 
+    @NotBlank(message = "Please enter your country")
     private String country;
 
     private boolean shipping;
