@@ -5,44 +5,44 @@
 $(function () {
 
 //  Switching menu and show active button
-        switch (menu) {
+    switch (menu) {
 
-            case "Home":
-                $("#home").addClass("active");
-                break;
-            case "About Us":
-                $("#about").addClass("active");
-                break;
-            case "Products":
-                $("#products").addClass("active");
-                break;
-            case "Manage Products":
-                $("#manageProducts").addClass("active");
-                break;
-            case "Contact":
-                $("#contact").addClass("active");
-                break;
-            case (category):
-                $("#products").addClass("active");
-                if (category != "") {
-                    $("#" + category).addClass("active");
-                }
-                break;
-            default:
-                $("#products").addClass("active");
-                break;
-        };
+        case "Home":
+            $("#home").addClass("active");
+            break;
+        case "About Us":
+            $("#about").addClass("active");
+            break;
+        case "Products":
+            $("#products").addClass("active");
+            break;
+        case "Manage Products":
+            $("#manageProducts").addClass("active");
+            break;
+        case "Contact":
+            $("#contact").addClass("active");
+            break;
+        case (category):
+            $("#products").addClass("active");
+            if (category != "") {
+                $("#" + category).addClass("active");
+            }
+            break;
+        default:
+            $("#products").addClass("active");
+            break;
+    }
     /*----------------------------------------------*/
 
 //    setting csrf token and header for ajax calls
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
     if ((token != undefined && header != undefined)
-                            && (token.length > 0 && header.length > 0)) {
+        && (token.length > 0 && header.length > 0)) {
         $(document).ajaxSend(function (e, xhr, options) {
             xhr.setRequestHeader(header, token);
         });
-    };
+    }
     /*----------------------------------------------*/
 
 //  Jquery dataTable for user
@@ -103,7 +103,10 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var src = '';
-                        if (row.quantity < 1) {
+                        if ((userRole == "ADMIN" && row.quantity < 1) || userRole == "ADMIN") {
+                            src += "<a href='" + window.contextRoot + "/manage/" + data + "/product'" +
+                                "class='btn btn-warning' title='Edit " + row.productName + "'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        } else if (row.quantity < 1) {
                             src += "<a href='javascript:void(0)' class='btn btn-success disabled'>" +
                                 "<span class='glyphicon glyphicon-shopping-cart'></span></a>";
                         } else {
@@ -115,8 +118,7 @@ $(function () {
                 }
             ]
         });
-    };
-
+    }
     /*-----------------------------------------------------------------------------------*/
 
     // Automatically close success dialog box after 3 seconds
@@ -126,7 +128,7 @@ $(function () {
         setTimeout(function () {
             $alert.fadeOut('slow');
         }, 3000);
-    };
+    }
     /*------------------------------*/
 
 //    JQuery dataTable for admin
@@ -156,11 +158,12 @@ $(function () {
                         return image;
                     }
                 },
-                {data: 'productName',
+                {
+                    data: 'productName',
                     mRender: function (data, type, row) {
-                    var pName = "<span name='" + data + "' id='" + row.productId + "'>" + data +"</span>";
-                    return pName;
-                }
+                        var pName = "<span name='" + data + "' id='" + row.productId + "'>" + data + "</span>";
+                        return pName;
+                    }
                 },
                 {data: 'brand'},
                 {
@@ -199,42 +202,42 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += "<a href='" + window.contextRoot + "/manage/" + data + "/product' title='Edit product' class='btn btn-warning'>";
+                        str += "<a href='" + window.contextRoot + "/manage/" + data + "/product' title='Edit " + row.productName + "' class='btn btn-warning'>";
                         str += "<span class='glyphicon glyphicon-pencil'></span></a>";
                         return str;
                     }
                 }
             ],
-            initComplete: function() {
-             var api = this.api();
-             api.$(".switch input[type='checkbox']").on("change", function () {
-                 var checkbox = $(this);
-                 var checked = checkbox.prop("checked");
-                 var value = checkbox.prop("value");
-                 var pName = $adminProductsTable.find("#" + value + "").attr('name');
-                 var dMsg = (checked) ? "Do you want to activate '" + pName + "' ?" :
-                                        "Do you want to deactivate '" + pName + "' ?";
-                 bootbox.confirm({
-                     size: "medium",
-                     title: "Activate or Deactivate Product",
-                     message: dMsg,
-                     callback: function (confirmed) {
-                         if (confirmed) {
-                             console.log(value);
-                             var activationUrl = window.contextRoot + "/manage/product/" + value + "/activation";
-                             $.post(activationUrl, function (data) {
-                                 bootbox.alert({
-                                     size: "medium",
-                                     title: "Information",
-                                     message: data
-                                 });
-                             });
-                         } else {
-                             checkbox.prop("checked", !checked);
-                         }
-                     }
-                 });
-             });
+            initComplete: function () {
+                var api = this.api();
+                api.$(".switch input[type='checkbox']").on("change", function () {
+                    var checkbox = $(this);
+                    var checked = checkbox.prop("checked");
+                    var value = checkbox.prop("value");
+                    var pName = $adminProductsTable.find("#" + value + "").attr('name');
+                    var dMsg = (checked) ? "Do you want to activate '" + pName + "' ?" :
+                        "Do you want to deactivate '" + pName + "' ?";
+                    bootbox.confirm({
+                        size: "medium",
+                        title: "Activate or Deactivate Product",
+                        message: dMsg,
+                        callback: function (confirmed) {
+                            if (confirmed) {
+                                console.log(value);
+                                var activationUrl = window.contextRoot + "/manage/product/" + value + "/activation";
+                                $.post(activationUrl, function (data) {
+                                    bootbox.alert({
+                                        size: "medium",
+                                        title: "Information",
+                                        message: data
+                                    });
+                                });
+                            } else {
+                                checkbox.prop("checked", !checked);
+                            }
+                        }
+                    });
+                });
             }
         });
     }
@@ -251,7 +254,7 @@ $(function () {
                     minlength: 2
                 },
                 categoryDescription: {
-                    required:true,
+                    required: true,
                 }
             },
             messages: {
@@ -269,7 +272,7 @@ $(function () {
                 error.insertAfter(element);
             }
         });
-    };
+    }
     /*-----------------------------------------------------------*/
 
     //  JQuery validation for login form
@@ -283,7 +286,7 @@ $(function () {
                     email: true
                 },
                 password: {
-                    required:true,
+                    required: true,
                 }
             },
             messages: {
@@ -301,7 +304,7 @@ $(function () {
                 error.insertAfter(element);
             }
         });
-    };
+    }
     /*-----------------------------------------------------------*/
 
 

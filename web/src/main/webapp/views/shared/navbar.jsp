@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<script>
+    window.userRole = "${userModel.role}";
+</script>
 
 <%-- Navidation --%>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
@@ -26,9 +29,11 @@
                 <li id="products" class="nav-item">
                     <a class="nav-link" href="${contextRoot}/show/all/products">View Products</a>
                 </li>
-                <li id="manageProducts" class="nav-item">
-                    <a class="nav-link" href="${contextRoot}/manage/products">Manage Products</a>
-                </li>
+                <security:authorize access="hasAuthority('ADMIN')">
+                    <li id="manageProducts" class="nav-item">
+                        <a class="nav-link" href="${contextRoot}/manage/products">Manage Products</a>
+                    </li>
+                </security:authorize>
                 <li id="contact" class="nav-item">
                     <a class="nav-link" href="${contextRoot}/contact">Contact</a>
                 </li>
@@ -42,12 +47,11 @@
                         <a class="nav-link" href="${contextRoot}/login">Login</a>
                     </li>
                 </security:authorize>
-                <security:authorize access="isAuthenticated">
+                <security:authorize access="isAuthenticated()">
                     <li class="dropdown">
                         <a href="javascript:void(0)" style="display: inline-block"
-                           class="<%--btn btn-default--%> nav-link dropdown-toggle"
+                           class="nav-link dropdown-toggle"
                            id="dropdownMenu1" data-toggle="dropdown">${userModel.fullName}
-                                <%--<span class="caret"></span>--%>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <security:authorize access="hasAuthority('USER')">

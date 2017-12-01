@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (Exception e) {
-            e.printStackTrace();
+            user = null;
         }
         return user;
     }

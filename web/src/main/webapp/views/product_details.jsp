@@ -38,19 +38,27 @@
                     <h6>Available:${product.quantity}</h6>
                 </c:otherwise>
             </c:choose>
-            <c:choose>
-                <c:when test="${product.quantity < 1}">
-                    <a href="javascript:void(0)"class="btn btn-success disabled"><strike>Add to Cart
-                        <span class='glyphicon glyphicon-shopping-cart'></span></strike>
-                    </a>
-                </c:when>
-                <c:otherwise>
-                    <a href="${contextRoot}/cart/add/${product.productId}/product"
-                       title="Add to Cart" class="btn btn-success">Add to Cart
-                        <span class='glyphicon glyphicon-shopping-cart'></span>
-                    </a>
-                </c:otherwise>
-            </c:choose>
+            <security:authorize access="hasAuthority('USER') or hasAuthority('SUPPLIER')">
+                <c:choose>
+                    <c:when test="${product.quantity < 1}">
+                        <a href="javascript:void(0)" class="btn btn-success disabled"><strike>Add to Cart
+                            <span class='glyphicon glyphicon-shopping-cart'></span></strike>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${contextRoot}/cart/add/${product.productId}/product"
+                           title="Add to Cart" class="btn btn-success">Add to Cart
+                            <span class='glyphicon glyphicon-shopping-cart'></span>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+            </security:authorize>
+            <security:authorize access="hasAuthority('ADMIN')">
+                <a href="${contextRoot}/manage/${product.productId}/product"
+                   title="Edit ${product.productName}" class="btn btn-warning">Edit
+                    <span class='glyphicon glyphicon-pencil'></span>
+                </a>
+            </security:authorize>
 
             <a href="${contextRoot}/show/all/products"
                title="Back to All Products" class="btn btn-primary">Back</a>

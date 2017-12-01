@@ -55,7 +55,12 @@
                                 <th>Price</th>
                                 <th>Available</th>
                                 <th>Details</th>
-                                <th>Add Cart</th>
+                                <security:authorize access="isAnonymous() or hasAuthority('USER') or hasAuthority('SUPPLIER')">
+                                    <th>Add to Cart</th>
+                                </security:authorize>
+                                <security:authorize access="hasAuthority('ADMIN')">
+                                    <th>Edit</th>
+                                </security:authorize>
                             </tr>
                         </thead>
                         <%-- table body is going here--%>
