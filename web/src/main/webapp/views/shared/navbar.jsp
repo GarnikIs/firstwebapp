@@ -5,6 +5,7 @@
   Time: 01:25
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <%-- Navidation --%>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
@@ -33,12 +34,36 @@
                 </li>
             </ul>
             <ul class="navbar-nav navbar-right">
-                <li id="register" class="nav-item">
-                    <a class="nav-link" href="${contextRoot}/register">Registration</a>
-                </li>
-                <li id="login" class="nav-item">
-                    <a class="nav-link" href="${contextRoot}/login">Login</a>
-                </li>
+                <security:authorize access="isAnonymous()">
+                    <li id="register" class="nav-item">
+                        <a class="nav-link" href="${contextRoot}/register">Registration</a>
+                    </li>
+                    <li id="login" class="nav-item">
+                        <a class="nav-link" href="${contextRoot}/login">Login</a>
+                    </li>
+                </security:authorize>
+                <security:authorize access="isAuthenticated">
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" style="display: inline-block"
+                           class="<%--btn btn-default--%> nav-link dropdown-toggle"
+                           id="dropdownMenu1" data-toggle="dropdown">${userModel.fullName}
+                                <%--<span class="caret"></span>--%>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <security:authorize access="hasAuthority('USER')">
+                                <li>
+                                    <a href="${contextRoot}/cart">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                        <span class="badge">${userModel.cart.cartLines}</span>
+                                        - &#8377; ${userModel.cart.grandTotal}
+                                    </a>
+                                </li>
+                                <li class="devider" role="separator"></li>
+                            </security:authorize>
+                            <li><a href="${contextRoot}/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </security:authorize>
             </ul>
         </div>
     </div>
