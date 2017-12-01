@@ -91,7 +91,17 @@
 
     <!-- Page Content -->
     <div class="content">
+        <%-- Appears only when user credentioals are wrong --%>
         <div class="container">
+            <c:if test="${not empty errorMessage}">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6">
+                        <div class="alert alert-danger">
+                            ${errorMessage}
+                        </div>
+                    </div>
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
                     <div class="panel panel-primary">
@@ -108,15 +118,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="control-label col-md-4">Email:</label>
+                                    <label for="password" class="control-label col-md-4">Password:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="password" class="form-control"
+                                        <input type="password" id="password" class="form-control"
                                                name="password" placeholder="Password"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-4 col-md-8">
                                         <input type="submit" value="Login" class="btn btn-primary"/>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     </div>
                                 </div>
                             </form>

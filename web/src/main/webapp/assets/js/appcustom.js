@@ -34,6 +34,17 @@ $(function () {
         };
     /*----------------------------------------------*/
 
+//    setting csrf token and header for ajax calls
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    if ((token != undefined && header != undefined)
+                            && (token.length > 0 && header.length > 0)) {
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    };
+    /*----------------------------------------------*/
+
 //  Jquery dataTable for user
     var $table = $("#actualProductList");
     // TODO later - must be changed
@@ -111,6 +122,7 @@ $(function () {
     // Automatically close success dialog box after 3 seconds
     var $alert = $(".alert");
     if ($alert.length) {
+        $alert.css("background-image", "none");
         setTimeout(function () {
             $alert.fadeOut('slow');
         }, 3000);
