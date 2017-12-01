@@ -62,7 +62,7 @@ public class Cart implements Serializable {
     public String toString() {
         return "Cart{" +
                 "cartId=" + cartId +
-                ", cartUser=" + cartUser +
+                ", cartUserID=" + cartUser.getUserId() +
                 ", grandTotal=" + grandTotal +
                 ", cartLines=" + cartLines +
                 '}';

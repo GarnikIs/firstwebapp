@@ -120,7 +120,7 @@ public class UserAddress implements Serializable {
     public String toString() {
         return "Address{" +
                 "addressId=" + addressId +
-                ", user='" + user + '\'' +
+                ", userId='" + user.getUserId() + '\'' +
                 ", addressLineOne='" + addressLine + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
