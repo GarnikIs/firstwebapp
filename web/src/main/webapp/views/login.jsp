@@ -91,14 +91,21 @@
 
     <!-- Page Content -->
     <div class="content">
-        <%-- Appears only when user credentioals are wrong --%>
+
         <div class="container">
+            <%-- Appears only when user credentioals are wrong --%>
             <c:if test="${not empty errorMessage}">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-6">
-                        <div class="alert alert-danger">
-                            ${errorMessage}
-                        </div>
+                        <div class="alert alert-danger">${errorMessage}</div>
+                    </div>
+                </div>
+            </c:if>
+            <%-- Appears only when user has logged out --%>
+            <c:if test="${not empty logoutMessage}">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6">
+                        <div class="alert alert-success">${logoutMessage}</div>
                     </div>
                 </div>
             </c:if>

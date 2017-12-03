@@ -123,6 +123,10 @@ footer {
     resize: none;
 }
 
+.table-responsive {
+    overflow-x: inherit;
+}
+
 .help-block {
     color: #ff0000;
 }

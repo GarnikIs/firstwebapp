@@ -24,21 +24,25 @@
         </div>
         <%-- Displaying product description --%>
         <div class="col-xs-12 col-sm-8">
+            <u><i>Name</i></u>
             <h3>${product.productName}</h3>
             <hr/>
-            <p>${product.productDescription}</p>
+            <u><i>Descrption</i></u>
+            <h6>${product.productDescription}</h6>
             <hr/>
-            <h4>Price:<strong>&#8377; ${product.unitPrice}</strong></h4>
+            <h4>Price:<strong> - &#8377; ${product.unitPrice}</strong></h4>
             <hr/>
             <c:choose>
                 <c:when test="${product.quantity < 1}">
-                    <h6>Available:<span style="color:red">&nbsp; Out of Stock</span></h6>
+                    <h6>Available - <span style="color:red">&nbsp; Out of Stock</span></h6>
                 </c:when>
                 <c:otherwise>
-                    <h6>Available:${product.quantity}</h6>
+                    <h6>Available - ${product.quantity}</h6>
+                    <h6>Views - ${product.views}</h6>
+                    <h6>Purchases - ${product.purchases}</h6>
                 </c:otherwise>
             </c:choose>
-            <security:authorize access="hasAuthority('USER') or hasAuthority('SUPPLIER')">
+            <security:authorize access="hasAuthority('USER') or hasAuthority('SUPPLIER') or isAnonymous()">
                 <c:choose>
                     <c:when test="${product.quantity < 1}">
                         <a href="javascript:void(0)" class="btn btn-success disabled"><strike>Add to Cart

@@ -23,8 +23,7 @@
         <intercept-url pattern="/cart/**" access="hasAnyAuthority('USER')"/>
         <!-- Only for everyone access -->
         <intercept-url pattern="/**" access="permitAll"/>
-        <form-login login-page="/login"/>
-        <logout/>
+        <form-login login-page="/login" />
         <access-denied-handler error-page="/access-denied"/>
     </http>
 

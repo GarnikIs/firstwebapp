@@ -46,36 +46,28 @@
             <%-- Displaying actual products --%>
             <div class="row">
                 <div class="col-xs-12">
-                    <table id="actualProductList" class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th id="first"></th>
-                                <th>Name</th>
-                                <th>Brand</th>
-                                <th>Price</th>
-                                <th>Available</th>
-                                <th>Details</th>
-                                <security:authorize access="isAnonymous() or hasAuthority('USER') or hasAuthority('SUPPLIER')">
-                                    <th>Add to Cart</th>
-                                </security:authorize>
-                                <security:authorize access="hasAuthority('ADMIN')">
-                                    <th>Edit</th>
-                                </security:authorize>
-                            </tr>
-                        </thead>
-                        <%-- table body is going here--%>
-                        <%--<tfoot>--%>
-                            <%--<tr>--%>
-                                <%--<th></th>--%>
-                                <%--<th>Name</th>--%>
-                                <%--<th>Brand</th>--%>
-                                <%--<th>Price</th>--%>
-                                <%--<th>Available</th>--%>
-                                <%--<th>Details</th>--%>
-                                <%--<th>Add Cart</th>--%>
-                            <%--</tr>--%>
-                        <%--</tfoot>--%>
-                    </table>
+                    <div class="container-fluid">
+                        <div class="table-responsive">
+                            <table id="actualProductList" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th id="first"></th>
+                                        <th>Name</th>
+                                        <th>Brand</th>
+                                        <th>Price</th>
+                                        <th>Available</th>
+                                        <th>Details</th>
+                                        <security:authorize access="isAnonymous() or hasAuthority('USER') or hasAuthority('SUPPLIER')">
+                                            <th>Add to Cart</th>
+                                        </security:authorize>
+                                        <security:authorize access="hasAuthority('ADMIN')">
+                                            <th>Edit</th>
+                                        </security:authorize>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

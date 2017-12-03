@@ -21,7 +21,7 @@ public class GlobalController {
     private HttpSession session;
 
     @Autowired
-    private UserDao userdao;
+    private UserDao userDao;
 
     private UserModel userModel = null;
 
@@ -29,7 +29,7 @@ public class GlobalController {
     public UserModel getUserModel() {
         if (session.getAttribute("userModel") == null) {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            User user = userdao.getUserByEmail(auth.getName());
+            User user = userDao.getUserByEmail(auth.getName());
             if (user != null) {
                 userModel = new UserModel();
                 userModel.setId(user.getUserId());

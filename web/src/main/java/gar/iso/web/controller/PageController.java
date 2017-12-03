@@ -8,11 +8,18 @@ import gar.iso.web.exception.ProductNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by Gor on 11/17/2017.
@@ -117,18 +124,23 @@ public class PageController {
 
 //    Request Mapping for login page
     @RequestMapping(value = "/login")
-    public ModelAndView loginPage(@RequestParam(name = "error", required = false) String error) {
+    public ModelAndView loginPage(@RequestParam(name = "error", required = false) String error,
+                                  @RequestParam(name = "logout", required = false) String logout
+    ) {
         ModelAndView mv = new ModelAndView("login");
 
         if (error != null) {
             mv.addObject("errorMessage", "Invalid username and/or password");
+        }
+        if (logout != null) {
+            mv.addObject("logoutMessage", "You have successfully logged out");
         }
 
         mv.addObject("title", "Login");
         return mv;
     }
 
-//    Access deny handler page
+//    Access denying handler page
     @RequestMapping(value = "/access-denied")
     public ModelAndView accessDenied(){
         ModelAndView mv = new ModelAndView("error");
@@ -136,6 +148,20 @@ public class PageController {
         mv.addObject("errorTitle", "Aha ! Caught You! :)");
         mv.addObject("errorDescription", "You are Not Authorized to View This Page !");
         return mv;
+    }
+
+//    Logout handling
+    @RequestMapping(value = "/perform-logout")
+    public String performLogout(HttpServletRequest request, HttpServletResponse response, RedirectAttributes rm){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+            rm.addFlashAttribute("logoutMessage", "You have successfully logged out");
+        }
+
+        return "redirect:login?logout" ;
     }
 
 }

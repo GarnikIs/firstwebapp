@@ -103,15 +103,17 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var src = '';
-                        if ((userRole == "ADMIN" && row.quantity < 1) || userRole == "ADMIN") {
+                        if ( userRole == "ADMIN") {
                             src += "<a href='" + window.contextRoot + "/manage/" + data + "/product'" +
                                 "class='btn btn-warning' title='Edit " + row.productName + "'><span class='glyphicon glyphicon-pencil'></span></a>";
-                        } else if (row.quantity < 1) {
-                            src += "<a href='javascript:void(0)' class='btn btn-success disabled'>" +
-                                "<span class='glyphicon glyphicon-shopping-cart'></span></a>";
                         } else {
-                            src += "<a href='" + window.contextRoot + "/cart/add/" + data + "/product'" +
-                                "class='btn btn-success' title='Add to Cart'><span class='glyphicon glyphicon-shopping-cart'></span></a>";
+                            if (row.quantity < 1) {
+                                src += "<a href='javascript:void(0)' class='btn btn-success disabled'>" +
+                                    "<span class='glyphicon glyphicon-shopping-cart'></span></a>";
+                            } else {
+                                src += "<a href='" + window.contextRoot + "/cart/add/" + data + "/product'" +
+                                    "class='btn btn-success' title='Add to Cart'><span class='glyphicon glyphicon-shopping-cart'></span></a>";
+                            }
                         }
                         return src;
                     }

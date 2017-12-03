@@ -2,13 +2,17 @@ package gar.iso.web.controller;
 
 import gar.iso.core.dao.CategoryDao;
 import gar.iso.core.dao.ProductDao;
+import gar.iso.core.dao.UserDao;
 import gar.iso.core.dto.Category;
 import gar.iso.core.dto.Product;
+import gar.iso.core.dto.User;
 import gar.iso.web.util.FileUploadUtility;
 import gar.iso.web.validator.ProductValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +36,9 @@ public class ManagementController {
     @Autowired
     private ProductDao productDao;
 
+    @Autowired
+    private UserDao userDao;
+
     private static final Logger log = LoggerFactory.getLogger(ManagementController.class);
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
@@ -46,11 +53,11 @@ public class ManagementController {
         mv.addObject("product", nProduct);
         if (operation != null) {
             if (operation.equals("add_product")) {
-                mv.addObject("message", "Product is successfully added.");
+                mv.addObject("successMessage", "Product is successfully added.");
             } else if (operation.equals("update_product")) {
-                mv.addObject("message", "Product is successfully updated.");
+                mv.addObject("successMessage", "Product is successfully updated.");
             } else if (operation.equals("add_category")) {
-                mv.addObject("message", "Category is successfully added.");
+                mv.addObject("successMessage", "Category is successfully added.");
             }
         }
         return mv;
@@ -62,6 +69,9 @@ public class ManagementController {
                                           BindingResult results, Model model, HttpServletRequest request) {
         String operation = null;
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userDao.getUserByEmail(auth.getName());
+        mProduct.setProductSupplierId(user.getUserId());
         if (mProduct.getProductId() == 0) {
             new ProductValidator().validate(mProduct, results);
         } else {
@@ -74,7 +84,7 @@ public class ManagementController {
         if (results.hasErrors()) {
             model.addAttribute("title", "Manage Products");
             model.addAttribute("userClickedManageProducts", true);
-            model.addAttribute("message", "Validation is failed for adding product");
+            model.addAttribute("errorMessage", "Validation is failed for adding product");
             return "page";
         }
 

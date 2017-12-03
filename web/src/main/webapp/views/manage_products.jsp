@@ -10,11 +10,19 @@
 
 <div class="container">
     <div class="row">
-        <c:if test="${not empty message}">
+        <c:if test="${not empty errorMessage}">
+            <div class="col-xs-12">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        ${errorMessage}
+                </div>
+            </div>
+        </c:if>
+        <c:if test="${not empty successMessage}">
             <div class="col-xs-12">
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        ${message}
+                        ${successMessage}
                 </div>
             </div>
         </c:if>
@@ -117,33 +125,25 @@
         </div>
 
         <div class="col-xs-12">
-            <%-- Products table for Admin --%>
-            <table id="adminProductsTable" class="table table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>&#160;</th>
-                    <th>Name</th>
-                    <th>Brand</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Active</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
-                <%-- table body is going here--%>
-                <%--<tfoot>--%>
-                <%--<tr>--%>
-                <%--<th>Id</th>--%>
-                <%--<th>&#160;</th>--%>
-                <%--<th>Name</th>--%>
-                <%--<th>Quantity</th>--%>
-                <%--<th>Price</th>--%>
-                <%--<th>Active</th>--%>
-                <%--<th>Edit</th>--%>
-                <%--</tr>--%>
-                <%--</tfoot>--%>
-            </table>
+            <div class="container-fluid">
+                <div class="table-responsive">
+                    <%-- Products table for Admin --%>
+                    <table id="adminProductsTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>&#160;</th>
+                                <th>Name</th>
+                                <th>Brand</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Active</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
