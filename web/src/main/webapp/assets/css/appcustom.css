@@ -108,7 +108,10 @@ footer {
     margin: 0 10px;
 }
 
-#actualProductList th, td, #adminProductsTable th, td  {
+#actualProductList th,
+#actualProductList td,
+#adminProductsTable th,
+#adminProductsTable td {
     text-align: center  ;
 }
 /*End*/
@@ -275,6 +278,16 @@ input:checked + .slider:before {
 }
 
 /* cart checkout */
+
+.cartImage {
+    width: 80px;
+    height: 80px;
+}
+
+.unavailable {
+    color: red;
+}
+
 .panel-title {
     display: inline;
     font-weight: bold;

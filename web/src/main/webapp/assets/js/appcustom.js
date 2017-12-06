@@ -28,6 +28,9 @@ $(function () {
                 $("#" + category).addClass("active");
             }
             break;
+        case ("View Cart"):
+            $("#userCart").addClass("active");
+            break;
         default:
             $("#products").addClass("active");
             break;
@@ -67,7 +70,7 @@ $(function () {
                 {
                     data: 'code',
                     mRender: function (data, type, row) {
-                        var image = "<img class='dataTableImg' src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
+                        var image = "<img class='dataTableImg' alt='Image ot available' src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
                         return image;
                     }
                 },
@@ -111,7 +114,7 @@ $(function () {
                                 src += "<a href='javascript:void(0)' class='btn btn-success disabled'>" +
                                     "<span class='glyphicon glyphicon-shopping-cart'></span></a>";
                             } else {
-                                src += "<a href='" + window.contextRoot + "/cart/add/" + data + "/product'" +
+                                src += "<a href='" + window.contextRoot + "/cart/add/" + data + "'" +
                                     "class='btn btn-success' title='Add to Cart'><span class='glyphicon glyphicon-shopping-cart'></span></a>";
                             }
                         }
@@ -156,7 +159,7 @@ $(function () {
                     data: 'code',
                     bSortable: false,
                     mRender: function (data, type, row) {
-                        var image = "<img class='adminDataTableImg' src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
+                        var image = "<img class='adminDataTableImg' alt='Image ot available' src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
                         return image;
                     }
                 },
@@ -308,6 +311,29 @@ $(function () {
         });
     }
     /*-----------------------------------------------------------*/
+
+//    Refreshing cart product info
+    $("button[name = 'refreshCartProduct']").click(function () {
+
+        var cartLineId = $(this).attr('value');
+        var modifiableProduct = $('#count_' + cartLineId);
+        var productOriginalCount = modifiableProduct.attr('value');
+        var actualProductCount = modifiableProduct.val();
+        if (productOriginalCount !== actualProductCount) {
+            if (actualProductCount < 1 || actualProductCount >3) {
+                modifiableProduct.val(productOriginalCount);
+                bootbox.alert({
+                    size: "medium",
+                    title: "Error",
+                    message: "Product count can not be less than 1 and more than 3"
+                });
+            } else {
+                var updateUrl = window.contextRoot + "/cart/" + cartLineId + "/update?productCount=" + actualProductCount;
+                window.location.href = updateUrl;
+            }
+        }
+
+    });
 
 
 });

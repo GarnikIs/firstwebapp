@@ -50,7 +50,7 @@
                         </a>
                     </c:when>
                     <c:otherwise>
-                        <a href="${contextRoot}/cart/add/${product.productId}/product"
+                        <a href="${contextRoot}/cart/add/${product.productId}"
                            title="Add to Cart" class="btn btn-success">Add to Cart
                             <span class='glyphicon glyphicon-shopping-cart'></span>
                         </a>

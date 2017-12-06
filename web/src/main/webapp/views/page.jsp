@@ -136,6 +136,11 @@
         <c:if test="${userClickedProductDetails == true}">
             <%@include file="product_details.jsp" %>
         </c:if>
+
+        <%-- Show Cart content --%>
+        <c:if test="${userClickedShowCart == true}">
+            <%@include file="cart.jsp" %>
+        </c:if>
     </div>
 
     <!-- Footer is included here -->
