@@ -109,37 +109,6 @@ public class UserDaoImplTest {
     }
 
     /**
-     * test updating cart
-     * @asserts true or false
-     */@Test
-    public void testUpdateCart() {
-        user = new User();
-        user.setFirstName("Aram");
-        user.setLastName("Ishkhan");
-        user.setEmail("aramishkhan@gmail.com");
-        user.setPhoneNumber("12345");
-        user.setRole("USER");
-        user.setEnabled(true);
-        user.setPassword("123");
-
-        if (user.getRole().equals("USER")) {
-            cart = new Cart();
-            cart.setCartUser(user);
-            user.setCart(cart);
-        }
-        userDao.addNewUser(user);
-
-        user = userDao.getUserByEmailAndPassword("aramishkhan@gmail.com", "123");
-        cart = user.getCart();
-        cart.setGrandTotal(11111);
-        cart.setCartLines(3);
-
-        assertEquals("Failed to update the user's cart", true, userDao.updateCart(cart));
-    }
-
-
-
-    /**
      * test adding user's address
      * @asserts true or false
      */

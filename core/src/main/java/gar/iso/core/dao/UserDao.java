@@ -41,13 +41,6 @@ public interface UserDao {
     User getUserByEmailAndPassword(String email, String password);
 
     /**
-     * updates cart
-     * @param cart
-     * @return true or false
-     */
-    boolean updateCart(Cart cart);
-
-    /**
      * adds user's address
      * @param address
      * @return true or false

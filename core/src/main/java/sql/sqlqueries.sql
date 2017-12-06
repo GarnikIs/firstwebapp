@@ -60,3 +60,17 @@ INSERT INTO product (product_code, product_name, brand, product_description, uni
 INSERT INTO product (product_code, product_name, brand, product_description, unit_price, quantity,
                      product_is_active, product_category_id, product_supplier_id, purchases, views)
             VALUES  ('PRDBEDE2376C9', 'Toshiba 5DD', 'Toshiba', 'One of the best Laptop', 400000, 4, true, 1, 3, 0, 0);
+
+
+CREATE TABLE cart_line (
+  cartline_id INT(11) AUTO_INCREMENT NOT NULL,
+  cartline_cart_id INT(11),
+  cartline_total DECIMAL (10,2),
+  cartline_product_id int(11),
+  cartline_product_count int(11),
+  buying_price DECIMAL(10,2),
+  is_available BOOLEAN,
+  CONSTRAINT fk_cartlineCartId FOREIGN KEY (cartline_cart_id) REFERENCES cart (cart_id),
+  CONSTRAINT fk_cartlineProductId FOREIGN KEY (cartline_product_id) REFERENCES product (product_id),
+  CONSTRAINT pk_cartlineId PRIMARY KEY (cartline_id)
+);

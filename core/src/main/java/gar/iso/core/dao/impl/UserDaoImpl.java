@@ -100,22 +100,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     * updates cart
-     * @param cart
-     * @return true or false
-     */
-    @Override
-    public boolean updateCart(Cart cart) {
-        try {
-            sessionFactory.getCurrentSession().update(cart);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
      * adds user's address
      * @param address
      * @return true or false
