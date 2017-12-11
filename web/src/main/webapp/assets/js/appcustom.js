@@ -159,7 +159,7 @@ $(function () {
                     data: 'code',
                     bSortable: false,
                     mRender: function (data, type, row) {
-                        var image = "<img class='adminDataTableImg' alt='Image ot available' src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
+                        var image = "<img class='adminDataTableImg' alt='Image not available' src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
                         return image;
                     }
                 },

@@ -53,7 +53,7 @@ public class CartController {
 
     @RequestMapping("/{cartLineId}/update")
     public String updateCartLineProduct(@PathVariable(name = "cartLineId") int cartLineId,
-                                    @RequestParam int productCount) {
+                                        @RequestParam int productCount) {
 
         String response = cartService.updateCartLineProduct(cartLineId, productCount);
         return "redirect:/cart/show?" + response;
