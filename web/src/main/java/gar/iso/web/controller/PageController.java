@@ -66,8 +66,8 @@ public class PageController {
         return mv;
     }
 
-//    methods to load all the products based on category
-    @RequestMapping (value = "/show/all/products")
+    //    methods to load all the products based on category
+    @RequestMapping(value = "/show/all/products")
     public ModelAndView listOfProducts() {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "All Products");
@@ -79,7 +79,7 @@ public class PageController {
         return mv;
     }
 
-    @RequestMapping (value = "/show/category/{id}/products")
+    @RequestMapping(value = "/show/category/{id}/products")
     public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("page");
 
@@ -122,7 +122,7 @@ public class PageController {
         return mv;
     }
 
-//    Request Mapping for login page
+    //    Request Mapping for login page
     @RequestMapping(value = "/login")
     public ModelAndView loginPage(@RequestParam(name = "error", required = false) String error,
                                   @RequestParam(name = "logout", required = false) String logout
@@ -140,9 +140,9 @@ public class PageController {
         return mv;
     }
 
-//    Access denying handler page
+    //    Access denying handler page
     @RequestMapping(value = "/access-denied")
-    public ModelAndView accessDenied(){
+    public ModelAndView accessDenied() {
         ModelAndView mv = new ModelAndView("error");
         mv.addObject("title", "403 - No Access");
         mv.addObject("errorTitle", "Aha ! Caught You! :)");
@@ -150,9 +150,9 @@ public class PageController {
         return mv;
     }
 
-//    Logout handling
+    //    Logout handling
     @RequestMapping(value = "/perform-logout")
-    public String performLogout(HttpServletRequest request, HttpServletResponse response, RedirectAttributes rm){
+    public String performLogout(HttpServletRequest request, HttpServletResponse response, RedirectAttributes rm) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -161,7 +161,7 @@ public class PageController {
             rm.addFlashAttribute("logoutMessage", "You have successfully logged out");
         }
 
-        return "redirect:login?logout" ;
+        return "redirect:login?logout";
     }
 
 }

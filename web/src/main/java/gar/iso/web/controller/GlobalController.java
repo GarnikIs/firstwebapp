@@ -2,8 +2,10 @@ package gar.iso.web.controller;
 
 import gar.iso.core.dao.UserDao;
 import gar.iso.core.dto.User;
+import gar.iso.web.enumaration.Language;
 import gar.iso.web.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,6 +27,8 @@ public class GlobalController {
 
     private UserModel userModel = null;
 
+    public static Language language = null;
+
     @ModelAttribute("userModel")
     public UserModel getUserModel() {
         if (session.getAttribute("userModel") == null) {
@@ -44,5 +48,13 @@ public class GlobalController {
             }
         }
         return (UserModel) session.getAttribute("userModel");
+    }
+
+    @ModelAttribute("language")
+    public Language getLanguage() {
+        Language.setLanguage(LocaleContextHolder.getLocale().getDisplayLanguage());
+        language = Language.getLanguage();
+        session.setAttribute("language", language);
+        return (Language) session.getAttribute("language");
     }
 }

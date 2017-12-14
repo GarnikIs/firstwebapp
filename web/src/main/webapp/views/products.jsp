@@ -45,7 +45,7 @@
             </div>
             <%-- Displaying actual products --%>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-12" style="width: 100%">
                     <div class="container-fluid">
                         <div class="table-responsive">
                             <table id="actualProductList" class="table table-striped table-bordered">

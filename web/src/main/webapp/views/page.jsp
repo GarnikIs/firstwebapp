@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.springframework.web.util.UrlPathHelper" %><%--
   Created by IntelliJ IDEA.
   User: Gor
   Date: 11/15/2017
@@ -14,6 +14,7 @@
 <spring:url var="images" value="/resources/images"/>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
+<c:set var="currentUrl" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,18 +33,20 @@
         window.menu = "${title}";
         window.category = "${category.categoryName}";
         window.contextRoot = "${contextRoot}";
+        window.currentLang = "${language.key}";
+        window.currentUrl = "${currentUrl}";
     </script>
 
     <%-- START CSS --%>
 
     <!-- Bootstrap Core CSS -->
     <%-- Somtimes it is invisibel and all css is fucked up --%>
-    <link href="${css}/bootstrap.min.css" rel="stylesheet">
-    <%--<link href="${css}/bootstrap.css" rel="stylesheet">--%>
+    <%--<link rel="stylesheet" href="${css}/bootstrap.min.css">--%>
+    <link href="${css}/bootstrap.css" rel="stylesheet">
 
     <!-- Bootstrap Readable Theme CSS -->
     <%-- Somtimes it is invisibel and all css is fucked up --%>
-    <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
+    <%--<link rel="stylesheet" href="${css}/bootstrap-readable-theme.css" >--%>
 
     <!-- Bootstrap DataTables CSS -->
     <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
@@ -52,7 +55,10 @@
     <link href="${css}/appcustom.css" rel="stylesheet">
 
     <!-- Bootstrap Theme CSS -->
-    <link href="${css}/bootstrap-theme.css" rel="stylesheet">
+    <%--<link href="${css}/bootstrap-theme.css" rel="stylesheet">--%>
+
+    <%-- Language Bar Support CSS --%>
+    <link rel="stylesheet" href="${css}/languageswitcher.css">
 
     <%-- END CSS --%>
 
@@ -82,6 +88,10 @@
 
     <!-- Custom Javascript  -->
     <script src="${js}/appcustom.js"></script>
+
+    <%-- Language Bar Support JQuery and JS --%>
+    <%--<script src="${js}/jquery.min.1.5.0.js"></script>--%>
+    <script src="${js}/languageswitcher.js"></script>
 
     <!-- Angular -->
     <script src="${js}/angular.js"></script>
