@@ -14,6 +14,7 @@
 <spring:url var="images" value="/resources/images"/>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
+<c:set var="currentUrl" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +31,8 @@
         window.menu = "${title}";
         window.category = "${category.categoryName}";
         window.contextRoot = "${contextRoot}";
+        window.currentUrl = "${currentUrl}";
+        window.currentLang = "${language.key}";
     </script>
 
     <%-- START CSS --%>
@@ -41,7 +44,7 @@
 
     <!-- Bootstrap Readable Theme CSS -->
     <%-- Somtimes it is invisibel and all css is fucked up --%>
-    <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
+    <link href="${css}/bootstrap-readable-theme-changed.css" rel="stylesheet">
 
     <!-- Bootstrap DataTables CSS -->
     <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
@@ -51,6 +54,9 @@
 
     <!-- Bootstrap Theme CSS -->
     <link href="${css}/bootstrap-theme.css" rel="stylesheet">
+
+    <%-- Language Bar Support CSS --%>
+    <link rel="stylesheet" href="${css}/languageswitcher.css">
 
     <%-- END CSS --%>
 
@@ -72,6 +78,10 @@
     <!-- Custom Javascript  -->
     <script src="${js}/appcustom.js"></script>
 
+    <%-- Language Bar Support JQuery and JS --%>
+    <%--<script src="${js}/jquery.min.1.5.0.js"></script>--%>
+    <script src="${js}/languageswitcher.js"></script>
+
     <%-- END JS --%>
 
 </head>
@@ -80,13 +90,14 @@
 
 <div class="wrapper">
     <!-- Navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="${contextRoot}/home">Home</a>
-            </div>
-        </div>
-    </nav>
+    <%--<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">--%>
+        <%--<div class="container">--%>
+            <%--<div class="navbar-header">--%>
+                <%--<a class="navbar-brand" href="${contextRoot}/home">Home</a>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</nav>--%>
+    <%@include file="shared/navbar.jsp" %>
 
     <!-- Page Content -->
     <div class="content">

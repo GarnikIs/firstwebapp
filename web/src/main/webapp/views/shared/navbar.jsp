@@ -10,7 +10,7 @@
     window.userRole = "${userModel.role}";
 </script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="${contextRoot}/home"><spring:message code="online.shop"/></a>
+    <a class="navbar-brand" href="${contextRoot}/home"><h3 class="my-4"><spring:message code="online.shop"/></h3></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
             <li id="products" class="nav-item">
                 <a class="nav-link" href="${contextRoot}/show/all/products">View Products</a>
             </li>
-            <security:authorize access="hasAuthority('ADMIN')">
+            <security:authorize access="hasAuthority('ADMIN') || hasAuthority('SUPPLIER')">
                 <li id="manageProducts" class="nav-item">
                     <a class="nav-link" href="${contextRoot}/manage/products">Manage Products</a>
                 </li>

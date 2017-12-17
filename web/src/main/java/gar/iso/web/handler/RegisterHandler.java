@@ -4,6 +4,7 @@ import gar.iso.core.dao.UserDao;
 import gar.iso.core.dto.Cart;
 import gar.iso.core.dto.User;
 import gar.iso.core.dto.UserAddress;
+import gar.iso.web.enumaration.Language;
 import gar.iso.web.model.RegisterModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
@@ -25,7 +26,10 @@ public class RegisterHandler {
     private BCryptPasswordEncoder passwordEncoder;
 
     public RegisterModel init() {
-        return new RegisterModel();
+        RegisterModel registerModel = new RegisterModel();
+        registerModel.setTitle("Registration");
+        registerModel.setLanguage(Language.getLanguage());
+        return registerModel;
     }
 
     public void addUser(RegisterModel registerModel, User user) {

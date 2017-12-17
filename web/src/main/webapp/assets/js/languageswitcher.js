@@ -52,7 +52,7 @@ $(document).ready(function () {
         var options = $("option", source);
         $("#country-select").append('<dl id="target" class="dropdown"></dl>');
         // $("#target").append('<span class="ddArrow"></span>');
-        $("#target").append('<dt class="' + selected.val() + '"><a href="#">' +
+        $("#target").append('<dt class="' + selected.val() + '"><a>' +
             '<span class="flag"></span><em>' + selected.text() + '</em><span class="ddArrow"></span></a></dt>');
         $("#target").append('<dd><ul></ul></dd>');
         if (selected.val() == "en") {

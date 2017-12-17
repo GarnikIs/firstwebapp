@@ -18,7 +18,7 @@
 
     <http>
         <!-- Only for Admin access -->
-        <intercept-url pattern="/manage/**" access="hasAnyAuthority('ADMIN')"/>
+        <intercept-url pattern="/manage/**" access="hasAnyAuthority('ADMIN') or  hasAnyAuthority('SUPPLIER')"/>
         <!-- Only for User access -->
         <intercept-url pattern="/cart/**" access="hasAnyAuthority('USER')"/>
         <!-- Only for everyone access -->

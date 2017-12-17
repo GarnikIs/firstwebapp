@@ -3,37 +3,31 @@
     padding: 0;
 }
 
-#target .ddArrow {
+#country-select #target .ddArrow {
     display: inline-block;
     position: absolute;
     margin: -2px 0 0 4px;
 }
 
-#target .ddArrow {
+#country-select #target .ddArrow {
     width: 16px;
     height: 16px;
     background: url(../images/dd_arrow.gif) no-repeat;
 }
 
-#target a:hover span.ddArrow {
+#country-select #target a:hover span.ddArrow {
     background-position: 0 100%;
 }
 
 #country-select {
     position: absolute;
     top: 17px;
-    right: 30px;
-}
-
-@media screen and (max-width: 992px) {
-    #country-select {
-        right: 135px;
-    }
+    right: 70px;
 }
 
 @media screen and (max-width: 470px) {
     #country-select {
-        right: 95px;
+        right: 100px;
     }
 }
 
@@ -50,11 +44,11 @@
 
 /* JS-created definition list */
 
-.dropdown dd {
+#country-select .dropdown dd {
     position: relative;
 }
 
-.dropdown a {
+#country-select .dropdown a {
     text-decoration: none;
     outline: 0;
     font: 12px Arial, Helvetica, sans-serif;
@@ -63,7 +57,7 @@
     overflow: hidden;
 }
 
-.dropdown dt a {
+#country-select .dropdown dt a {
     background: url(../images/converter_to.png);
     padding: 3px 10px 4px 10px;
     -webkit-border-radius: 5px;
@@ -72,7 +66,7 @@
     color: #000;
 }
 
-.dropdown dt a.active {
+#country-select .dropdown dt a.active {
     background: url(../images/converter_to.png);
     -webkit-border-bottom-left-radius: 0;
     -webkit-border-bottom-right-radius: 0;
@@ -87,7 +81,7 @@
     color: #000;
 }
 
-.dropdown dd ul {
+#country-select .dropdown dd ul {
     background: #fff;
     color: #C5C0B0;
     display: none;
@@ -110,12 +104,12 @@
     box-shadow: 0 3px 7px rgba(0, 0, 0, .5);
 }
 
-.dropdown dd ul li a {
+#country-select .dropdown dd ul li a {
     padding: 2px 10px;
 }
 
-.dropdown dd ul li a span,
-.dropdown dt a span {
+#country-select .dropdown dd ul li a span,
+#country-select .dropdown dt a span {
     float: left;
     width: 16px;
     height: 11px;
@@ -133,19 +127,19 @@
     background-position: -16px -275px;
 }
 
-.dropdown dd ul li a em,
-.dropdown dt a em {
+#country-select .dropdown dd ul li a em,
+#country-select .dropdown dt a em {
     font-style: normal;
     float: left;
     width: auto;
     cursor: pointer;
 }
 
-.dropdown dd ul li a em {
+#country-select .dropdown dd ul li a em {
     color: #000;
 }
 
-.dropdown dd ul:hover {
+#country-select .dropdown dd ul:hover {
     background: url(../images/converter_to.png)
 }
 

@@ -46,7 +46,7 @@
 
     <!-- Bootstrap Readable Theme CSS -->
     <%-- Somtimes it is invisibel and all css is fucked up --%>
-    <%--<link rel="stylesheet" href="${css}/bootstrap-readable-theme.css" >--%>
+    <link rel="stylesheet" href="${css}/bootstrap-readable-theme-changed.css" >
 
     <!-- Bootstrap DataTables CSS -->
     <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
@@ -112,7 +112,6 @@
 <div class="wrapper">
     <!-- Navigation bar is included here -->
     <%@include file="./shared/navbar.jsp" %>
-
 
     <!-- Page Content -->
     <div class="content">
