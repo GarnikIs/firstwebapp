@@ -31,6 +31,12 @@ $(function () {
         case ("View Cart"):
             $("#userCart").addClass("active");
             break;
+        case ("Login"):
+            $("#login").addClass("active");
+            break;
+        case ("Registration"):
+            $("#register").addClass("active");
+            break;
         default:
             $("#products").addClass("active");
             break;
@@ -144,7 +150,7 @@ $(function () {
 
 
         $adminProductsTable.DataTable({
-            lengthMenu: [[10, 30, 50, -1], ["10 Records, 30 Records", "50 Records", "All Records"]],
+            lengthMenu: [[10, 30, 50, -1], ["10 Records", "30 Records", "50 Records", "All Records"]],
             pageLength: 30,
             "order": [[0, "asc"]],
             ajax: {
@@ -334,4 +340,6 @@ $(function () {
         }
 
     });
+
+
 });

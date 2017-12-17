@@ -32,7 +32,7 @@
     <wf:flow-executor id="flowExecutor" flow-registry="flowRegistry"/>
 
     <wf:flow-registry id="flowRegistry" base-path="/views/flows"
-                                        flow-builder-services="flowBuilderServices">
+                      flow-builder-services="flowBuilderServices">
         <wf:flow-location-pattern value="/**/*-flow.xml"/>
     </wf:flow-registry>
 
@@ -49,7 +49,7 @@
     </bean>
 
     <bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
-        <property name="viewResolvers" ref="viewResolver" />
+        <property name="viewResolvers" ref="viewResolver"/>
     </bean>
 
     <!-- Spring validator bean -->
@@ -67,11 +67,13 @@
 
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-            <property name="paramName" value="language" />
+            <property name="paramName" value="language"/>
         </bean>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="gar.iso.web.controller.GlobalController"/>
+        </mvc:interceptor>
     </mvc:interceptors>
-
-
 
 
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>

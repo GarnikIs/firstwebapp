@@ -10,14 +10,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  * Created by Gor on 12/1/2017.
  */
 @ControllerAdvice
-public class GlobalController {
+public class GlobalController extends HandlerInterceptorAdapter {
 
     @Autowired
     private HttpSession session;
@@ -50,11 +53,14 @@ public class GlobalController {
         return (UserModel) session.getAttribute("userModel");
     }
 
-    @ModelAttribute("language")
-    public Language getLanguage() {
+    @Override
+    public boolean preHandle(HttpServletRequest request,
+                             HttpServletResponse response,
+                             Object handler) throws Exception {
+
         Language.setLanguage(LocaleContextHolder.getLocale().getDisplayLanguage());
         language = Language.getLanguage();
         session.setAttribute("language", language);
-        return (Language) session.getAttribute("language");
+        return super.preHandle(request, response, handler);
     }
 }

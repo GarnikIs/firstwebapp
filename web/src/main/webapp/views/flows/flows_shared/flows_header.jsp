@@ -15,6 +15,7 @@
 <spring:url var="images" value="/resources/images"/>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
+<c:set var="currentUrl" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,11 +27,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><spring:message code="online.shop"/> - Registration</title>
+    <title><spring:message code="online.shop"/> - ${registerModel.title}</title>
     <script>
-        window.menu = "${title}";
+        window.menu = "${registerModel.title}";
         window.category = "${category.categoryName}";
         window.contextRoot = "${contextRoot}";
+        window.currentUrl = "${currentUrl}";
+        window.currentLang = "${registerModel.language.key}";
     </script>
 
     <%-- START CSS --%>
@@ -42,7 +45,7 @@
 
     <!-- Bootstrap Readable Theme CSS -->
     <%-- Somtimes it is invisible and all css is fucked up --%>
-    <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
+    <link href="${css}/bootstrap-readable-theme-changed.css" rel="stylesheet">
 
     <!-- Bootstrap DataTables CSS -->
     <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
@@ -52,6 +55,9 @@
 
     <!-- Bootstrap Theme CSS -->
     <link href="${css}/bootstrap-theme.css" rel="stylesheet">
+
+    <%-- Language Bar Support CSS --%>
+    <link rel="stylesheet" href="${css}/languageswitcher.css">
 
     <%-- END CSS --%>
 
@@ -82,6 +88,10 @@
     <!-- Custom Javascript  -->
     <script src="${js}/appcustom.js"></script>
 
+    <%-- Language Bar Support JQuery and JS --%>
+    <%--<script src="${js}/jquery.min.1.5.0.js"></script>--%>
+    <script src="${js}/languageswitcher.js"></script>
+
     <!-- Angular -->
     <script src="${js}/angular.js"></script>
 
@@ -99,7 +109,8 @@
 <body>
 
     <!-- Navigation bar is included here -->
-    <%@include file="flows_navbar.jsp" %>
+    <%--<%@include file="flows_navbar.jsp" %>--%>
+    <%@include file="../../shared/navbar.jsp" %>
 
 </body>
 

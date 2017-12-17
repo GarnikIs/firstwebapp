@@ -34,7 +34,7 @@
 
     <!-- Bootstrap Readable Theme CSS -->
     <%--Somtimes it is being invisibel and all css fucked up--%>
-    <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
+    <link href="${css}/bootstrap-readable-theme-changed.css" rel="stylesheet">
 
     <!-- Bootstrap DataTables CSS -->
     <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
@@ -53,7 +53,7 @@
 
 <div class="wrapper">
     <!-- Navigation bar for error page -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="${contextRoot}/home">Home</a>
