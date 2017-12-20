@@ -1,6 +1,8 @@
 package gar.iso.core;
 
+import gar.iso.core.dao.CategoryDao;
 import gar.iso.core.dao.ProductDao;
+import gar.iso.core.dao.UserDao;
 import gar.iso.core.dto.Product;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,6 +20,10 @@ public class ProductDaoImplTest {
 
     private static ProductDao productDao;
 
+    private static CategoryDao categoryDao;
+
+    private static UserDao userDao;
+
     private Product product;
 
     private static List<Product> productList = new ArrayList<>();
@@ -31,6 +37,9 @@ public class ProductDaoImplTest {
         context.scan("gar.iso.core");
         context.refresh();
         productDao = (ProductDao) context.getBean("productDao");
+        categoryDao = (CategoryDao) context.getBean("categoryDao");
+        categoryDao = (CategoryDao) context.getBean("categoryDao");
+        userDao = (UserDao) context.getBean("userDao");
     }
 
     /**
@@ -46,8 +55,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
-        product.setProductCategoryId(2);
-        product.setProductSupplierId(1);
+//        product.setProductCategoryId(1);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(1);
         product.setViews(1);
         productList.add(product);
@@ -70,8 +80,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
-        product.setProductCategoryId(2);
-        product.setProductSupplierId(1);
+//        product.setProductCategoryId(1);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(1);
         product.setViews(1);
         productList.add(product);
@@ -96,8 +107,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
-        product.setProductCategoryId(2);
-        product.setProductSupplierId(1);
+//        product.setProductCategoryId(1);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(1);
         product.setViews(1);
         productList.add(product);
@@ -122,8 +134,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
-        product.setProductCategoryId(2);
-        product.setProductSupplierId(1);
+//        product.setProductCategoryId(1);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(1);
         product.setViews(1);
         productList.add(product);
@@ -162,8 +175,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
-        product.setProductCategoryId(2);
-        product.setProductSupplierId(1);
+//        product.setProductCategoryId(1);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(1);
         product.setViews(1);
         productList.add(product);
@@ -177,8 +191,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(400000);
         product.setQuantity(5);
         product.setActive(false);
-        product.setProductCategoryId(3);
-        product.setProductSupplierId(2);
+//        product.setProductCategoryId(2);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(5);
         product.setViews(6);
         productList.add(product);
@@ -192,8 +207,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(600000);
         product.setQuantity(2);
         product.setActive(true);
-        product.setProductCategoryId(1);
-        product.setProductSupplierId(3);
+//        product.setProductCategoryId(3);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(10);
         product.setViews(78);
         productList.add(product);
@@ -219,8 +235,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(200000);
         product.setQuantity(3);
         product.setActive(true);
-        product.setProductCategoryId(2);
-        product.setProductSupplierId(1);
+//        product.setProductCategoryId(1);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(1);
         product.setViews(1);
         productList.add(product);
@@ -234,8 +251,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(400000);
         product.setQuantity(11);
         product.setActive(false);
-        product.setProductCategoryId(2);
-        product.setProductSupplierId(2);
+//        product.setProductCategoryId(2);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(5);
         product.setViews(6);
         productList.add(product);
@@ -249,8 +267,9 @@ public class ProductDaoImplTest {
         product.setUnitPrice(600000);
         product.setQuantity(2);
         product.setActive(true);
-        product.setProductCategoryId(2);
-        product.setProductSupplierId(3);
+//        product.setProductCategoryId(3);
+        product.setProductCategory(categoryDao.getCategoryList().get(1));
+        product.setProductUser(userDao.getUserByUserId(3));
         product.setPurchases(10);
         product.setViews(78);
         productList.add(product);
@@ -259,7 +278,8 @@ public class ProductDaoImplTest {
 //        Asserts true if returned product size is same as newly imported product name
         assertEquals("Something went wrong when fetching a new added active product list by category id from database: ",
                 productList.size()-1,
-                productDao.getActiveProductListByCategoryId(product.getProductCategoryId()).size());
+//                productDao.getActiveProductListByCategoryId(product.getProductCategoryId()).size());
+                productDao.getActiveProductListByCategoryId(product.getProductCategory().getCategoryId()).size());
     }
 
     /**

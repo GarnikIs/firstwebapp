@@ -88,7 +88,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-4" for="productCategoryId">Select Category:</label>
                             <div class="col-md-8">
-                                <sf:select id="productCategoryId" class="form-control" path="productCategoryId"
+                                <sf:select id="productCategoryId" class="form-control" path="productCategory.categoryId"
                                            items="${categories}"
                                            itemLabel="categoryName"
                                            itemValue="categoryId"/>
@@ -105,7 +105,7 @@
                                 <sf:hidden path="productId"/>
                                 <sf:hidden path="code"/>
                                 <sf:hidden path="active"/>
-                                <sf:hidden path="productSupplierId"/>
+                                <sf:hidden path="productUser.userId"/>
                                 <sf:hidden path="purchases"/>
                                 <sf:hidden path="views"/>
 

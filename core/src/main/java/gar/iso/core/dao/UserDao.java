@@ -27,6 +27,13 @@ public interface UserDao {
 
     /**
      * gets the existing user
+     * @param phoneNumber
+     * @return user
+     */
+    User getUserByPhoneNumber(String phoneNumber);
+
+    /**
+     * gets the existing user
      * @param userId
      * @return user
      */

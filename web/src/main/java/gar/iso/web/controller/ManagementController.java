@@ -47,8 +47,11 @@ public class ManagementController {
         mv.addObject("title", "Manage Products");
         mv.addObject("userClickedManageProducts", true);
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userDao.getUserByEmail(auth.getName());
+
         Product nProduct = new Product();
-        nProduct.setProductSupplierId(1);
+        nProduct.setProductUser(user);
         nProduct.setActive(true);
         mv.addObject("product", nProduct);
         if (operation != null) {
@@ -71,7 +74,7 @@ public class ManagementController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userDao.getUserByEmail(auth.getName());
-        mProduct.setProductSupplierId(user.getUserId());
+        mProduct.setProductUser(user);
         if (mProduct.getProductId() == 0) {
             new ProductValidator().validate(mProduct, results);
         } else {

@@ -46,13 +46,15 @@ public class Product implements Serializable {
     @Column(name = "product_is_active")
     private boolean active;
 
-    @JsonIgnore
-    @Column(name = "product_category_id")
-    private int productCategoryId;
+    @ManyToOne
+    @JoinColumn(name = "product_category_id",
+            foreignKey = @ForeignKey(name = "fk_productCategoryId"))
+    private Category productCategory;
 
-    @JsonIgnore
-    @Column(name = "product_supplier_id")
-    private int productSupplierId;
+    @ManyToOne
+    @JoinColumn(name = "product_user_id",
+            foreignKey = @ForeignKey(name = "fk_productUserId"))
+    private User productUser;
 
     private int purchases;
 
@@ -130,20 +132,20 @@ public class Product implements Serializable {
         this.active = active;
     }
 
-    public int getProductCategoryId() {
-        return productCategoryId;
+    public Category getProductCategory(){
+        return productCategory;
     }
 
-    public void setProductCategoryId(int productCategoryId) {
-        this.productCategoryId = productCategoryId;
+    public void setProductCategory(Category productCategory) {
+        this.productCategory = productCategory;
     }
 
-    public int getProductSupplierId() {
-        return productSupplierId;
+    public User getProductUser() {
+        return productUser;
     }
 
-    public void setProductSupplierId(int productSupplierId) {
-        this.productSupplierId = productSupplierId;
+    public void setProductUser(User productUser) {
+        this.productUser = productUser;
     }
 
     public int getPurchases() {
@@ -181,8 +183,8 @@ public class Product implements Serializable {
                 ", unitPrice=" + unitPrice +
                 ", quantity=" + quantity +
                 ", active=" + active +
-                ", productCategoryId=" + productCategoryId +
-                ", productSupplierId=" + productSupplierId +
+                ", productCategoryId=" + ((productCategory == null) ? "Not Selected" : productCategory.getCategoryId()) +
+                ", productSupplierId=" + ((productUser == null) ? "Not Authorized" : productUser.getUserId()) +
                 ", purchase=" + purchases +
                 ", views=" + views +
                 '}';

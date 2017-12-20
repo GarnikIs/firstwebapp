@@ -86,6 +86,15 @@ public class RegisterHandler {
             transitionValue = "failure";
         }
 
+        if (userDao.getUserByPhoneNumber(user.getPhoneNumber()) != null) {
+            errorMessage.addMessage(new MessageBuilder().error()
+                    .source("email")
+                    .defaultText("The mentioned phone is already in use")
+                    .build());
+            transitionValue = "failure";
+        }
+
+
         return transitionValue;
     }
 }

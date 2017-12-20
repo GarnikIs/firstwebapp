@@ -45,12 +45,32 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public User getUserByEmail(String email) {
-        String selectedUserByEmail = "from User where email = :email";
+        String selectedUserByEmail = "from User where email = (:email)";
         User user = null;
         try {
             user = sessionFactory.getCurrentSession()
                     .createQuery(selectedUserByEmail, User.class)
                     .setParameter("email", email)
+                    .getSingleResult();
+        } catch (Exception e) {
+            user = null;
+        }
+        return user;
+    }
+
+    /**
+     * gets the existing user
+     * @param phoneNumber
+     * @return user
+     */
+    @Override
+    public User getUserByPhoneNumber(String phoneNumber) {
+        String selectedUserByPhoneNumber = "from User where phone_number = (:phoneNumber)";
+        User user = null;
+        try {
+            user = sessionFactory.getCurrentSession()
+                    .createQuery(selectedUserByPhoneNumber, User.class)
+                    .setParameter("phoneNumber", phoneNumber)
                     .getSingleResult();
         } catch (Exception e) {
             user = null;
@@ -85,7 +105,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public User getUserByEmailAndPassword(String email, String password) {
-        String selectUserByEmail = "from User where email = :email and password = :password";
+        String selectUserByEmail = "from User where email = (:email) and password = (:password)";
         User user = null;
         try {
             user = sessionFactory.getCurrentSession()
@@ -122,7 +142,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public UserAddress getUserBillingAddress(int userId) {
-        String addressQuery = "from UserAddress where address_user_id = :userId and billing = :billing";
+        String addressQuery = "from UserAddress where address_user_id = (:userId) and billing = (:billing)";
         UserAddress userBillingAddress = null;
         try {
             userBillingAddress = sessionFactory.getCurrentSession()
@@ -143,7 +163,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public List<UserAddress> getUserShippingAddresses(int userId) {
-        String addressQuery = "from UserAddress where address_user_id = :userId and shipping = :shipping";
+        String addressQuery = "from UserAddress where address_user_id = (:userId) and shipping = (:shipping)";
         List<UserAddress> userShippingAddresses = null;
         try {
             userShippingAddresses = sessionFactory.getCurrentSession()
