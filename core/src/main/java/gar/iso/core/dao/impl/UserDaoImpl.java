@@ -85,11 +85,11 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public User getUserByUserId(int userId) {
-        String selectedUserByEmail = "from User where user_id = " + userId;
+        String selectedUserById = "from User where user_id = " + userId;
         User user = null;
         try {
             user = sessionFactory.getCurrentSession()
-                    .createQuery(selectedUserByEmail, User.class)
+                    .createQuery(selectedUserById, User.class)
                     .getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();

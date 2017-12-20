@@ -1,5 +1,6 @@
 package gar.iso.web.service;
 
+import gar.iso.core.dao.CartDao;
 import gar.iso.core.dao.CartLineDao;
 import gar.iso.core.dao.ProductDao;
 import gar.iso.core.dto.Cart;
@@ -20,6 +21,9 @@ public class CartService {
 
     @Autowired
     private CartLineDao cartLineDao;
+
+    @Autowired
+    private CartDao cartDao;
 
     @Autowired
     private ProductDao productDao;
@@ -55,7 +59,7 @@ public class CartService {
             cart.setCartLines(cart.getCartLines() + 1);
 
             cartLineDao.addCartLine(cartLine);
-            cartLineDao.updateCart(cart);
+            cartDao.updateCartByCart(cart);
 
             return "result=added";
         } else {
@@ -67,7 +71,7 @@ public class CartService {
             cart.setCartLines(cart.getCartLines() + 1);
 
             cartLineDao.updateCartLine(cartLine);
-            cartLineDao.updateCart(cart);
+            cartDao.updateCartByCart(cart);
 
             return "result=added";
         }
@@ -92,7 +96,7 @@ public class CartService {
 
             Cart cart = this.getCart();
             cart.setGrandTotal(cart.getGrandTotal() - oldTotalAmount + cartLine.getCartLineTotal());
-            cartLineDao.updateCart(cart);
+            cartDao.updateCartByCart(cart);
             return "result=updated";
         }
     }
@@ -107,7 +111,7 @@ public class CartService {
             cart.setGrandTotal(cart.getGrandTotal() - cartLine.getCartLineTotal());
             cart.setCartLines(cart.getCartLines() - 1);
             cartLineDao.deleteCartLine(cartLine);
-            cartLineDao.updateCart(cart);
+            cartDao.updateCartByCart(cart);
             return "result=deleted";
         }
     }

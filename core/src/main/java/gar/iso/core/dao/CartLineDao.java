@@ -10,25 +10,54 @@ import java.util.List;
  */
 public interface CartLineDao {
 
-    boolean addCartLine(CartLine cartLine);
-
-    boolean updateCartLine(CartLine cartLine);
-
-    boolean deleteCartLine(CartLine cartLine);
-
-    CartLine getCartLine(int cartLineId);
-
-    List<CartLine> getListOfCartLines(int cartId);
-
-    List<CartLine> getListOfAvailableCartLines(int cartId);
-
-    CartLine getByCartIdAndProductId(int cartId, int productId);
-
     /**
-     * updates cart
-     * @param cart
+     * adds cartLine
+     * @param cartLine
      * @return true or false
      */
-    boolean updateCart(Cart cart);
+    boolean addCartLine(CartLine cartLine);
+
+    /**
+     * updates cartLine
+     * @param cartLine
+     * @return true or false
+     */
+    boolean updateCartLine(CartLine cartLine);
+
+    /**
+     * deletes cartLine
+     * @param cartLine
+     * @return true or false
+     */
+    boolean deleteCartLine(CartLine cartLine);
+
+    /**
+     * gets cartLine by cartline id
+     * @param cartLineId
+     * @return true or false
+     */
+    CartLine getCartLine(int cartLineId);
+
+    /**
+     * gets list of cartLines
+     * @param cartId
+     * @return true or false
+     */
+    List<CartLine> getListOfCartLines(int cartId);
+
+    /**
+     * gets list of available cartlines
+     * @param cartId
+     * @return true or false
+     */
+    List<CartLine> getListOfAvailableCartLines(int cartId);
+
+    /**
+     * gets single cartline
+     * @param cartId
+     * @param productId
+     * @return true or false
+     */
+    CartLine getByCartIdAndProductId(int cartId, int productId);
 
 }

@@ -1,5 +1,6 @@
 package gar.iso.core;
 
+import gar.iso.core.dao.CartDao;
 import gar.iso.core.dao.CartLineDao;
 import gar.iso.core.dao.ProductDao;
 import gar.iso.core.dao.UserDao;
@@ -13,12 +14,13 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Gor on 12/3/2017.
  */
-public class CartLineDaoImlTest {
+public class CartLineDaoImplTest {
 
     private static AnnotationConfigApplicationContext context;
     private static ProductDao productDao;
     private static UserDao userDao;
     private static CartLineDao cartLineDao;
+    private static CartDao cartDao;
     private User user = null;
     private Product product = null;
     private UserAddress address = null;
@@ -36,6 +38,7 @@ public class CartLineDaoImlTest {
         cartLineDao = (CartLineDao) context.getBean("cartLineDao");
         productDao = (ProductDao) context.getBean("productDao");
         userDao = (UserDao) context.getBean("userDao");
+        cartDao = (CartDao) context.getBean("cartDao");
     }
 
 
@@ -47,8 +50,8 @@ public class CartLineDaoImlTest {
     @Test
     public void testUpdateCart() {
 
-        user = userDao.getUserByUserId(11);
-        product = productDao.getProductById(19);
+        user = userDao.getUserByUserId(3);
+        product = productDao.getProductById(2);
         cart = user.getCart();
 
         cartLine = new CartLine();
@@ -62,6 +65,6 @@ public class CartLineDaoImlTest {
         assertEquals("Failed to add cart line", true, cartLineDao.addCartLine(cartLine));
         cart.setCartLines(cart.getCartLines() + 1);
         cart.setGrandTotal(cart.getGrandTotal() + cartLine.getCartLineTotal());
-        assertEquals("Failed to add cart line", true, cartLineDao.updateCart(cart));
+        assertEquals("Failed to add cart line", true, cartDao.updateCartByCart(cart));
     }
 }

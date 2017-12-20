@@ -21,7 +21,11 @@ public class CartLineDaoImpl implements CartLineDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-
+    /**
+     * adds cartLine
+     * @param cartLine
+     * @return true or false
+     */
     @Override
     public boolean addCartLine(CartLine cartLine) {
         try {
@@ -33,6 +37,11 @@ public class CartLineDaoImpl implements CartLineDao {
         }
     }
 
+    /**
+     * updates cartLine
+     * @param cartLine
+     * @return true or false
+     */
     @Override
     public boolean updateCartLine(CartLine cartLine) {
         try {
@@ -45,6 +54,11 @@ public class CartLineDaoImpl implements CartLineDao {
         }
     }
 
+    /**
+     * deletes cartLine
+     * @param cartLine
+     * @return true or false
+     */
     @Override
     public boolean deleteCartLine(CartLine cartLine) {
         try {
@@ -57,11 +71,21 @@ public class CartLineDaoImpl implements CartLineDao {
         }
     }
 
+    /**
+     * gets cartLine by cartline id
+     * @param cartLineId
+     * @return true or false
+     */
     @Override
     public CartLine getCartLine(int cartLineId) {
         return sessionFactory.getCurrentSession().get(CartLine.class, cartLineId);
     }
 
+    /**
+     * gets list of cartLines
+     * @param cartId
+     * @return true or false
+     */
     @Override
     public List<CartLine> getListOfCartLines(int cartId) {
         String query = "from CartLine where cartline_cart_id = :cartId";
@@ -70,6 +94,11 @@ public class CartLineDaoImpl implements CartLineDao {
                 .setParameter("cartId", cartId).getResultList();
     }
 
+    /**
+     * gets list of available cartlines
+     * @param cartId
+     * @return true or false
+     */
     @Override
     public List<CartLine> getListOfAvailableCartLines(int cartId) {
         String query = "from CartLine where cartline_cart_id = :cartId and is_available = :available";
@@ -80,6 +109,12 @@ public class CartLineDaoImpl implements CartLineDao {
                 .getResultList();
     }
 
+    /**
+     * gets single cartline
+     * @param cartId
+     * @param productId
+     * @return true or false
+     */
     @Override
     public CartLine getByCartIdAndProductId(int cartId, int productId) {
         String query = "from CartLine where cartline_cart_id = :cartId and " +
@@ -95,19 +130,4 @@ public class CartLineDaoImpl implements CartLineDao {
         }
     }
 
-    /**
-     * updates cart
-     * @param cart
-     * @return true or false
-     */
-    @Override
-    public boolean updateCart(Cart cart) {
-        try {
-            sessionFactory.getCurrentSession().update(cart);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 }

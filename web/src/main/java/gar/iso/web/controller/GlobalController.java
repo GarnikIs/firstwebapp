@@ -1,6 +1,8 @@
 package gar.iso.web.controller;
 
+import gar.iso.core.dao.CartDao;
 import gar.iso.core.dao.UserDao;
+import gar.iso.core.dto.Cart;
 import gar.iso.core.dto.User;
 import gar.iso.web.enumaration.Language;
 import gar.iso.web.model.UserModel;
@@ -28,6 +30,9 @@ public class GlobalController extends HandlerInterceptorAdapter {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private CartDao cartDao;
+
     private UserModel userModel = null;
 
     public static Language language = null;
@@ -44,7 +49,12 @@ public class GlobalController extends HandlerInterceptorAdapter {
                 userModel.setEmail(user.getEmail());
                 userModel.setRole(user.getRole());
                 if (user.getRole().equals("USER")) {
-                    userModel.setCart(user.getCart());
+                    if (user.getCart() == null) {
+                        Cart cart = new Cart();
+                        cart.setCartUser(user);
+                        cartDao.addUserCartByCart(cart);
+                    }
+                    userModel.setCart(cartDao.getCartByUserId(user.getUserId()));
                 }
                 session.setAttribute("userModel", userModel);
                 return userModel;
