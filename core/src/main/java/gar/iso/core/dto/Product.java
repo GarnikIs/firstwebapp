@@ -184,7 +184,7 @@ public class Product implements Serializable {
                 ", quantity=" + quantity +
                 ", active=" + active +
                 ", productCategoryId=" + ((productCategory == null) ? "Not Selected" : productCategory.getCategoryId()) +
-                ", productSupplierId=" + ((productUser == null) ? "Not Authorized" : productUser.getUserId()) +
+                ", productUserId=" + ((productUser == null) ? "Not Authorized" : productUser.getUserId()) +
                 ", purchase=" + purchases +
                 ", views=" + views +
                 '}';
