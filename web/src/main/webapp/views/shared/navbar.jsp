@@ -27,7 +27,7 @@
             <li id="products" class="nav-item">
                 <a class="nav-link" href="${contextRoot}/show/all/products">View Products</a>
             </li>
-            <security:authorize access="hasAuthority('ADMIN') || hasAuthority('SUPPLIER')">
+            <security:authorize access="hasAuthority('ADMIN') || hasAuthority('USER')">
                 <li id="manageProducts" class="nav-item">
                     <a class="nav-link" href="${contextRoot}/manage/products">Manage Products</a>
                 </li>

@@ -42,7 +42,7 @@
                     <h6>Purchases - ${product.purchases}</h6>
                 </c:otherwise>
             </c:choose>
-            <security:authorize access="hasAuthority('USER') or hasAuthority('SUPPLIER') or isAnonymous()">
+            <security:authorize access="hasAuthority('USER') or isAnonymous()">
                 <c:choose>
                     <c:when test="${product.quantity < 1}">
                         <a href="javascript:void(0)" class="btn btn-success disabled"><strike>Add to Cart

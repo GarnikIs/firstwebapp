@@ -29,9 +29,9 @@ CREATE TABLE user_detail (
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, phone_number)
             VALUES      ('Garnik', 'Isajanyan', 'ADMIN', true, '123', 'garnikisajan@gmail.com', '123');
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, phone_number)
-            VALUES      ('Vacho', 'Hovhannisyan', 'SUPPLIER', true, '123', 'vachoh@gmail.com', '456');
+            VALUES      ('Vacho', 'Hovhannisyan', 'USER', true, '123', 'vachoh@gmail.com', '456');
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, phone_number)
-            VALUES      ('Garnik', 'Isajanyan', 'SUPPLIER', true, '123', 'arama@gmail.com', '789');
+            VALUES      ('Garnik', 'Isajanyan', 'USER', true, '123', 'arama@gmail.com', '789');
 
 CREATE TABLE product (
   product_id INT(11) AUTO_INCREMENT NOT NULL,
@@ -43,22 +43,22 @@ CREATE TABLE product (
   quantity INT(5),
   product_is_active BOOLEAN,
   product_category_id INT(11),
-  product_supplier_id INT(11),
+  product_user_id INT(11),
   purchases INT(11) DEFAULT 0,
   views INT(11) DEFAULT 0,
   CONSTRAINT pk_producId PRIMARY KEY (product_id),
   CONSTRAINT fk_productCategoryId FOREIGN KEY (product_category_id) REFERENCES category (category_id),
-  CONSTRAINT fk_productSupplierId FOREIGN KEY (product_supplier_id) REFERENCES user_detail (user_id)
+  CONSTRAINT fk_productUserId FOREIGN KEY (product_user_id) REFERENCES user_detail (user_id)
 );
 
 INSERT INTO product (product_code, product_name, brand, product_description, unit_price, quantity,
-                     product_is_active, product_category_id, product_supplier_id, purchases, views)
+                     product_is_active, product_category_id, product_user_id, purchases, views)
             VALUES  ('PRDABC123DEFX', 'Iphon 4s', 'apple', 'One of the best Mobile', 150000, 5, true, 2, 1, 0, 0);
 INSERT INTO product (product_code, product_name, brand, product_description, unit_price, quantity,
-                     product_is_active, product_category_id, product_supplier_id, purchases, views)
+                     product_is_active, product_category_id, product_user_id, purchases, views)
             VALUES  ('PRDABCXYZDEFX', 'SamsungTV', 'samsung', 'One of the best TV', 300000, 6, true, 3, 2, 0, 0);
 INSERT INTO product (product_code, product_name, brand, product_description, unit_price, quantity,
-                     product_is_active, product_category_id, product_supplier_id, purchases, views)
+                     product_is_active, product_category_id, product_user_id, purchases, views)
             VALUES  ('PRDBEDE2376C9', 'Toshiba 5DD', 'Toshiba', 'One of the best Laptop', 400000, 4, true, 1, 3, 0, 0);
 
 
