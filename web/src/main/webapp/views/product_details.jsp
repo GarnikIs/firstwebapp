@@ -30,7 +30,7 @@
             <u><i>Descrption</i></u>
             <h6>${product.productDescription}</h6>
             <hr/>
-            <h4>Price:<strong> - &#8377; ${product.unitPrice}</strong></h4>
+            <h4>Price:<strong> - &#8381; ${product.unitPrice}</strong></h4>
             <hr/>
             <c:choose>
                 <c:when test="${product.quantity < 1}">

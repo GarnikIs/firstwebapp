@@ -37,35 +37,35 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <security:authorize access="isAnonymous()">
-                <li id="register" class="nav-item">
-                    <a class="nav-link" href="${contextRoot}/register">
-                        <span class="glyphicon glyphicon-user"></span> Registration
-                    </a>
-                </li>
-                <li id="login" class="nav-item">
-                    <a class="nav-link" href="${contextRoot}/login">
-                        <span class="glyphicon glyphicon-log-in"></span> Login
-                    </a>
-                </li>
-            </security:authorize>
-            <security:authorize access="isAuthenticated()">
+            <%--<security:authorize access="isAnonymous()">--%>
+                <%--<li id="register" class="nav-item">--%>
+                    <%--<a class="nav-link" href="${contextRoot}/register">--%>
+                        <%--<span class="glyphicon glyphicon-user"></span> Registration--%>
+                    <%--</a>--%>
+                <%--</li>--%>
+                <%--<li id="login" class="nav-item">--%>
+                    <%--<a class="nav-link" href="${contextRoot}/login">--%>
+                        <%--<span class="glyphicon glyphicon-log-in"></span> Login--%>
+                    <%--</a>--%>
+                <%--</li>--%>
+            <%--</security:authorize>--%>
+            <security:authorize access="hasAuthority('ADMIN')">
                 <li class="dropdown" id="userCart">
                     <a href="javascript:void(0)" style="display: inline-block"
                        class="nav-link dropdown-toggle"
                        id="dropdownMenu1" data-toggle="dropdown">${userModel.fullName}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <security:authorize access="hasAuthority('USER')">
-                            <li>
-                                <a href="${contextRoot}/cart/show">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    <span class="badge">${userModel.cart.cartLines}</span>
-                                    - &#8377; ${userModel.cart.grandTotal}
-                                </a>
-                            </li>
-                            <li class="devider" role="separator"></li>
-                        </security:authorize>
+                        <%--<security:authorize access="hasAuthority('USER')">--%>
+                            <%--<li>--%>
+                                <%--<a href="${contextRoot}/cart/show">--%>
+                                    <%--<span class="glyphicon glyphicon-shopping-cart"></span>--%>
+                                    <%--<span class="badge">${userModel.cart.cartLines}</span>--%>
+                                    <%--- &#8377; ${userModel.cart.grandTotal}--%>
+                                <%--</a>--%>
+                            <%--</li>--%>
+                            <%--<li class="devider" role="separator"></li>--%>
+                        <%--</security:authorize>--%>
                         <li><a href="${contextRoot}/perform-logout">Logout</a></li>
                     </ul>
                 </li>

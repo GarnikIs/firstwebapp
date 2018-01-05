@@ -149,11 +149,11 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="pane-footer">
-                            <div class="text-right" style="padding: 0 20px 10px 0;">
-                                Not Registered - <a href="${contextRoot}/register">Register Here</a>
-                            </div>
-                        </div>
+                        <%--<div class="pane-footer">--%>
+                            <%--<div class="text-right" style="padding: 0 20px 10px 0;">--%>
+                                <%--Not Registered - <a href="${contextRoot}/register">Register Here</a>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                     </div>
                 </div>
             </div>

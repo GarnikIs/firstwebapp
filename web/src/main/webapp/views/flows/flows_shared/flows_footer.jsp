@@ -7,4 +7,4 @@
 --%>
 
 <!-- Footer is included here -->
-<%@include file="../../shared/footer.jsp" %>
+<%--<%@include file="../../shared/footer.jsp" %>--%>
