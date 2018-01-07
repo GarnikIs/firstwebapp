@@ -57,9 +57,6 @@
                                         <th>Price</th>
                                         <th>Available</th>
                                         <th>Details</th>
-                                        <security:authorize access="isAnonymous() or hasAuthority('USER')">
-                                            <th>Add to Cart</th>
-                                        </security:authorize>
                                         <security:authorize access="hasAuthority('ADMIN')">
                                             <th>Edit</th>
                                         </security:authorize>

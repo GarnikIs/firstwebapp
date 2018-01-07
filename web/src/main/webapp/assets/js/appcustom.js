@@ -65,6 +65,59 @@ $(function () {
             jsonUrl = window.contextRoot + "/json/data/category/" + window.categoryId + "/products";
         }
 
+        var tableColumns = [
+            {
+                data: 'code',
+                mRender: function (data, type, row) {
+                    var image = "<img class='dataTableImg' alt='Image ot available' src='" +
+                                window.contextRoot + "/resources/images/" + data + ".jpg'/>";
+                    return image;
+                }
+            },
+            {data: 'productName'},
+            {data: 'brand'},
+            {
+                data: 'unitPrice',
+                mRender: function (data, type, row) {
+                    return '&#8381; ' + data
+                }
+            },
+            {
+                data: 'quantity',
+                mRender: function (data, type, row) {
+                    if (data < 1) {
+                        return "<span style='color:red'>Out of Stock</span>";
+                    }
+                    return data;
+                }
+            },
+            {
+                data: 'productId',
+                bSortable: false,
+                mRender: function (data, type, row) {
+                    var src = '';
+                    src += "<a href='" + window.contextRoot + "/product/" + data + "/details'" +
+                        "class='btn btn-primary' title='Product Details'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                    return src;
+                }
+            }
+        ];
+
+        if (userRole == 'ADMIN') {
+            tableColumns.push(
+                {
+                    data: 'productId',
+                    bSortable: false,
+                    mRender: function (data, type, row) {
+                        var src = "<a href='" + window.contextRoot + "/manage/" + data + "/product'" +
+                                    "class='btn btn-warning' title='Edit " + row.productName +
+                                    "'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        return src;
+                    }
+                }
+            )
+        }
+
         $table.DataTable({
             lengthMenu: [[3, 5, 10, -1], ["3 Records", "5 Records", "10 Records", "All Records"]],
             pageLength: 3,
@@ -72,62 +125,7 @@ $(function () {
                 url: jsonUrl,
                 dataSrc: ''
             },
-            columns: [
-                {
-                    data: 'code',
-                    mRender: function (data, type, row) {
-                        var image = "<img class='dataTableImg' alt='Image ot available' src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
-                        return image;
-                    }
-                },
-                {data: 'productName'},
-                {data: 'brand'},
-                {
-                    data: 'unitPrice',
-                    mRender: function (data, type, row) {
-                        return '&#8381; ' + data
-                    }
-                },
-                {
-                    data: 'quantity',
-                    mRender: function (data, type, row) {
-                        if (data < 1) {
-                            return "<span style='color:red'>Out of Stock</span>";
-                        }
-                        return data;
-                    }
-                },
-                {
-                    data: 'productId',
-                    bSortable: false,
-                    mRender: function (data, type, row) {
-                        var src = '';
-                        src += "<a href='" + window.contextRoot + "/product/" + data + "/details'" +
-                            "class='btn btn-primary' title='Product Details'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                        return src;
-                    }
-                },
-                {
-                    data: 'productId',
-                    bSortable: false,
-                    mRender: function (data, type, row) {
-                        var src = '';
-                        if ( userRole == "ADMIN") {
-                            src += "<a href='" + window.contextRoot + "/manage/" + data + "/product'" +
-                                "class='btn btn-warning' title='Edit " + row.productName + "'><span class='glyphicon glyphicon-pencil'></span></a>";
-                        } else {
-                            if (row.quantity < 1) {
-                                src += "<a href='javascript:void(0)' class='btn btn-success disabled'>" +
-                                    "<span class='glyphicon glyphicon-shopping-cart'></span></a>";
-                            } else {
-                                src += "<a href='" + window.contextRoot + "/cart/add/" + data + "'" +
-                                    "class='btn btn-success' title='Add to Cart'><span class='glyphicon glyphicon-shopping-cart'></span></a>";
-                            }
-                        }
-                        return src;
-                    }
-                }
-            ]
+            columns: tableColumns,
         });
     }
     /*-----------------------------------------------------------------------------------*/
