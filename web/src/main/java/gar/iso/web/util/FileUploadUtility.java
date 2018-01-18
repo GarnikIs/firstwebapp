@@ -19,7 +19,7 @@ public class FileUploadUtility {
 
     public static void uploadFile(HttpServletRequest request, MultipartFile file, String code) {
 //        Get the real path
-            REAL_PATH = request.getSession().getServletContext().getRealPath("/assets/images");
+        REAL_PATH = request.getSession().getServletContext().getRealPath("/assets/images");
         log.info(REAL_PATH);
 
 //        If directories does not exist, create directory
