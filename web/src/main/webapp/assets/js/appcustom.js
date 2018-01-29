@@ -258,21 +258,23 @@ $(function () {
     if ($categoryForm.length) {
         $categoryForm.validate({
             rules: {
-                categoryName: {
+                categoryNameEn: {
                     required: true,
                     minlength: 2
                 },
-                categoryDescription: {
+                categoryNameRu: {
                     required: true,
-                }
+                    minlength: 2
+                },
             },
             messages: {
-                categoryName: {
-                    required: "Please add the Category name",
+                categoryNameEn: {
+                    required: "Please add the Category name in English",
                     minlength: "The Category name should not be less then 2 characters"
                 },
-                categoryDescription: {
-                    required: "Please add the Category description",
+                categoryNameRu: {
+                    required: "Please add the Category name in Russian",
+                    minlength: "The Category name should not be less then 2 characters"
                 }
             },
             errorElement: "em",
