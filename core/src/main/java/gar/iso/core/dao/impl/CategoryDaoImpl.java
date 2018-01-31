@@ -2,6 +2,7 @@ package gar.iso.core.dao.impl;
 
 import gar.iso.core.dao.CategoryDao;
 import gar.iso.core.dto.Category;
+import gar.iso.core.dto.CategoryType;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,47 +23,46 @@ public class CategoryDaoImpl implements CategoryDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-//    Adding single category
+    //    Adding single category type
+    @Override
+    public boolean addCategoryType(CategoryType categoryType) {
+        try {
+            sessionFactory.getCurrentSession().persist(categoryType);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DatabaseException is thrown while adding a category into database: " + categoryType.getCategoryTypeName() + ",/ " + e.getMessage());
+            return false;
+        }
+    }
+
+//    Adding multilingual single category
     @Override
     public boolean addCategory(Category category) {
         try {
             sessionFactory.getCurrentSession().persist(category);
+            sessionFactory.getCurrentSession().clear();
+            if (category.getCategoryLangId() == 2) {
+                category.setCategoryId(0);
+                category.setCategoryLangId(1);
+                category.setCategoryName(category.getCategoryNameRu());
+                sessionFactory.getCurrentSession().persist(category);
+            } else {
+                category.setCategoryId(0);
+                category.setCategoryLangId(2);
+                category.setCategoryName(category.getCategoryNameRu());
+                sessionFactory.getCurrentSession().persist(category);
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("DatabaseException is thrown while adding a category into database: " + category.getCategoryDescription() + ",/ " + e.getMessage());
+            System.out.println("DatabaseException is thrown while adding a category into database: " +
+                    category.getCategoryType().getCategoryTypeId() + ",/ " + e.getMessage());
             return false;
         }
     }
 
-//    Updating single category by category
-    @Override
-    public boolean updateCategory(Category category) {
-        try {
-            sessionFactory.getCurrentSession().update(category);
-            return true;
-        } catch(EntityNotFoundException  e) {
-            e.printStackTrace();
-            System.out.println("EntityNotFound exception is thrown while updating single category: " + category.getCategoryId() + ",/ " + e.getMessage());
-            return false;
-        }
-    }
-
-//    Deleting single category by category id
-    @Override
-    public boolean deleteCategory(Category category) {
-        category.setActive(false);
-        try {
-            sessionFactory.getCurrentSession().update(category);
-            return true;
-        } catch(EntityNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("EntityNotFound exception is thrown while deleting (or making active flag as 'false') category by id: " + category.getCategoryId() + ",/ " + e.getMessage());
-            return false;
-        }
-    }
-
-//    Retrieving single category by category id
+    //    Retrieving single category by category id and language
     @Override
     public Category getCategoryById(int categoryId) {
         Category category = null;
@@ -75,11 +75,11 @@ public class CategoryDaoImpl implements CategoryDao {
         return category;
     }
 
-//    Retrieving active category list
+    //    Retrieving category list
     @Override
-    public List<Category> getCategoryList() {
+    public List<Category> getCategoryList(int langKey) {
         List<Category> categories = null;
-        String selectActiveCategories = "FROM Category WHERE category_is_active = 1";
+        String selectActiveCategories = "FROM Category WHERE category_lang_id = " + langKey;
         try {
             Query query = sessionFactory.getCurrentSession().createQuery(selectActiveCategories);
             categories = query.list();

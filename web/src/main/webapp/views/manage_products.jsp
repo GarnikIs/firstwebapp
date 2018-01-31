@@ -115,6 +115,112 @@
                     </sf:form>
                 </div>
             </div>
+
+
+
+
+            <%--<div class="panel panel-primary">--%>
+                <%--<div class="panel-heading">--%>
+                    <%--<h4>Product Management</h4>--%>
+                <%--</div>--%>
+                <%--<div class="panel-body">--%>
+                    <%--&lt;%&ndash; Form Elements &ndash;%&gt;--%>
+                    <%--<sf:form class="form-horizontal" modelAttribute="product"--%>
+                             <%--action="${contextRoot}/manage/products"--%>
+                             <%--method="post"--%>
+                             <%--enctype="multipart/form-data">--%>
+
+                        <%--<div class="form-group">--%>
+                            <%--<label class="control-label col-md-4" for="productNameEn">Product name in English:</label>--%>
+                            <%--<div class="col-md-8">--%>
+                                <%--<sf:input type="text" id="productNameEn" class="form-control" path="productNameEn"--%>
+                                          <%--placeholder="Product Name English"/>--%>
+                                <%--<sf:errors path="productNameEn" cssClass="help-block" element="em"/>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="control-label col-md-4" for="productNameRu">Product name in Russian:</label>--%>
+                            <%--<div class="col-md-8">--%>
+                                <%--<sf:input type="text" id="productNameRu" class="form-control" path="productNameRu"--%>
+                                          <%--placeholder="Product Name Russian"/>--%>
+                                <%--<sf:errors path="productNameRu" cssClass="help-block" element="em"/>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="control-label col-md-4" for="productDescription">Product description:</label>--%>
+                            <%--<div class="col-md-8">--%>
+                                <%--<sf:textarea type="text" id="productDescription" class="form-control" path="productDescription"--%>
+                                             <%--placeholder="Product Description"/>--%>
+                                <%--<sf:errors path="productDescription" cssClass="help-block" element="em"/>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="control-label col-md-4" for="unitPrice">Product price:</label>--%>
+                            <%--<div class="col-md-8">--%>
+                                <%--<sf:input type="number" id="unitPrice" class="form-control" path="unitPrice"--%>
+                                          <%--placeholder="Product Price"/>--%>
+                                <%--<sf:errors path="unitPrice" cssClass="help-block" element="em"/>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--&lt;%&ndash; File  element for image upload &ndash;%&gt;--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="control-label col-md-4" for="file">Choose image:</label>--%>
+                            <%--<div class="col-md-8">--%>
+                                <%--<sf:input type="file" id="file" class="form-control" path="file"/>--%>
+                                <%--<sf:errors path="file" cssClass="help-block" element="em"/>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="control-label col-md-4" for="productCategoryTypeId">Select Category:</label>--%>
+                            <%--<div class="col-md-8">--%>
+                                <%--<sf:select id="productCategoryTypeId" class="form-control" path="productCategoryType.categoryTypeId"--%>
+                                           <%--items="${categories}"--%>
+                                           <%--itemLabel="categoryTypeName"--%>
+                                           <%--itemValue="categoryTypeId"/>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<div class="col-md-offset-4 col-md-8">--%>
+                                <%--<input type="submit" id="submit" class="btn btn-primary" name="submit" value="Save">--%>
+                                <%--<c:if test="${product.productType.productTypeId == 0}">--%>
+                                    <%--<button style="float: right" type="button" data-toggle="modal"--%>
+                                            <%--data-target="#myCategoryModal"--%>
+                                            <%--class="btn btn-warning btn-xs">Add Category</button>--%>
+                                <%--</c:if>--%>
+                                <%--<sf:hidden path="productType.productTypeId"/>--%>
+                                <%--<sf:hidden path="code"/>--%>
+                                <%--<sf:hidden path="active"/>--%>
+                                <%--<sf:hidden path="productUser.userId"/>--%>
+                                <%--<sf:hidden path="views"/>--%>
+
+                            <%--</div>--%>
+                        <%--</div>--%>
+
+                    <%--</sf:form>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
     </div>
 
@@ -134,9 +240,7 @@
                                 <th>Id</th>
                                 <th>&#160;</th>
                                 <th>Name</th>
-                                <th>Brand</th>
                                 <th>Price</th>
-                                <th>Quantity</th>
                                 <th>Active</th>
                                 <th>Edit</th>
                             </tr>
@@ -159,17 +263,15 @@
                 <div class="modal-body">
                     <sf:form class="form-horizontal" id="categoryForm" modelAttribute="category" action="${contextRoot}/manage/category" method="post">
                         <div class="form-group">
-                            <label for="categoryName" class="control-label col-md-4">Category Name</label>
+                            <label for="categoryNameEn" class="control-label col-md-4">Category Name English</label>
                             <div class="col-md-8">
-                                <sf:input type="text" path="categoryName" id="categoryName" class="form-control"/>
+                                <sf:input type="text" path="categoryNameEn" id="categoryNameEn" class="form-control"/>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label for="categoryDescription" class="control-label col-md-4">Category Description</label>
+                            <label for="categoryNameRu" class="control-label col-md-4">Category Name Russian</label>
                             <div class="col-md-8">
-                                <sf:textarea cols="" rows="5" type="text" path="categoryDescription"
-                                             id="categoryDescription" class="form-control"></sf:textarea>
+                                <sf:input type="text" path="categoryNameRu" id="categoryNameRu" class="form-control"/>
                             </div>
                         </div>
 

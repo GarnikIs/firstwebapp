@@ -21,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static gar.iso.web.controller.GlobalController.language;
+
 /**
  * Created by Gor on 11/17/2017.
  */
@@ -44,7 +46,7 @@ public class PageController {
         log.debug("Inside page controller index method - DEBUG");
 
 //        passing category list from core
-        mv.addObject("categories", categoryDao.getCategoryList());
+        mv.addObject("categories", categoryDao.getCategoryList(language.getKey()));
 
         mv.addObject("userClickedHome", true);
         return mv;
@@ -73,7 +75,7 @@ public class PageController {
         mv.addObject("title", "All Products");
 
         //        passing category list from core
-        mv.addObject("categories", categoryDao.getCategoryList());
+        mv.addObject("categories", categoryDao.getCategoryList(language.getKey()));
 
         mv.addObject("userClickedAllProducts", true);
         return mv;
@@ -90,7 +92,7 @@ public class PageController {
         mv.addObject("title", category.getCategoryName());
 
 //        passing category list from core
-        mv.addObject("categories", categoryDao.getCategoryList());
+        mv.addObject("categories", categoryDao.getCategoryList(language.getKey()));
 //        passing the single category
         mv.addObject("category", category);
 
@@ -107,6 +109,7 @@ public class PageController {
     public ModelAndView getProductDetailById(@PathVariable("productId") int productId) throws ProductNotFoundException {
         ModelAndView mv = new ModelAndView("page");
         Product product = productDao.getProductById(productId);
+//        Product product = productDao.getProductById(productTypeId, language.getKey());
 
         if (product == null) {
             throw new ProductNotFoundException();

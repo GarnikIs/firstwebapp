@@ -19,21 +19,31 @@ public class Category implements Serializable {
     @Column(name = "category_id")
     private int categoryId;
 
-//    category name
+//    category type
+    @ManyToOne
+    @JoinColumn(name = "category_type",
+            foreignKey = @ForeignKey(name = "fk_categoryType"))
+    private CategoryType categoryType;
+
+//    language id
+    @Column(name = "category_lang_id")
+    private int categoryLangId;
+
+//    single category name
     @Column(name = "category_name")
     private String categoryName;
 
-//    category description
-    @Column(name = "category_description")
-    private String categoryDescription;
+//    list category name in English
+    @Transient
+    @NotBlank(message = "Please enter category name in English")
+    private String categoryNameEn;
 
-//    image url of category
-    @Column(name = "category_image_url")
-    private String imageUrl;
+//    list category name in Russian
+    @Transient
+    @NotBlank(message = "Please enter category name in Rusiian")
+    private String categoryNameRu;
 
-//    ensures category is active/inactive
-    @Column(name = "category_is_active")
-    private boolean active = true;
+
 
     public int getCategoryId() {
         return categoryId;
@@ -41,6 +51,22 @@ public class Category implements Serializable {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public CategoryType getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
+    }
+
+    public int getCategoryLangId() {
+        return categoryLangId;
+    }
+
+    public void setCategoryLangId(int categoryLangId) {
+        this.categoryLangId = categoryLangId;
     }
 
     public String getCategoryName() {
@@ -51,38 +77,28 @@ public class Category implements Serializable {
         this.categoryName = categoryName;
     }
 
-    public String getCategoryDescription() {
-        return categoryDescription;
+    public String getCategoryNameEn() {
+        return categoryNameEn;
     }
 
-    public void setCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
+    public void setCategoryNameEn(String categoryNameEn) {
+        this.categoryNameEn = categoryNameEn;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getCategoryNameRu() {
+        return categoryNameRu;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        active = active;
+    public void setCategoryNameRu(String categoryNameRu) {
+        this.categoryNameRu = categoryNameRu;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + categoryId +
-                ", name='" + categoryName + '\'' +
-                ", description='" + categoryDescription + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", isActive=" + active +
+                "categoryId=" + categoryId +
+                ", categoryNameEn='" + categoryNameEn + '\'' +
+                ", categoryNameRu='" + categoryNameRu + '\'' +
                 '}';
     }
 }

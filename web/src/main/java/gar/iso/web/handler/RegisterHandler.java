@@ -1,7 +1,7 @@
 package gar.iso.web.handler;
 
 import gar.iso.core.dao.UserDao;
-import gar.iso.core.dto.Cart;
+//import gar.iso.core.dto.Cart;
 import gar.iso.core.dto.User;
 import gar.iso.core.dto.UserAddress;
 import gar.iso.web.enumaration.Language;
@@ -44,11 +44,11 @@ public class RegisterHandler {
         String transitionValue = "success";
 //        fetch the user
         User user = registerModel.getUser();
-        if (user.getRole().equals("USER")) {
-            Cart cart = new Cart();
-            cart.setCartUser(user);
-            user.setCart(cart);
-        }
+//        if (user.getRole().equals("USER")) {
+//            Cart cart = new Cart();
+//            cart.setCartUser(user);
+//            user.setCart(cart);
+//        }
 
 //        encode user's password
         user.setPassword(passwordEncoder.encode(user.getPassword()));

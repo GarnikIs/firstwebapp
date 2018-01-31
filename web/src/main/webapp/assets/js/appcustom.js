@@ -158,6 +158,7 @@ $(function () {
             columns: [
                 {
                     data: 'productId',
+                    // data: 'productType.productTypeId',
                 },
                 {
                     data: 'code',
@@ -171,6 +172,7 @@ $(function () {
                     data: 'productName',
                     mRender: function (data, type, row) {
                         var pName = "<span name='" + data + "' id='" + row.productId + "'>" + data + "</span>";
+                        // var pName = "<span name='" + data + "' id='" + row.productType.productTypeId + "'>" + data + "</span>";
                         return pName;
                     }
                 },
@@ -208,6 +210,7 @@ $(function () {
                 },
                 {
                     data: 'productId',
+                    // data: 'productType.productTypeId',
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
@@ -319,27 +322,27 @@ $(function () {
     /*-----------------------------------------------------------*/
 
 //    Refreshing cart product info
-    $("button[name = 'refreshCartProduct']").click(function () {
-
-        var cartLineId = $(this).attr('value');
-        var modifiableProduct = $('#count_' + cartLineId);
-        var productOriginalCount = modifiableProduct.attr('value');
-        var actualProductCount = modifiableProduct.val();
-        if (productOriginalCount !== actualProductCount) {
-            if (actualProductCount < 1 || actualProductCount >3) {
-                modifiableProduct.val(productOriginalCount);
-                bootbox.alert({
-                    size: "medium",
-                    title: "Error",
-                    message: "Product count can not be less than 1 and more than 3"
-                });
-            } else {
-                var updateUrl = window.contextRoot + "/cart/" + cartLineId + "/update?productCount=" + actualProductCount;
-                window.location.href = updateUrl;
-            }
-        }
-
-    });
+//     $("button[name = 'refreshCartProduct']").click(function () {
+//
+//         var cartLineId = $(this).attr('value');
+//         var modifiableProduct = $('#count_' + cartLineId);
+//         var productOriginalCount = modifiableProduct.attr('value');
+//         var actualProductCount = modifiableProduct.val();
+//         if (productOriginalCount !== actualProductCount) {
+//             if (actualProductCount < 1 || actualProductCount >3) {
+//                 modifiableProduct.val(productOriginalCount);
+//                 bootbox.alert({
+//                     size: "medium",
+//                     title: "Error",
+//                     message: "Product count can not be less than 1 and more than 3"
+//                 });
+//             } else {
+//                 var updateUrl = window.contextRoot + "/cart/" + cartLineId + "/update?productCount=" + actualProductCount;
+//                 window.location.href = updateUrl;
+//             }
+//         }
+//
+//     });
 
 
 });
