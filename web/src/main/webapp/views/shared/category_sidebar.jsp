@@ -8,6 +8,6 @@
 <h4 class="my-4"><spring:message code="online.shop"/> </h4>
 <div class="list-group">
     <c:forEach items="${categories}" var="category">
-        <a href="${contextRoot}/show/category/${category.categoryId}/products" id="${category.categoryName}" class="list-group-item">${category.categoryName}</a>
+        <a href="${contextRoot}/show/category/${category.categoryType.categoryTypeId}/products" id="${category.categoryName}" class="list-group-item">${category.categoryName}</a>
     </c:forEach>
 </div>

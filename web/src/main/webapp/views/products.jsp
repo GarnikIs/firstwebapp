@@ -30,7 +30,7 @@
                     <c:if test="${userClickedCategoryProducts == true}">
                         <%--TODO later - must be changed --%>
                         <script>
-                            window.categoryId = ${category.categoryId};
+                            window.categoryId = ${category.categoryType.categoryTypeId};
                         </script>
                         <ol class="breadcrumb">
                             <li>

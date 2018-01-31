@@ -45,7 +45,7 @@ public class CategoryDaoImpl implements CategoryDao {
             if (category.getCategoryLangId() == 2) {
                 category.setCategoryId(0);
                 category.setCategoryLangId(1);
-                category.setCategoryName(category.getCategoryNameRu());
+                category.setCategoryName(category.getCategoryNameEn());
                 sessionFactory.getCurrentSession().persist(category);
             } else {
                 category.setCategoryId(0);
