@@ -78,14 +78,14 @@ public class ProductDaoImpl implements ProductDao{
 
 //    Retrieving active product list
     @Override
-    public List<Product> getActiveProductList() {
+    public List<Product> getActiveProductList(int langKey) {
         List<Product> products = null;
-        String selectActiveProducts = "FROM Product WHERE product_is_active = 1";
+        String selectActiveProducts = "FROM Product WHERE product_is_active = 1 AND product_lang_id = " + langKey;
         try{
             Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProducts);
             products = query.list();
             if (products == null || products.size() <= 0) {
-                throw new EntityNotFoundException("Category list is empty");
+                throw new EntityNotFoundException("Product list is empty");
             }
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
@@ -95,14 +95,14 @@ public class ProductDaoImpl implements ProductDao{
     }
 //    Retrieving all product list
     @Override
-    public List<Product> getAllProductList() {
+    public List<Product> getAllProductList(int langKey) {
         List<Product> products = null;
-        String selectActiveProducts = "FROM Product";
+        String selectActiveProducts = "FROM Product WHERE product_lang_id = " + langKey;
         try{
             Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProducts, Product.class);
             products = query.list();
             if (products == null || products.size() <= 0) {
-                throw new EntityNotFoundException("Category list is empty");
+                throw new EntityNotFoundException("Product list is empty");
             }
         } catch (EntityNotFoundException e) {
             e.printStackTrace();

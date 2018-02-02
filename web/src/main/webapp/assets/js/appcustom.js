@@ -75,20 +75,11 @@ $(function () {
                 }
             },
             {data: 'productName'},
-            {data: 'brand'},
+            {data: 'productDescription'},
             {
                 data: 'unitPrice',
                 mRender: function (data, type, row) {
                     return '&#8381; ' + data
-                }
-            },
-            {
-                data: 'quantity',
-                mRender: function (data, type, row) {
-                    if (data < 1) {
-                        return "<span style='color:red'>Out of Stock</span>";
-                    }
-                    return data;
                 }
             },
             {

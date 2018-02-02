@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+import static gar.iso.web.controller.GlobalController.language;
+
 /**
  * Created by Gor on 11/20/2017.
  */
@@ -20,16 +22,28 @@ public class JsonDataController {
     @Autowired
     private ProductDao productDao;
 
+    private static int langKey;
+
     @RequestMapping(value = "/all/products")
     @ResponseBody
     public List<Product> getActiveProductList(){
-        return productDao.getActiveProductList();
+        if (language.getKey() == 2) {
+            langKey = 2;
+        } else {
+            langKey = 1;
+        }
+        return productDao.getActiveProductList(langKey);
     }
 
     @RequestMapping(value = "/admin/all/products")
     @ResponseBody
     public List<Product> getActiveProductListForAdmin(){
-        return productDao.getAllProductList();
+        if (language.getKey() == 2) {
+            langKey = 2;
+        } else {
+            langKey = 1;
+        }
+        return productDao.getAllProductList(langKey);
     }
 
     @RequestMapping(value = "/category/{categoryId}/products")

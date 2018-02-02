@@ -53,9 +53,8 @@
                                     <tr>
                                         <th id="first"></th>
                                         <th>Name</th>
-                                        <th>Brand</th>
+                                        <th>Description</th>
                                         <th>Price</th>
-                                        <th>Available</th>
                                         <th>Details</th>
                                         <security:authorize access="hasAuthority('ADMIN')">
                                             <th>Edit</th>

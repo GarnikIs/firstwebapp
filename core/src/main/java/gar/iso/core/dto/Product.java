@@ -22,34 +22,55 @@ public class Product implements Serializable {
     @Column(name = "product_id")
     private int productId;
 
+    @ManyToOne
+    @JoinColumn(name = "product_type",
+            foreignKey = @ForeignKey(name = "fk_productType"))
+    private ProductType productType;
+
+    @Column(name = "product_lang_id")
+    private int productLangId;
+
     @Column(name = "product_code")
     private String code;
 
     @Column(name = "product_name")
-    @NotBlank(message = "Please enter product name")
     private String productName;
 
-    @NotBlank(message = "Please enter product brand")
-    private String brand;
+    @Transient
+    @NotBlank(message = "Please enter product name")
+    private String productNameEn;
 
-    @JsonIgnore
+    @Transient
+    @NotBlank(message = "Please enter product name")
+    private String productNameRu;
+
     @Column(name = "product_description")
-    @NotBlank(message = "Please enter description for product")
     private String productDescription;
+
+    @Transient
+    @JsonIgnore
+    @NotBlank(message = "Please enter description for product")
+    private String productDescriptionEn;
+
+    @Transient
+    @JsonIgnore
+    @NotBlank(message = "Please enter description for product")
+    private String productDescriptionRu;
+
 
     @Column(name = "unit_price")
     @Min(value = 1, message = "Price cannot be less than 1")
     private int unitPrice;
 
-    private int quantity;
+//    private int quantity;
 
     @Column(name = "product_is_active")
     private boolean active;
 
     @ManyToOne
-    @JoinColumn(name = "product_category_id",
-            foreignKey = @ForeignKey(name = "fk_productCategoryId"))
-    private Category productCategory;
+    @JoinColumn(name = "product_category_type_id",
+            foreignKey = @ForeignKey(name = "fk_productCategoryTypeId"))
+    private CategoryType productCategoryType;
 
     @ManyToOne
     @JoinColumn(name = "product_user_id",
@@ -76,6 +97,22 @@ public class Product implements Serializable {
         this.productId = productId;
     }
 
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    public int getProductLangId() {
+        return productLangId;
+    }
+
+    public void setProductLangId(int productLangId) {
+        this.productLangId = productLangId;
+    }
+
     public String getCode() {
         return code;
     }
@@ -92,12 +129,20 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getProductNameEn() {
+        return productNameEn;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setProductNameEn(String productNameEn) {
+        this.productNameEn = productNameEn;
+    }
+
+    public String getProductNameRu() {
+        return productNameRu;
+    }
+
+    public void setProductNameRu(String productNameRu) {
+        this.productNameRu = productNameRu;
     }
 
     public String getProductDescription() {
@@ -108,6 +153,22 @@ public class Product implements Serializable {
         this.productDescription = productDescription;
     }
 
+    public String getProductDescriptionEn() {
+        return productDescriptionEn;
+    }
+
+    public void setProductDescriptionEn(String productDescriptionEn) {
+        this.productDescriptionEn = productDescriptionEn;
+    }
+
+    public String getProductDescriptionRu() {
+        return productDescriptionRu;
+    }
+
+    public void setProductDescriptionRu(String productDescriptionRu) {
+        this.productDescriptionRu = productDescriptionRu;
+    }
+
     public int getUnitPrice() {
         return unitPrice;
     }
@@ -116,13 +177,13 @@ public class Product implements Serializable {
         this.unitPrice = unitPrice;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+//    public int getQuantity() {
+//        return quantity;
+//    }
+//
+//    public void setQuantity(int quantity) {
+//        this.quantity = quantity;
+//    }
 
     public boolean isActive() {
         return active;
@@ -132,12 +193,12 @@ public class Product implements Serializable {
         this.active = active;
     }
 
-    public Category getProductCategory(){
-        return productCategory;
+    public CategoryType getProductCategoryType(){
+        return productCategoryType;
     }
 
-    public void setProductCategory(Category productCategory) {
-        this.productCategory = productCategory;
+    public void setProductCategoryType(CategoryType productCategoryType) {
+        this.productCategoryType = productCategoryType;
     }
 
     public User getProductUser() {
@@ -177,13 +238,13 @@ public class Product implements Serializable {
         return "Product{" +
                 "productId=" + productId +
                 ", code='" + code + '\'' +
-                ", name='" + productName + '\'' +
-                ", brand='" + brand + '\'' +
-                ", description='" + productDescription + '\'' +
+                ", nameEn='" + productNameEn + '\'' +
+                ", nameRu='" + productNameRu + '\'' +
+                ", descriptionEn='" + productDescriptionEn + '\'' +
+                ", descriptionRu='" + productDescriptionRu + '\'' +
                 ", unitPrice=" + unitPrice +
-                ", quantity=" + quantity +
                 ", active=" + active +
-                ", productCategoryId=" + ((productCategory == null) ? "Not Selected" : productCategory.getCategoryId()) +
+                ", productCategoryId=" + ((productCategoryType == null) ? "Not Selected" : productCategoryType.getCategoryTypeId()) +
                 ", productUserId=" + ((productUser == null) ? "Not Authorized" : productUser.getUserId()) +
                 ", purchase=" + purchases +
                 ", views=" + views +
