@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity
+@Table(name = "category_type")
 public class CategoryType implements Serializable {
 
     private static final long serialVersionUID = 1L;
