@@ -36,25 +36,23 @@ public class Product implements Serializable {
     @Column(name = "product_name")
     private String productName;
 
-    @Transient
-    @NotBlank(message = "Please enter product name")
+    @Column(name = "product_name_en")
+    @NotBlank(message = "Name in English is empty")
     private String productNameEn;
 
-    @Transient
-    @NotBlank(message = "Please enter product name")
+    @Column(name = "product_name_ru")
+    @NotBlank(message = "Name in Russian is empty")
     private String productNameRu;
 
     @Column(name = "product_description")
     private String productDescription;
 
-    @Transient
-    @JsonIgnore
-    @NotBlank(message = "Please enter description for product")
+    @Column(name = "product_desc_en")
+    @NotBlank(message = "Description in English is empty")
     private String productDescriptionEn;
 
-    @Transient
-    @JsonIgnore
-    @NotBlank(message = "Please enter description for product")
+    @Column(name = "product_desc_ru")
+    @NotBlank(message = "Description in Russian is empty")
     private String productDescriptionRu;
 
 

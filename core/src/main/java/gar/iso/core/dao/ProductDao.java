@@ -1,6 +1,7 @@
 package gar.iso.core.dao;
 
 import gar.iso.core.dto.Product;
+import gar.iso.core.dto.ProductType;
 
 import java.util.List;
 
@@ -10,10 +11,11 @@ import java.util.List;
 public interface ProductDao {
 
 //    CRUD methods of product dao layer
+    boolean addProductType(ProductType productType);
     boolean addProduct(Product product);
     boolean updateProduct(Product product);
     boolean deleteProduct(Product product);
-    Product getProductById(int productId);
+    Product getProductById(int productId, int langKey);
     List<Product> getActiveProductList(int langKey);
     List<Product> getAllProductList(int langKey);
 

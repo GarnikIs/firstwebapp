@@ -45,7 +45,7 @@ public class CartService {
     public String addCartLineProduct(int productId) {
         Cart cart = this.getCart();
         CartLine cartLine = cartLineDao.getByCartIdAndProductId(cart.getCartId(), productId);
-        Product product = productDao.getProductById(productId);
+        Product product = productDao.getProductById(productId, 1);
         if (cartLine == null) {
             cartLine = new CartLine();
             cartLine.setCartLineCartId(cart.getCartId());
@@ -86,9 +86,9 @@ public class CartService {
             Product product = cartLine.getProduct();
             double oldTotalAmount = cartLine.getCartLineTotal();
 
-            if (product.getQuantity() <= productNewCount) {
-                productNewCount = product.getQuantity();
-            }
+//            if (product.getQuantity() <= productNewCount) {
+//                productNewCount = product.getQuantity();
+//            }
             cartLine.setCartLineProductCount(productNewCount);
             cartLine.setBuyingPrice(product.getUnitPrice());
             cartLine.setCartLineTotal(productNewCount * product.getUnitPrice());

@@ -148,39 +148,33 @@ $(function () {
             },
             columns: [
                 {
-                    data: 'productId',
-                    // data: 'productType.productTypeId',
+                    data: 'productType',
+                    mRender: function (data, type, row) {
+                        var productTypeId = data.productTypeId;
+                        return productTypeId;
+                    }
                 },
                 {
                     data: 'code',
                     bSortable: false,
                     mRender: function (data, type, row) {
-                        var image = "<img class='adminDataTableImg' alt='Image not available' src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
+                        var image = "<img class='adminDataTableImg' alt='Image not available' src='"
+                            + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
                         return image;
                     }
                 },
                 {
                     data: 'productName',
                     mRender: function (data, type, row) {
-                        var pName = "<span name='" + data + "' id='" + row.productId + "'>" + data + "</span>";
-                        // var pName = "<span name='" + data + "' id='" + row.productType.productTypeId + "'>" + data + "</span>";
+                        var pName = "<span name='" + data + "' id='" + row.productType.productTypeId + "'>" + data + "</span>";
                         return pName;
                     }
                 },
-                {data: 'brand'},
+                {data: 'productDescription'},
                 {
                     data: 'unitPrice',
                     mRender: function (data, type, row) {
                         return '&#8381; ' + data
-                    }
-                },
-                {
-                    data: 'quantity',
-                    mRender: function (data, type, row) {
-                        if (data < 1) {
-                            return "<span style='color:red'>Out of Stock</span>";
-                        }
-                        return data;
                     }
                 },
                 {
@@ -200,12 +194,12 @@ $(function () {
                     }
                 },
                 {
-                    data: 'productId',
-                    // data: 'productType.productTypeId',
+                    data: 'productType',
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += "<a href='" + window.contextRoot + "/manage/" + data + "/product' title='Edit " + row.productName + "' class='btn btn-warning'>";
+                        str += "<a href='" + window.contextRoot + "/manage/" + data.productTypeId + "/product' title='Edit "
+                            + row.productName + "' class='btn btn-warning'>";
                         str += "<span class='glyphicon glyphicon-pencil'></span></a>";
                         return str;
                     }

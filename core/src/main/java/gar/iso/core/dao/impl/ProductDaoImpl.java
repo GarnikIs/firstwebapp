@@ -2,6 +2,7 @@ package gar.iso.core.dao.impl;
 
 import gar.iso.core.dao.ProductDao;
 import gar.iso.core.dto.Product;
+import gar.iso.core.dto.ProductType;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,41 @@ import java.util.List;
  */
 @Repository("productDao")
 @Transactional
-public class ProductDaoImpl implements ProductDao{
+public class ProductDaoImpl implements ProductDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
+    //    Adding single product type
+    @Override
+    public boolean addProductType(ProductType productType) {
+        try {
+            sessionFactory.getCurrentSession().persist(productType);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DatabaseException is thrown while adding a product type into database: " + productType.getProductTypeName() + ",/ " + e.getMessage());
+            return false;
+        }
+    }
 
-//    Adding new single product
+    //    Adding new single product
     @Override
     public boolean addProduct(Product product) {
         try {
             sessionFactory.getCurrentSession().persist(product);
+            sessionFactory.getCurrentSession().clear();
+            if (product.getProductLangId() == 2) {
+                product.setProductId(0);
+                product.setProductLangId(1);
+                product.setProductName(product.getProductNameEn());
+                sessionFactory.getCurrentSession().persist(product);
+            } else {
+                product.setProductId(0);
+                product.setProductLangId(2);
+                product.setProductName(product.getProductNameRu());
+                sessionFactory.getCurrentSession().persist(product);
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,11 +61,48 @@ public class ProductDaoImpl implements ProductDao{
     }
 
 
-//    Updating new single product
+    //    Updating new single product
     @Override
     public boolean updateProduct(Product product) {
+        Product selectedProduct = null;
+        String selectProdByTypeAndLangId = null;
+
         try {
-            sessionFactory.getCurrentSession().update(product);
+            selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + product.getProductType().getProductTypeId()
+                    + " AND product_lang_id = " + product.getProductLangId();
+            Query query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
+            selectedProduct = (Product) query.list().get(0);
+            product.setProductId(selectedProduct.getProductId());
+            selectedProduct = product;
+            sessionFactory.getCurrentSession().clear();
+            sessionFactory.getCurrentSession().update(selectedProduct);
+
+            if (product.getProductLangId() == 2) {
+                selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + product.getProductType().getProductTypeId()
+                        + " AND product_lang_id = " + 1;
+                query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
+                selectedProduct = (Product) query.list().get(0);
+                product.setProductId(selectedProduct.getProductId());
+                product.setProductLangId(1);
+                product.setProductDescription(selectedProduct.getProductDescriptionEn());
+                product.setProductName(selectedProduct.getProductNameEn());
+                selectedProduct = product;
+                sessionFactory.getCurrentSession().clear();
+                sessionFactory.getCurrentSession().update(selectedProduct);
+            } else if (product.getProductLangId() == 1) {
+                selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + product.getProductType().getProductTypeId()
+                        + " AND product_lang_id = " + 2;
+                query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
+                selectedProduct = (Product) query.list().get(0);
+                product.setProductId(selectedProduct.getProductId());
+                product.setProductLangId(2);
+                product.setProductDescription(selectedProduct.getProductDescriptionRu());
+                product.setProductName(selectedProduct.getProductNameRu());
+                selectedProduct = product;
+                sessionFactory.getCurrentSession().clear();
+                sessionFactory.getCurrentSession().update(selectedProduct);
+            }
+
             return true;
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
@@ -49,7 +111,7 @@ public class ProductDaoImpl implements ProductDao{
         }
     }
 
-//    Deleting new single product
+    //    Deleting new single product
     @Override
     public boolean deleteProduct(Product product) {
         product.setActive(false);
@@ -63,25 +125,33 @@ public class ProductDaoImpl implements ProductDao{
         }
     }
 
-//    Retrieving single product by product id
+    //    Retrieving single product by product id and lang id
     @Override
-    public Product getProductById(int productId) {
+    public Product getProductById(int productId, int langKey) {
         Product product = null;
+        String selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + productId
+                + " AND product_lang_id = " + langKey;
         try {
-            product = sessionFactory.getCurrentSession().get(Product.class, productId);
+            Query query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
+            if (query != null) {
+                product = (Product) query.getResultList().get(0);
+            } else {
+                throw new EntityNotFoundException();
+            }
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
-            System.out.println("EntityNotFound exception is thrown while getting single product by id: " + productId + ",/ " + e.getMessage());
+            System.out.println("EntityNotFound exception is thrown while getting single product " +
+                    "by type and lang id: " + productId + ",/ " + langKey + ",/ " + e.getMessage());
         }
         return product;
     }
 
-//    Retrieving active product list
+    //    Retrieving active product list
     @Override
     public List<Product> getActiveProductList(int langKey) {
         List<Product> products = null;
         String selectActiveProducts = "FROM Product WHERE product_is_active = 1 AND product_lang_id = " + langKey;
-        try{
+        try {
             Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProducts);
             products = query.list();
             if (products == null || products.size() <= 0) {
@@ -89,16 +159,18 @@ public class ProductDaoImpl implements ProductDao{
             }
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
-            System.out.println("EntityNotFoundException is thrown while getting the list of products from the database: " + e.getMessage());
+            System.out.println("EntityNotFoundException is thrown while getting t" +
+                    "he list of products from the database: " + e.getMessage());
         }
         return products;
     }
-//    Retrieving all product list
+
+    //    Retrieving all product list
     @Override
     public List<Product> getAllProductList(int langKey) {
         List<Product> products = null;
         String selectActiveProducts = "FROM Product WHERE product_lang_id = " + langKey;
-        try{
+        try {
             Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProducts, Product.class);
             products = query.list();
             if (products == null || products.size() <= 0) {
@@ -111,12 +183,12 @@ public class ProductDaoImpl implements ProductDao{
         return products;
     }
 
-//    Retrieving active pruduct list by category id
+    //    Retrieving active pruduct list by category id
     @Override
     public List<Product> getActiveProductListByCategoryId(int categoryId) {
-            List<Product> products = null;
+        List<Product> products = null;
         String selectActiveProductsBYCategoryId = "FROM Product WHERE product_category_id = (:categoryId) AND product_is_active = (:active)";
-        try{
+        try {
             Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProductsBYCategoryId, Product.class);
             query.setParameter("categoryId", categoryId);
             query.setParameter("active", true);
@@ -135,14 +207,13 @@ public class ProductDaoImpl implements ProductDao{
     public List<Product> getLatestActiveProductsByCount(int count) {
         List<Product> products = null;
         String selectActiveProductsBYCategoryId = "FROM Product WHERE product_is_active = (:active) ORDER BY productId DESC";
-            try{
-                products = sessionFactory.getCurrentSession()
-                        .createQuery(selectActiveProductsBYCategoryId, Product.class)
-                        .setParameter("active", true)
-                        .setFirstResult(0)
-                        .setMaxResults(count)
-                            .getResultList();
-//            products = query.getlist();
+        try {
+            products = sessionFactory.getCurrentSession()
+                    .createQuery(selectActiveProductsBYCategoryId, Product.class)
+                    .setParameter("active", true)
+                    .setFirstResult(0)
+                    .setMaxResults(count)
+                    .getResultList();
             if (products == null || products.size() <= 0) {
                 throw new EntityNotFoundException("Category list is empty");
             }
