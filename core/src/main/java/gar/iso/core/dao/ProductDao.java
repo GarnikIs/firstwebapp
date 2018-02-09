@@ -20,7 +20,7 @@ public interface ProductDao {
     List<Product> getAllProductList(int langKey);
 
 //    business methods of product dao layer
-    List<Product> getActiveProductListByCategoryId(int categoryId);
+    List<Product> getActiveProductListByCategoryId(int categoryTypeId, int langKey);
     List<Product> getLatestActiveProductsByCount(int count);
 
 }

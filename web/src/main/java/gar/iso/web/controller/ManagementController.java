@@ -137,7 +137,7 @@ public class ManagementController {
 
     //    handle activating or deactivating product
     @RequestMapping(value = "/product/{productId}/activation", method = RequestMethod.POST,
-                                                    produces = "text/plain; charset=utf-8")
+                                                    produces = "text/plain; charset=UTF-8")
     @ResponseBody
     public String handleProductActivation(@PathVariable int productId) {
         int langKey = (language.getKey() == 2) ? 2 : 1;

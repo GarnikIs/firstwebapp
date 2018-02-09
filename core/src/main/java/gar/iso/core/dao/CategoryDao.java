@@ -17,6 +17,6 @@ public interface CategoryDao {
 
     List<Category> getCategoryList(int langKey);
 
-    Category getCategoryById(int categoryId);
+    Category getCategoryById(int categoryId, int langKey);
 
 }

@@ -84,10 +84,11 @@ public class PageController {
     @RequestMapping(value = "/show/category/{id}/products")
     public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("page");
+        int langKey = language.getKey() == 2 ? 2 : 1;
 
 //        categoryDao to fetch a single category
         Category category = null;
-        category = categoryDao.getCategoryById(id);
+        category = categoryDao.getCategoryById(id, langKey);
 
         mv.addObject("title", category.getCategoryName());
 

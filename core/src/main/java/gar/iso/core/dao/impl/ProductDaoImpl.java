@@ -185,16 +185,19 @@ public class ProductDaoImpl implements ProductDao {
 
     //    Retrieving active pruduct list by category id
     @Override
-    public List<Product> getActiveProductListByCategoryId(int categoryId) {
+    public List<Product> getActiveProductListByCategoryId(int categoryTypeId, int langKey) {
         List<Product> products = null;
-        String selectActiveProductsBYCategoryId = "FROM Product WHERE product_category_id = (:categoryId) AND product_is_active = (:active)";
+        String selectActiveProductsBYCategoryId = "FROM Product WHERE product_category_type_id = (:categoryId) " +
+                                                  "AND product_is_active = (:active) " +
+                                                  "AND product_lang_id = (:langKey)";
         try {
             Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProductsBYCategoryId, Product.class);
-            query.setParameter("categoryId", categoryId);
+            query.setParameter("categoryId", categoryTypeId);
             query.setParameter("active", true);
+            query.setParameter("langKey", langKey);
             products = query.list();
             if (products == null || products.size() <= 0) {
-                throw new EntityNotFoundException("Category list is empty");
+                throw new EntityNotFoundException("Product list by category id is empty");
             }
         } catch (EntityNotFoundException e) {
             e.printStackTrace();

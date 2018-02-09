@@ -64,13 +64,20 @@ public class CategoryDaoImpl implements CategoryDao {
 
     //    Retrieving single category by category id and language
     @Override
-    public Category getCategoryById(int categoryId) {
+    public Category getCategoryById(int categoryTypeId, int langKey) {
         Category category = null;
+        String selectCatByTypeAndLangId = "FROM Category WHERE category_type = " + categoryTypeId
+                + " AND category_lang_id = " + langKey;
         try {
-            category = sessionFactory.getCurrentSession().get(Category.class, categoryId);
+            Query query = sessionFactory.getCurrentSession().createQuery(selectCatByTypeAndLangId);
+            if (query != null) {
+                category = (Category) query.getResultList().get(0);
+            } else {
+                throw new EntityNotFoundException();
+            }
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
-            System.out.println("EntityNotFound exception is thrown while getting single category by id: " + categoryId + ",/ " + e.getMessage());
+            System.out.println("EntityNotFound exception is thrown while getting single category by id: " + categoryTypeId + ",/ " + e.getMessage());
         }
         return category;
     }

@@ -49,7 +49,8 @@ public class JsonDataController {
     @RequestMapping(value = "/category/{categoryId}/products")
     @ResponseBody
     public List<Product> getActiveProductListByCategoryId(@PathVariable("categoryId") int categoryId){
-        List<Product> products = productDao.getActiveProductListByCategoryId(categoryId);
+        int langKey = language.getKey() == 2 ? 2 : 1;
+        List<Product> products = productDao.getActiveProductListByCategoryId(categoryId, langKey);
         return products;
     }
 
