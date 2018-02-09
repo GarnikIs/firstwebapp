@@ -9,6 +9,7 @@ import gar.iso.web.validator.ProductValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -39,10 +40,14 @@ public class ManagementController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private MessageSource messageSource;
+
     private static final Logger log = LoggerFactory.getLogger(ManagementController.class);
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public ModelAndView showManageProducts(@RequestParam(name = "operation", required = false) String operation) {
+        int langKey = (language.getKey() == 2) ? 2 : 1;
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Manage Products");
         mv.addObject("userClickedManageProducts", true);
@@ -58,7 +63,7 @@ public class ManagementController {
             if (operation.equals("add_product")) {
                 mv.addObject("successMessage", "Product is successfully added.");
             } else if (operation.equals("update_product")) {
-                mv.addObject("successMessage", "Product is successfully updated.");
+                mv.addObject("successMessage", messageSource.getMessage("success.product.update", null, language.setLocale(langKey)));
             } else if (operation.equals("add_category")) {
                 mv.addObject("successMessage", "Category is successfully added.");
             } else if (operation.equals("category_add_failure")) {
@@ -131,7 +136,8 @@ public class ManagementController {
     }
 
     //    handle activating or deactivating product
-    @RequestMapping(value = "/product/{productId}/activation", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/{productId}/activation", method = RequestMethod.POST,
+                                                    produces = "text/plain; charset=utf-8")
     @ResponseBody
     public String handleProductActivation(@PathVariable int productId) {
         int langKey = (language.getKey() == 2) ? 2 : 1;
@@ -139,9 +145,16 @@ public class ManagementController {
         boolean isProductActive = product.isActive();
         product.setActive(!product.isActive());
         productDao.updateProduct(product);
-
-        String message = (isProductActive) ? "You have successfully deactivated '" + product.getProductName() + "'" :
-                "You have successfully activated '" + product.getProductName() + "'";
+        String message;
+        if (product.isActive()) {
+            message = (langKey == 2)
+                    ? messageSource.getMessage("activate.product.success", new String[]{product.getProductNameRu()}, language.setLocale(langKey))
+                    : messageSource.getMessage("activate.product.success", new String[]{product.getProductNameEn()},language.setLocale(langKey));
+        } else {
+            message = (langKey == 2)
+                    ? messageSource.getMessage("deactivate.product.success", new String[]{product.getProductNameRu()}, language.setLocale(langKey))
+                    : messageSource.getMessage("deactivate.product.success", new String[]{product.getProductNameEn()},language.setLocale(langKey));
+        }
 
         return message;
     }
@@ -159,7 +172,7 @@ public class ManagementController {
     }
 
     //    handle category submission
-    @RequestMapping(value = "/category", method = RequestMethod.POST/*, consumes = "text/plain;charset=UTF-8"*/)
+    @RequestMapping(value = "/category", method = RequestMethod.POST)
     public String handleCategorySubmission(@ModelAttribute Category nCategory) {
         String operation;
 

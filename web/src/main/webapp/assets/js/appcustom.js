@@ -184,9 +184,9 @@ $(function () {
                         var str = '';
                         str += "<label class='switch'>";
                         if (data) {
-                            str += "<input type='checkbox' checked value='" + row.productId + "' />";
+                            str += "<input type='checkbox' checked value='" + row.productType.productTypeId + "' />";
                         } else {
-                            str += "<input type='checkbox' value='" + row.productId + "' />";
+                            str += "<input type='checkbox' value='" + row.productType.productTypeId + "' />";
                         }
                         str += "<div class='slider round'></div></label>";
 

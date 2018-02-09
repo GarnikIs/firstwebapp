@@ -19,7 +19,7 @@ public enum Language {
 
     private final String langName;
 
-    private Language(int key, Locale locale, String langName) {
+    Language(int key, Locale locale, String langName) {
         this.key = key;
         this.locale = locale;
         this.langName = langName;
@@ -31,6 +31,11 @@ public enum Language {
 
     public Locale getLocale() {
         return this.locale;
+    }
+
+    public Locale setLocale(int langKey) {
+        Locale locale = (langKey == 2) ? new Locale("ru") : new Locale("en");
+        return locale;
     }
 
     public String getLangName() {

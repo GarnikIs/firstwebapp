@@ -6,6 +6,14 @@
 
     <display-name>webshop</display-name>
 
+    <!--JSP Global Encoding Config-->
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
     <!--Configuring front-controller-->
     <servlet>
         <servlet-name>dispatcher</servlet-name>

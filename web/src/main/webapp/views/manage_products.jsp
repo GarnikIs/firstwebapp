@@ -153,7 +153,7 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
-                    <h4 class="modal-title">Add New Category</h4>
+                    <h4 class="modal-title"><spring:message code="add.new.category"/></h4>
                 </div>
                 <div class="modal-body">
                     <sf:form class="form-horizontal" id="categoryForm" modelAttribute="category" action="${contextRoot}/manage/category" method="post">
