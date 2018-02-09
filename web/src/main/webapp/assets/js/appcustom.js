@@ -97,10 +97,10 @@ $(function () {
         if (userRole == 'ADMIN') {
             tableColumns.push(
                 {
-                    data: 'productId',
+                    data: 'productType',
                     bSortable: false,
                     mRender: function (data, type, row) {
-                        var src = "<a href='" + window.contextRoot + "/manage/" + data + "/product'" +
+                        var src = "<a href='" + window.contextRoot + "/manage/" + data.productTypeId + "/product'" +
                                     "class='btn btn-warning' title='Edit " + row.productName +
                                     "'><span class='glyphicon glyphicon-pencil'></span></a>";
                         return src;
