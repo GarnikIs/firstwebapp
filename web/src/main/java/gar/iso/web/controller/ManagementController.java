@@ -146,14 +146,12 @@ public class ManagementController {
         product.setActive(!product.isActive());
         productDao.updateProduct(product);
         String message;
+
         if (product.isActive()) {
-            message = (langKey == 2)
-                    ? messageSource.getMessage("activate.product.success", new String[]{product.getProductNameRu()}, language.setLocale(langKey))
-                    : messageSource.getMessage("activate.product.success", new String[]{product.getProductNameEn()},language.setLocale(langKey));
+            message = messageSource.getMessage("activate.product.success", new String[]{product.getProductName()}, language.setLocale(langKey));
+
         } else {
-            message = (langKey == 2)
-                    ? messageSource.getMessage("deactivate.product.success", new String[]{product.getProductNameRu()}, language.setLocale(langKey))
-                    : messageSource.getMessage("deactivate.product.success", new String[]{product.getProductNameEn()},language.setLocale(langKey));
+            message = messageSource.getMessage("deactivate.product.success", new String[]{product.getProductName()},language.setLocale(langKey));
         }
 
         return message;

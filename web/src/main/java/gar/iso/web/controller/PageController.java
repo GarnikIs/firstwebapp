@@ -109,7 +109,8 @@ public class PageController {
     @RequestMapping(value = "/product/{productId}/details")
     public ModelAndView getProductDetailById(@PathVariable("productId") int productId) throws ProductNotFoundException {
         ModelAndView mv = new ModelAndView("page");
-        Product product = productDao.getProductById(productId, 1);
+        int langKey = language.getKey() == 2 ? 2 : 1;
+        Product product = productDao.getProductById(productId, langKey);
 
         if (product == null) {
             throw new ProductNotFoundException();

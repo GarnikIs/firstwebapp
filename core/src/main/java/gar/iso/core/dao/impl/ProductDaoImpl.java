@@ -66,17 +66,9 @@ public class ProductDaoImpl implements ProductDao {
     public boolean updateProduct(Product product) {
         Product selectedProduct = null;
         String selectProdByTypeAndLangId = null;
+        Query query = null;
 
         try {
-            selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + product.getProductType().getProductTypeId()
-                    + " AND product_lang_id = " + product.getProductLangId();
-            Query query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
-            selectedProduct = (Product) query.list().get(0);
-            product.setProductId(selectedProduct.getProductId());
-            selectedProduct = product;
-            sessionFactory.getCurrentSession().clear();
-            sessionFactory.getCurrentSession().update(selectedProduct);
-
             if (product.getProductLangId() == 2) {
                 selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + product.getProductType().getProductTypeId()
                         + " AND product_lang_id = " + 1;
@@ -89,7 +81,7 @@ public class ProductDaoImpl implements ProductDao {
                 selectedProduct = product;
                 sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().update(selectedProduct);
-            } else if (product.getProductLangId() == 1) {
+
                 selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + product.getProductType().getProductTypeId()
                         + " AND product_lang_id = " + 2;
                 query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
@@ -98,6 +90,30 @@ public class ProductDaoImpl implements ProductDao {
                 product.setProductLangId(2);
                 product.setProductDescription(selectedProduct.getProductDescriptionRu());
                 product.setProductName(selectedProduct.getProductNameRu());
+                selectedProduct = product;
+                sessionFactory.getCurrentSession().clear();
+                sessionFactory.getCurrentSession().update(selectedProduct);
+            } else {
+                selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + product.getProductType().getProductTypeId()
+                        + " AND product_lang_id = " + 2;
+                query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
+                selectedProduct = (Product) query.list().get(0);
+                product.setProductId(selectedProduct.getProductId());
+                product.setProductLangId(2);
+                product.setProductDescription(selectedProduct.getProductDescriptionRu());
+                product.setProductName(selectedProduct.getProductNameRu());
+                selectedProduct = product;
+                sessionFactory.getCurrentSession().clear();
+                sessionFactory.getCurrentSession().update(selectedProduct);
+
+                selectProdByTypeAndLangId = "FROM Product WHERE product_type = " + product.getProductType().getProductTypeId()
+                        + " AND product_lang_id = " + 1;
+                query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
+                selectedProduct = (Product) query.list().get(0);
+                product.setProductId(selectedProduct.getProductId());
+                product.setProductLangId(1);
+                product.setProductDescription(selectedProduct.getProductDescriptionEn());
+                product.setProductName(selectedProduct.getProductNameEn());
                 selectedProduct = product;
                 sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().update(selectedProduct);

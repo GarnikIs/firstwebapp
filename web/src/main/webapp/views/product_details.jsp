@@ -32,18 +32,18 @@
             <hr/>
             <h4>Price:<strong> - &#8381; ${product.unitPrice}</strong></h4>
             <hr/>
-            <c:choose>
-                <c:when test="${product.quantity < 1}">
-                    <h6>Available - <span style="color:red">&nbsp; Out of Stock</span></h6>
-                </c:when>
-                <c:otherwise>
-                    <h6>Available - ${product.quantity}</h6>
+            <%--<c:choose>--%>
+                <%--<c:when test="${product.quantity < 1}">--%>
+                    <%--<h6>Available - <span style="color:red">&nbsp; Out of Stock</span></h6>--%>
+                <%--</c:when>--%>
+                <%--<c:otherwise>--%>
+                    <%--<h6>Available - ${product.quantity}</h6>--%>
                     <h6>Views - ${product.views}</h6>
                     <%--<h6>Purchases - ${product.purchases}</h6>--%>
-                </c:otherwise>
-            </c:choose>
+                <%--</c:otherwise>--%>
+            <%--</c:choose>--%>
             <security:authorize access="hasAuthority('ADMIN')">
-                <a href="${contextRoot}/manage/${product.productId}/product"
+                <a href="${contextRoot}/manage/${product.productType.productTypeId}/product"
                    title="Edit ${product.productName}" class="btn btn-warning">Edit
                     <span class='glyphicon glyphicon-pencil'></span>
                 </a>

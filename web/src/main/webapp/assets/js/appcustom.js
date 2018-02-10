@@ -83,11 +83,11 @@ $(function () {
                 }
             },
             {
-                data: 'productId',
+                data: 'productType',
                 bSortable: false,
                 mRender: function (data, type, row) {
                     var src = '';
-                    src += "<a href='" + window.contextRoot + "/product/" + data + "/details'" +
+                    src += "<a href='" + window.contextRoot + "/product/" + data.productTypeId + "/details'" +
                         "class='btn btn-primary' title='Product Details'><span class='glyphicon glyphicon-eye-open'></span></a>";
                     return src;
                 }
