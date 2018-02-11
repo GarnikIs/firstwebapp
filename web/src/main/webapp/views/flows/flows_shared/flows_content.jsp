@@ -47,7 +47,7 @@
                                 <label for="phoneNumber" class="control-label col-md-4">Phone Number</label>
                                 <div class="col-md-8">
                                     <sf:input type="text" path="phoneNumber" class="form-control"
-                                              placeholder="XXXXXXXXXX" maxlength="10"/>
+                                              placeholder="XXXXXXXXXX" maxlength="15"/>
                                     <sf:errors path="phoneNumber" cssClass="help-block" element="em"/>
                                 </div>
                             </div>
