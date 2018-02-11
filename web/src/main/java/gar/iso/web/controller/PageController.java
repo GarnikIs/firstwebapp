@@ -21,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.List;
+
 import static gar.iso.web.controller.GlobalController.language;
 
 /**
@@ -40,6 +42,8 @@ public class PageController {
     @RequestMapping(value = {"/", "/home", "/index"})
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("page");
+        int langKey = language.getKey() == 2 ? 2 : 1;
+        List<Product> products = productDao.getActiveProductList(langKey);
         mv.addObject("title", "Home");
 
         log.info("Inside page controller index method - INFO");
@@ -47,6 +51,7 @@ public class PageController {
 
 //        passing category list from core
         mv.addObject("categories", categoryDao.getCategoryList(language.getKey()));
+        mv.addObject("products", products);
 
         mv.addObject("userClickedHome", true);
         return mv;

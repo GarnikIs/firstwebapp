@@ -61,7 +61,7 @@
                                 <a href="${contextRoot}/cart/show">
                                     <span class="glyphicon glyphicon-shopping-cart"></span>
                                     <span class="badge">${userModel.cart.cartLines}</span>
-                                    - &#8377; ${userModel.cart.grandTotal}
+                                    - &#8381; ${userModel.cart.grandTotal}
                                 </a>
                             </li>
                             <li class="devider" role="separator"></li>
