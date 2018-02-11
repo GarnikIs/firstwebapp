@@ -48,7 +48,7 @@ public class ProductDaoImpl implements ProductDao {
                 product.setProductId(0);
                 product.setProductLangId(2);
                 product.setProductName(product.getProductNameRu());
-                product.setProductDescriptionRu(product.getProductDescriptionRu());
+                product.setProductDescription(product.getProductDescriptionRu());
                 sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().persist(product);
             } else {
