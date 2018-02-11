@@ -32,9 +32,9 @@
                     <a class="nav-link" href="${contextRoot}/manage/products">Manage Products</a>
                 </li>
             </security:authorize>
-            <li id="contact" class="nav-item">
-                <a class="nav-link" href="${contextRoot}/contact">Contact</a>
-            </li>
+            <%--<li id="contact" class="nav-item">--%>
+                <%--<a class="nav-link" href="${contextRoot}/contact">Contact</a>--%>
+            <%--</li>--%>
         </ul>
         <ul class="navbar-nav ml-auto">
             <security:authorize access="isAnonymous()">

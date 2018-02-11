@@ -126,9 +126,9 @@
         </c:if>
 
         <%-- Contact Us content only when user clicks Contact --%>
-        <c:if test="${userClickedContact == true}">
-            <%@include file="contact.jsp" %>
-        </c:if>
+        <%--<c:if test="${userClickedContact == true}">--%>
+            <%--<%@include file="contact.jsp" %>--%>
+        <%--</c:if>--%>
 
         <%-- Products content for All Products or Category Products --%>
         <c:if test="${userClickedAllProducts == true || userClickedCategoryProducts == true}">

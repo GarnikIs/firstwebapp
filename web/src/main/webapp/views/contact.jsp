@@ -7,11 +7,11 @@
 --%>
 
 
-<div class="container">
-    <div class="row">
-        <h1>Contact List</h1>
-    </div>
-    <div class="row">
-        <h2>This is a page of our contact</h2>
-    </div>
-</div>
+<%--<div class="container">--%>
+    <%--<div class="row">--%>
+        <%--<h1>Contact List</h1>--%>
+    <%--</div>--%>
+    <%--<div class="row">--%>
+        <%--<h2>This is a page of our contact</h2>--%>
+    <%--</div>--%>
+<%--</div>--%>

@@ -60,13 +60,13 @@ public class PageController {
         return mv;
     }
 
-    @RequestMapping(value = "/contact")
-    public ModelAndView contact() {
-        ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Contact");
-        mv.addObject("userClickedContact", true);
-        return mv;
-    }
+//    @RequestMapping(value = "/contact")
+//    public ModelAndView contact() {
+//        ModelAndView mv = new ModelAndView("page");
+//        mv.addObject("title", "Contact");
+//        mv.addObject("userClickedContact", true);
+//        return mv;
+//    }
 
     //    methods to load all the products based on category
     @RequestMapping(value = "/show/all/products")

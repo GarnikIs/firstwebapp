@@ -19,9 +19,9 @@ $(function () {
         case "Manage Products":
             $("#manageProducts").addClass("active");
             break;
-        case "Contact":
-            $("#contact").addClass("active");
-            break;
+        // case "Contact":
+        //     $("#contact").addClass("active");
+        //     break;
         case (category):
             $("#products").addClass("active");
             if (category != "") {

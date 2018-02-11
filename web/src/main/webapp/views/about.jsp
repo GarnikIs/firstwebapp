@@ -8,9 +8,19 @@
 
 <div class="container">
     <div class="row">
-        <h1>About us something text</h1>
-    </div>
-    <div class="row">
-        <h2>This is a page about us</h2>
+        <%-- Displaying product image --%>
+        <div class="col-xs-12 col-sm-4">
+            <div class="thumbnail">
+                <img src="${images}/Gazzan.jpg" class="img img-responsive">
+            </div>
+        </div>
+        <%-- Displaying product description --%>
+        <div class="col-xs-12 col-sm-8">
+            <h3>${product.productName}</h3>
+            <hr/>
+            <u><i>Contact</i></u>
+            <h6>${product.productDescription}</h6>
+            <hr/>
+        </div>
     </div>
 </div>
