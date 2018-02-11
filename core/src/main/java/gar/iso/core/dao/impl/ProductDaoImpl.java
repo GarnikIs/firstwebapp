@@ -39,17 +39,28 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public boolean addProduct(Product product) {
         try {
-            sessionFactory.getCurrentSession().persist(product);
-            sessionFactory.getCurrentSession().clear();
             if (product.getProductLangId() == 2) {
                 product.setProductId(0);
                 product.setProductLangId(1);
                 product.setProductName(product.getProductNameEn());
+                product.setProductDescription(product.getProductDescriptionEn());
+                sessionFactory.getCurrentSession().persist(product);
+                product.setProductId(0);
+                product.setProductLangId(2);
+                product.setProductName(product.getProductNameRu());
+                product.setProductDescriptionRu(product.getProductDescriptionRu());
                 sessionFactory.getCurrentSession().persist(product);
             } else {
                 product.setProductId(0);
                 product.setProductLangId(2);
                 product.setProductName(product.getProductNameRu());
+                product.setProductDescription(product.getProductDescriptionRu());
+                sessionFactory.getCurrentSession().persist(product);
+                product.setProductId(0);
+                product.setProductLangId(1);
+                product.setProductName(product.getProductNameEn());
+                product.setProductDescription(product.getProductDescriptionEn());
+                sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().persist(product);
             }
             return true;
