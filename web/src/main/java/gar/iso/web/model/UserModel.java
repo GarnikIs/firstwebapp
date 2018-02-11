@@ -1,6 +1,6 @@
 package gar.iso.web.model;
 
-import gar.iso.core.dto.Cart;
+//import gar.iso.core.dto.Cart;
 
 import java.io.Serializable;
 
@@ -19,7 +19,7 @@ public class UserModel implements Serializable {
 
     private String role;
 
-    private Cart cart;
+//    private Cart cart;
 
     public int getId() {
         return id;
@@ -53,13 +53,13 @@ public class UserModel implements Serializable {
         this.role = role;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
+//    public Cart getCart() {
+//        return cart;
+//    }
+//
+//    public void setCart(Cart cart) {
+//        this.cart = cart;
+//    }
 
     @Override
     public String toString() {
@@ -68,7 +68,7 @@ public class UserModel implements Serializable {
                 ", fullName='" + fullName + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
-                ", cart=" + cart +
+//                ", cart=" + cart +
                 '}';
     }
 }

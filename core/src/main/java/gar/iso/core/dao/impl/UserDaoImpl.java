@@ -1,7 +1,7 @@
 package gar.iso.core.dao.impl;
 
 import gar.iso.core.dao.UserDao;
-import gar.iso.core.dto.Cart;
+//import gar.iso.core.dto.Cart;
 import gar.iso.core.dto.User;
 import gar.iso.core.dto.UserAddress;
 import org.hibernate.SessionFactory;

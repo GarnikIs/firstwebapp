@@ -46,8 +46,8 @@ public class User implements Serializable {
 
     private boolean enabled = true;
 
-    @OneToOne(mappedBy = "cartUser", cascade = CascadeType.ALL)
-    private Cart cart;
+//    @OneToOne(mappedBy = "cartUser", cascade = CascadeType.ALL)
+//    private Cart cart;
 
     public int getUserId() {
         return userId;
@@ -120,13 +120,13 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
+//    public Cart getCart() {
+//        return cart;
+//    }
+//
+//    public void setCart(Cart cart) {
+//        this.cart = cart;
+//    }
 
     @Override
     public String toString() {
@@ -139,7 +139,7 @@ public class User implements Serializable {
                 ", role='" + role + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
-                ", cart=" + cart +
+//                ", cart=" + cart +
                 '}';
     }
 

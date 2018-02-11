@@ -28,9 +28,9 @@ $(function () {
                 $("#" + category).addClass("active");
             }
             break;
-        case ("View Cart"):
-            $("#userCart").addClass("active");
-            break;
+        // case ("View Cart"):
+        //     $("#userCart").addClass("active");
+        //     break;
         case ("Login"):
             $("#login").addClass("active");
             break;
