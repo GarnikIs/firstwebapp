@@ -75,7 +75,7 @@ public class Product implements Serializable {
             foreignKey = @ForeignKey(name = "fk_productUserId"))
     private User productUser;
 
-    private int purchases;
+//    private int purchases;
 
     private int views;
 
@@ -207,13 +207,13 @@ public class Product implements Serializable {
         this.productUser = productUser;
     }
 
-    public int getPurchases() {
-        return purchases;
-    }
-
-    public void setPurchases(int purchases) {
-        this.purchases = purchases;
-    }
+//    public int getPurchases() {
+//        return purchases;
+//    }
+//
+//    public void setPurchases(int purchases) {
+//        this.purchases = purchases;
+//    }
 
     public int getViews() {
         return views;
@@ -244,7 +244,7 @@ public class Product implements Serializable {
                 ", active=" + active +
                 ", productCategoryId=" + ((productCategoryType == null) ? "Not Selected" : productCategoryType.getCategoryTypeId()) +
                 ", productUserId=" + ((productUser == null) ? "Not Authorized" : productUser.getUserId()) +
-                ", purchase=" + purchases +
+//                ", purchase=" + purchases +
                 ", views=" + views +
                 '}';
     }
