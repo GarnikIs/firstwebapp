@@ -24,10 +24,10 @@
         </div>
         <%-- Displaying product description --%>
         <div class="col-xs-12 col-sm-8">
-            <u><i>Name</i></u>
+            <u><i><spring:message code="product.details.name"/></i></u>
             <h3>${product.productName}</h3>
             <hr/>
-            <u><i>Descrption</i></u>
+            <u><i><spring:message code="product.details.description"/></i></u>
             <h6>${product.productDescription}</h6>
             <security:authorize access="hasAuthority('USER')">
                 <hr/>
@@ -40,7 +40,7 @@
                 <%--</c:when>--%>
                 <%--<c:otherwise>--%>
                     <%--<h6>Available - ${product.quantity}</h6>--%>
-                    <h6>Views - ${product.views}</h6>
+                    <h6><spring:message code="product.details.views"/> - ${product.views}</h6>
                     <%--<h6>Purchases - ${product.purchases}</h6>--%>
                 <%--</c:otherwise>--%>
             <%--</c:choose>--%>
