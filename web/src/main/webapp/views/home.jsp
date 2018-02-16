@@ -56,7 +56,9 @@
                                             ${product.productName}
                                     </a>
                                 </h4>
-                                <p>&#8381;&nbsp; ${product.unitPrice}</p>
+                                <security:authorize access="hasAuthority('USER')">
+                                    <p>&#8381;&nbsp; ${product.unitPrice}</p>
+                                </security:authorize>
                                 <p class="card-text">${product.productDescription}</p>
                             </div>
                         </div>

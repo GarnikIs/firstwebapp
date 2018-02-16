@@ -34,6 +34,19 @@
         window.contextRoot = "${contextRoot}";
         window.currentUrl = "${currentUrl}";
         window.currentLang = "${registerModel.language.key}";
+
+        var error_blank_first_name = "<spring:message code='error.message.insert.first.name'/>";
+        var error_blank_last_name = "<spring:message code='error.message.insert.last.name'/>";
+        var error_blank_email = "<spring:message code='error.message.blank.email'/>";
+        var error_blank_phone = "<spring:message code='error.message.insert.phone.number'/>";
+        var error_blank_password = "<spring:message code='error.message.blank.password'/>";
+        var error_blank_confirm_password = "<spring:message code='error.message.insert.confirm.password'/>";
+
+        var error_blank_address_line = "<spring:message code='error.message.insert.address.line'/>";
+        var error_blank_city = "<spring:message code='error.message.insert.city'/>";
+        var error_blank_zip_code = "<spring:message code='error.message.insert.zip.code'/>";
+        var error_blank_state = "<spring:message code='error.message.insert.state'/>";
+        var error_blank_country = "<spring:message code='error.message.insert.country'/>";
     </script>
 
     <%-- START CSS --%>

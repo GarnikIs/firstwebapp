@@ -56,7 +56,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="${contextRoot}/home">Home</a>
+                <a class="navbar-brand" href="${contextRoot}/home"><spring:message code="navbar.title.home"/></a>
             </div>
         </div>
     </nav>

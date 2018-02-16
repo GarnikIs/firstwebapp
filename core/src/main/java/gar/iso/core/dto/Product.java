@@ -37,27 +37,27 @@ public class Product implements Serializable {
     private String productName;
 
     @Column(name = "product_name_en")
-    @NotBlank(message = "Name in English is empty")
+    @NotBlank(message = "error.message.add.property.english")
     private String productNameEn;
 
     @Column(name = "product_name_ru")
-    @NotBlank(message = "Name in Russian is empty")
+    @NotBlank(message = "error.message.add.property.russian")
     private String productNameRu;
 
     @Column(name = "product_description")
     private String productDescription;
 
     @Column(name = "product_desc_en")
-    @NotBlank(message = "Description in English is empty")
+    @NotBlank(message = "error.message.add.property.english")
     private String productDescriptionEn;
 
     @Column(name = "product_desc_ru")
-    @NotBlank(message = "Description in Russian is empty")
+    @NotBlank(message = "error.message.add.property.russian")
     private String productDescriptionRu;
 
 
     @Column(name = "unit_price")
-    @Min(value = 1, message = "Price cannot be less than 1")
+    @Min(value = 1, message = "error.message.min.length")
     private int unitPrice;
 
 //    private int quantity;

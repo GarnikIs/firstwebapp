@@ -49,7 +49,7 @@ public class ManagementController {
     public ModelAndView showManageProducts(@RequestParam(name = "operation", required = false) String operation) {
         int langKey = (language.getKey() == 2) ? 2 : 1;
         ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Manage Products");
+        mv.addObject("title", messageSource.getMessage("navbar.title.manage.products", null, language.setLocale(langKey)));
         mv.addObject("userClickedManageProducts", true);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -61,13 +61,17 @@ public class ManagementController {
         mv.addObject("product", nProduct);
         if (operation != null) {
             if (operation.equals("add_product")) {
-                mv.addObject("successMessage", "Product is successfully added.");
+                mv.addObject("successMessage", messageSource.getMessage("success.product.add",
+                        new String[]{nProduct.getProductName()}, language.setLocale(langKey)));
             } else if (operation.equals("update_product")) {
-                mv.addObject("successMessage", messageSource.getMessage("success.product.update", null, language.setLocale(langKey)));
+                mv.addObject("successMessage", messageSource.getMessage("success.product.update",
+                        new String[]{nProduct.getProductName()}, language.setLocale(langKey)));
             } else if (operation.equals("add_category")) {
-                mv.addObject("successMessage", "Category is successfully added.");
+                mv.addObject("successMessage", messageSource.getMessage("success.category.add",
+                        null, language.setLocale(langKey)));
             } else if (operation.equals("category_add_failure")) {
-                mv.addObject("errorMessage", "Failed to add category.");
+                mv.addObject("errorMessage", messageSource.getMessage("failure.category.add",
+                        null, language.setLocale(langKey)));
             }
         }
         return mv;
@@ -76,10 +80,10 @@ public class ManagementController {
     //    handle adding product
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,
-                                          BindingResult results, Model model, HttpServletRequest request) {
+                                              BindingResult results, Model model, HttpServletRequest request) {
         String operation;
         ProductType productType;
-
+        int langKey = (language.getKey() == 2) ? 2 : 1;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userDao.getUserByEmail(auth.getName());
         mProduct.setProductUser(user);
@@ -93,9 +97,10 @@ public class ManagementController {
 
 //        checks if there are any errors
         if (results.hasErrors()) {
-            model.addAttribute("title", "Manage Products");
+            model.addAttribute("title", messageSource.getMessage("navbar.title.manage.products", null, language.setLocale(langKey)));
             model.addAttribute("userClickedManageProducts", true);
-            model.addAttribute("errorMessage", "Validation is failed for adding product");
+            model.addAttribute("errorMessage", messageSource.getMessage("failure.validation.product.add",
+                    null, language.setLocale(langKey)));
             return "page";
         }
 
@@ -162,7 +167,7 @@ public class ManagementController {
     public ModelAndView showEditProduct(@PathVariable int productId) {
         int langKey = (language.getKey() == 2) ? 2 : 1;
         ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Manage Products");
+        mv.addObject("title", messageSource.getMessage("navbar.title.manage.products", null, language.setLocale(langKey)));
         mv.addObject("userClickedManageProducts", true);
         Product nProduct = productDao.getProductById(productId, langKey);
         mv.addObject("product", nProduct);
@@ -174,12 +179,14 @@ public class ManagementController {
     public String handleCategorySubmission(@ModelAttribute Category nCategory) {
         String operation;
 
+        int langKey = language.getKey() == 2 ? 2 :1;
+
         CategoryType categoryType = new CategoryType();
         categoryType.setCategoryTypeName(nCategory.getCategoryNameEn());
 
         nCategory.setCategoryType(categoryType);
 
-        if (language.getKey() == 2) {
+        if (langKey == 2) {
             nCategory.setCategoryName(nCategory.getCategoryNameRu());
             nCategory.setCategoryLangId(language.getKey());
         } else {

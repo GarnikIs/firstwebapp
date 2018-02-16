@@ -17,24 +17,31 @@
                 <div class="col-sm-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4>Personal Details</h4>
+                            <h4><spring:message code="registration.personal.result"/></h4>
                         </div>
                         <div class="panel-body">
                             <div class="text-center">
-                                <p><strong>Full Name:</strong>
+                                <p><strong>
+                                    <spring:message code="registration.full.name"/>:
+                                </strong>
                                     ${registerModel.user.firstName} ${registerModel.user.lastName}
                                 </p>
-                                <p><strong>Email:</strong>
+                                <p>
+                                    <strong>
+                                        <spring:message code="registration.email"/>:
+                                    </strong>
                                     ${registerModel.user.email}
                                 </p>
-                                <p><strong>Phone Number:</strong>
+                                <p>
+                                    <strong>
+                                        <spring:message code="registration.phone.number"/>:
+                                    </strong>
                                     ${registerModel.user.phoneNumber}
                                 </p>
-                                <p><strong>Role:</strong>
-                                    ${registerModel.user.role}
-                                </p>
                                 <p>
-                                    <a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-primary">Edit</a>
+                                    <a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-primary">
+                                        <spring:message code="registration.edit.info"/>
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -43,29 +50,48 @@
                 <div class="col-sm-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4>Billing Address</h4>
+                            <h4>
+                                <spring:message code="registration.address.title"/>
+                            </h4>
                         </div>
                         <div class="panel-body">
                             <div class="text-center">
-                                <p><strong>Address Line:</strong>
+                                <p>
+                                    <strong>
+                                        <spring:message code="registration.address.line"/>:
+                                    </strong>
                                     ${registerModel.billing.addressLine}
                                 </p>
-                                <p><strong>City:</strong>
+                                <p>
+                                    <strong>
+                                        <spring:message code="registration.city"/>:
+                                    </strong>
                                     ${registerModel.billing.city}
                                 </p>
-                                <p><strong>Zip Code:</strong>
+                                <p>
+                                    <strong>
+                                        <spring:message code="registration.zip.code"/>:
+                                    </strong>
                                     ${registerModel.billing.zipCode}
                                 </p>
                                 <c:if test="${registerModel.billing.state != ''}">
-                                    <p><strong>State:</strong>
+                                    <p>
+                                        <strong>
+                                            <spring:message code="registration.state"/>:
+                                        </strong>
                                         ${registerModel.billing.state}
                                     </p>
                                 </c:if>
-                                <p><strong>Country:</strong>
+                                <p>
+                                    <strong>
+                                        <spring:message code="registration.country"/>:
+                                    </strong>
                                     ${registerModel.billing.country}
                                 </p>
                                 <p>
-                                    <a href="${flowExecutionUrl}&_eventId_billing" class="btn btn-primary">Edit</a>
+                                    <a href="${flowExecutionUrl}&_eventId_billing" class="btn btn-primary">
+                                        <spring:message code="registration.edit.info"/>
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -75,7 +101,9 @@
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
                     <div class="text-center">
-                        <a href="${flowExecutionUrl}&_eventId_submit" class="btn btn-lg btn-primary">Confirm</a>
+                        <a href="${flowExecutionUrl}&_eventId_submit" class="btn btn-lg btn-primary">
+                            <spring:message code="registration.confirm.info"/>
+                        </a>
                     </div>
                 </div>
             </div>

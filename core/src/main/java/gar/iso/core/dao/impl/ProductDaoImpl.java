@@ -88,8 +88,8 @@ public class ProductDaoImpl implements ProductDao {
                 selectedProduct = (Product) query.list().get(0);
                 product.setProductId(selectedProduct.getProductId());
                 product.setProductLangId(1);
-                product.setProductDescription(selectedProduct.getProductDescriptionEn());
-                product.setProductName(selectedProduct.getProductNameEn());
+                product.setProductDescription(product.getProductDescriptionEn());
+                product.setProductName(product.getProductNameEn());
                 selectedProduct = product;
                 sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().update(selectedProduct);
@@ -100,8 +100,8 @@ public class ProductDaoImpl implements ProductDao {
                 selectedProduct = (Product) query.list().get(0);
                 product.setProductId(selectedProduct.getProductId());
                 product.setProductLangId(2);
-                product.setProductDescription(selectedProduct.getProductDescriptionRu());
-                product.setProductName(selectedProduct.getProductNameRu());
+                product.setProductDescription(product.getProductDescriptionRu());
+                product.setProductName(product.getProductNameRu());
                 selectedProduct = product;
                 sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().update(selectedProduct);
@@ -112,8 +112,8 @@ public class ProductDaoImpl implements ProductDao {
                 selectedProduct = (Product) query.list().get(0);
                 product.setProductId(selectedProduct.getProductId());
                 product.setProductLangId(2);
-                product.setProductDescription(selectedProduct.getProductDescriptionRu());
-                product.setProductName(selectedProduct.getProductNameRu());
+                product.setProductDescription(product.getProductDescriptionRu());
+                product.setProductName(product.getProductNameRu());
                 selectedProduct = product;
                 sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().update(selectedProduct);
@@ -124,8 +124,8 @@ public class ProductDaoImpl implements ProductDao {
                 selectedProduct = (Product) query.list().get(0);
                 product.setProductId(selectedProduct.getProductId());
                 product.setProductLangId(1);
-                product.setProductDescription(selectedProduct.getProductDescriptionEn());
-                product.setProductName(selectedProduct.getProductNameEn());
+                product.setProductDescription(product.getProductDescriptionEn());
+                product.setProductName(product.getProductNameEn());
                 selectedProduct = product;
                 sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().update(selectedProduct);

@@ -24,7 +24,7 @@
                             window.categoryId = '';
                         </script>
                         <ol class="breadcrumb">
-                            <li>All Products</li>
+                            <li><spring:message code="show.all.products"/> </li>
                         </ol>
                     </c:if>
                     <c:if test="${userClickedCategoryProducts == true}">
@@ -35,7 +35,7 @@
                         <ol class="breadcrumb">
                             <li>
                                 <a href="/web/show/all/products" class="link_black"title="Go to All Products">
-                                    All Products
+                                    <spring:message code="show.all.products"/>
                                 </a>
                             </li>
                             <li>${category.categoryName}</li>
@@ -52,12 +52,15 @@
                                 <thead>
                                     <tr>
                                         <th id="first"></th>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Price</th>
-                                        <th>Details</th>
+                                        <th><spring:message code="table.column.name"/></th>
+                                        <th><spring:message code="table.column.description"/></th>
+                                        <th><spring:message code="table.column.details"/></th>
+                                        <security:authorize access="hasAuthority('USER')">
+                                            <th><spring:message code="table.column.price"/></th>
+                                        </security:authorize>
                                         <security:authorize access="hasAuthority('ADMIN')">
-                                            <th>Edit</th>
+                                            <th><spring:message code="table.column.price"/></th>
+                                            <th><spring:message code="table.column.edit"/></th>
                                         </security:authorize>
                                     </tr>
                                 </thead>

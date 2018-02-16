@@ -1,6 +1,7 @@
 package gar.iso.core.dto;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -21,27 +22,21 @@ public class User implements Serializable {
     private int userId;
 
     @Column(name = "first_name")
-    @NotBlank(message = "Please enter your first name")
     private String firstName;
 
     @Column(name = "last_name")
-    @NotBlank(message = "Please enter your last name")
     private String lastName;
 
-    @NotBlank(message = "Please enter your email")
     private String email;
 
     @Column(name = "phone_number")
-    @NotBlank(message = "Please enter your phone number")
     private String phoneNumber;
 
-    private String role;
+    private String role = "USER";
 
-    @NotBlank(message = "Please enter your password")
     private String password;
 
     @Transient
-    @NotBlank(message = "Confirmation password must be same")
     private String confirmPassword;
 
     private boolean enabled = true;
@@ -108,6 +103,7 @@ public class User implements Serializable {
     public String getConfirmPassword() {
         return confirmPassword;
     }
+
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
@@ -127,6 +123,10 @@ public class User implements Serializable {
 //    public void setCart(Cart cart) {
 //        this.cart = cart;
 //    }
+
+    private String validateName() {
+        return "Va";
+    }
 
     @Override
     public String toString() {

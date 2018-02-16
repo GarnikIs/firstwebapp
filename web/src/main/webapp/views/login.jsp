@@ -83,6 +83,10 @@
     <script src="${js}/languageswitcher.js"></script>
 
     <%-- END JS --%>
+    <script>
+        var error_blank_email = "<spring:message code='error.message.blank.email'/>";
+        var error_blank_password = "<spring:message code='error.message.blank.password'/>";
+    </script>
 
 </head>
 
@@ -128,32 +132,41 @@
                         <div class="panel-body">
                             <form action="${contextRoot}/login" method="post" class="form-horizontal" id="loginForm">
                                 <div class="form-group">
-                                    <label for="username" class="control-label col-md-4">Email:</label>
+                                    <label for="username" class="control-label col-md-4">
+                                        <spring:message code="registration.email"/>:
+                                    </label>
                                     <div class="col-md-8">
                                         <input type="text" id="username" class="form-control"
                                                   name="username" placeholder="abc@zyx.com"/>
+                                        <sf:errors path="username" cssClass="help-block" element="em"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="control-label col-md-4">Password:</label>
+                                    <label for="password" class="control-label col-md-4">
+                                        <spring:message code="registration.password"/>:
+                                    </label>
                                     <div class="col-md-8">
                                         <input type="password" id="password" class="form-control"
-                                               name="password" placeholder="Password"/>
+                                               name="password" placeholder="<spring:message code="registration.password"/>"/>
+                                        <sf:errors path="password" cssClass="help-block" element="em"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-4 col-md-8">
-                                        <input type="submit" value="Login" class="btn btn-primary"/>
+                                        <input type="submit" value="<spring:message code="navbar.title.login"/>" class="btn btn-primary"/>
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <%--<div class="pane-footer">--%>
-                            <%--<div class="text-right" style="padding: 0 20px 10px 0;">--%>
-                                <%--Not Registered - <a href="${contextRoot}/register">Register Here</a>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
+                        <div class="pane-footer">
+                            <div class="text-right" style="padding: 0 20px 10px 0;">
+                                <spring:message code="not.registered"/> -
+                                <a href="${contextRoot}/register">
+                                    <spring:message code="register.link"/>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

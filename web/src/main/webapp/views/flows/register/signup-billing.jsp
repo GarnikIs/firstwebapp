@@ -6,6 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 
+<%--<script>--%>
+    <%--var error_blank_address_line = "<spring:message code='error.message.insert.address.line'/>";--%>
+    <%--var error_blank_city = "<spring:message code='error.message.insert.city'/>";--%>
+    <%--var error_blank_zip_code = "<spring:message code='error.message.insert.zip.code'/>";--%>
+    <%--var error_blank_state = "<spring:message code='error.message.insert.state'/>";--%>
+    <%--var error_blank_country = "<spring:message code='error.message.insert.country'/>";--%>
+<%--</script>--%>
+
 <div class="wrapper"
     <%-- Include Flows Header --%>
     <%@include file="../flows_shared/flows_header.jsp" %>
@@ -16,31 +24,39 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4>Registration - Address Information</h4>
+                            <h4><spring:message code="registration.address.info"/></h4>
                         </div>
                         <div class="panel-body">
                             <sf:form method="POST" modelAttribute="billing" class="form-horizontal"
                                      id="billingForm">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="addressLine">Address Line</label>
+                                    <label class="control-label col-md-4" for="addressLine">
+                                        <spring:message code="registration.address.line"/>
+                                    </label>
                                     <div class="col-md-8">
+                                        <spring:message code='registration.address.line' var="placeholder"/>
                                         <sf:input type="text" id="addressLine" path="addressLine" class="form-control"
-                                                  placeholder="Enter Address Line One" />
+                                                  placeholder="${placeholder}" />
                                         <sf:errors path="addressLine" cssClass="help-block" element="em"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="city">City</label>
+                                    <label class="control-label col-md-4" for="city">
+                                        <spring:message code="registration.city"/>
+                                    </label>
                                     <div class="col-md-8">
+                                        <spring:message code='registration.city' var="placeholder"/>
                                         <sf:input type="text" id="city" path="city" class="form-control"
-                                                  placeholder="Enter City Name" />
+                                                  placeholder="${placeholder}" />
                                         <sf:errors path="city" cssClass="help-block" element="em"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="zipCode">Zip Code</label>
+                                    <label class="control-label col-md-4" for="zipCode">
+                                        <spring:message code="registration.zip.code"/>
+                                    </label>
                                     <div class="col-md-8">
                                         <sf:input type="text" id="zipCode" path="zipCode" class="form-control"
                                                   placeholder="XXXXXX" />
@@ -49,19 +65,25 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="state">State</label>
+                                    <label class="control-label col-md-4" for="state">
+                                        <spring:message code="registration.state"/>
+                                    </label>
                                     <div class="col-md-8">
+                                        <spring:message code='registration.state' var="placeholder"/>
                                         <sf:input type="text" id="state" path="state" class="form-control"
-                                                  placeholder="Enter State Name" />
+                                                  placeholder="${placeholder}" />
                                         <sf:errors path="state" cssClass="help-block" element="em"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="country">Country</label>
+                                    <label class="control-label col-md-4" for="country">
+                                        <spring:message code="registration.country"/>
+                                    </label>
                                     <div class="col-md-8">
+                                        <spring:message code='registration.country' var="placeholder"/>
                                         <sf:input type="text" id="country" path="country" class="form-control"
-                                                  placeholder="Enter Country Name" />
+                                                  placeholder="${placeholder}" />
                                         <sf:errors path="country" cssClass="help-block" element="em"/>
                                     </div>
                                 </div>
@@ -69,10 +91,12 @@
                                 <div class="form-group">
                                     <div class="col-md-offset-4 col-md-8">
                                         <button type="submit" name="_eventId_personal" class="btn btn-primary">
-                                            <span class="glyphicon glyphicon-chevron-left"></span>Personal Info
+                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                            <spring:message code="registration.personal.result"/>
                                         </button>
                                         <button type="submit" name="_eventId_confirm" class="btn btn-primary">
-                                            Confirm Info<span class="glyphicon glyphicon-chevron-right"></span>
+                                            <spring:message code="registration.confirm.info"/>
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
                                         </button>
                                     </div>
                                 </div>

@@ -16,11 +16,16 @@
             <div class="row">
                 <div class="col-sm-offset-4 col-sm-4">
                     <div class="text-center">
-                        <h1>Welcome!</h1>
-                        <h3>onlineshopping.com</h3>
-                        <h6>You can use your email address as username to login!</h6>
+                        <h1>
+                            <spring:message code="registration.welcome"/>
+                        </h1>
+                        <h6>
+                            <spring:message code="registration.welcome.message"/>
+                        </h6>
                         <div>
-                            <a href="${contextRoot}/login" class="btn btn-lg btn-success">Login Here</a>
+                            <a href="${contextRoot}/login" class="btn btn-lg btn-primary">
+                                <spring:message code="navbar.title.login"/>
+                            </a>
                         </div>
                     </div>
                 </div>

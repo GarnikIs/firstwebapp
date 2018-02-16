@@ -35,12 +35,12 @@ public class Category implements Serializable {
 
 //    list category name in English
     @Transient
-    @NotBlank(message = "Please enter category name in English")
+    @NotBlank(message = "error.message.add.property.english")
     private String categoryNameEn;
 
 //    list category name in Russian
     @Transient
-    @NotBlank(message = "Please enter category name in Rusiian")
+    @NotBlank(message = "error.message.add.property.russian")
     private String categoryNameRu;
 
 

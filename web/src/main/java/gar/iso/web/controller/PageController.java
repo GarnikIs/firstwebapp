@@ -8,6 +8,7 @@ import gar.iso.web.exception.ProductNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -39,12 +40,15 @@ public class PageController {
     @Autowired
     private ProductDao productDao;
 
+    @Autowired
+    private MessageSource messageSource;
+
     @RequestMapping(value = {"/", "/home", "/index"})
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("page");
         int langKey = language.getKey() == 2 ? 2 : 1;
         List<Product> products = productDao.getActiveProductList(langKey);
-        mv.addObject("title", "Home");
+        mv.addObject("title", messageSource.getMessage("navbar.title.home", null, language.setLocale(langKey)));
 
         log.info("Inside page controller index method - INFO");
         log.debug("Inside page controller index method - DEBUG");
@@ -60,24 +64,27 @@ public class PageController {
     @RequestMapping (value = "/about")
     public ModelAndView about() {
         ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title","About Us");
+        int langKey = language.getKey() == 2 ? 2 : 1;
+        mv.addObject("title",messageSource.getMessage("navbar.title.about", null, language.setLocale(langKey)));
         mv.addObject("userClickedAbout", true);
         return mv;
     }
 
-//    @RequestMapping(value = "/contact")
-//    public ModelAndView contact() {
-//        ModelAndView mv = new ModelAndView("page");
-//        mv.addObject("title", "Contact");
-//        mv.addObject("userClickedContact", true);
-//        return mv;
-//    }
+    @RequestMapping(value = "/contact")
+    public ModelAndView contact() {
+        ModelAndView mv = new ModelAndView("page");
+        int langKey = language.getKey() == 2 ? 2 : 1;
+        mv.addObject("title", messageSource.getMessage("navbar.title.contacts", null, language.setLocale(langKey)));
+        mv.addObject("userClickedContact", true);
+        return mv;
+    }
 
     //    methods to load all the products based on category
     @RequestMapping(value = "/show/all/products")
     public ModelAndView listOfProducts() {
         ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "All Products");
+        int langKey = language.getKey() == 2 ? 2 : 1;
+        mv.addObject("title", messageSource.getMessage("show.all.products", null, language.setLocale(langKey)));
 
         //        passing category list from core
         mv.addObject("categories", categoryDao.getCategoryList(language.getKey()));
@@ -134,18 +141,18 @@ public class PageController {
     //    Request Mapping for login page
     @RequestMapping(value = "/login")
     public ModelAndView loginPage(@RequestParam(name = "error", required = false) String error,
-                                  @RequestParam(name = "logout", required = false) String logout
-    ) {
+                                  @RequestParam(name = "logout", required = false) String logout) {
         ModelAndView mv = new ModelAndView("login");
+        int langKey = language.getKey() == 2 ? 2 : 1;
 
         if (error != null) {
-            mv.addObject("errorMessage", "Invalid username and/or password");
+            mv.addObject("errorMessage", messageSource.getMessage("invalid.username.password", null, language.setLocale(langKey)));
         }
         if (logout != null) {
-            mv.addObject("logoutMessage", "You have successfully logged out");
+            mv.addObject("logoutMessage", messageSource.getMessage("logout.success", null, language.setLocale(langKey)));
         }
 
-        mv.addObject("title", "Login");
+        mv.addObject("title", messageSource.getMessage("navbar.title.login", null, language.setLocale(langKey)));
         return mv;
     }
 
@@ -153,9 +160,10 @@ public class PageController {
     @RequestMapping(value = "/access-denied")
     public ModelAndView accessDenied() {
         ModelAndView mv = new ModelAndView("error");
-        mv.addObject("title", "403 - No Access");
-        mv.addObject("errorTitle", "Aha ! Caught You! :)");
-        mv.addObject("errorDescription", "You are Not Authorized to View This Page !");
+        int langKey = language.getKey() == 2 ? 2 : 1;
+        mv.addObject("title", messageSource.getMessage("no.access.title", null, language.setLocale(langKey)));
+        mv.addObject("errorTitle", messageSource.getMessage("no.access.еrror.title", null, language.setLocale(langKey)));
+        mv.addObject("errorDescription", messageSource.getMessage("no.access.еrror.description", null, language.setLocale(langKey)));
         return mv;
     }
 
@@ -164,13 +172,13 @@ public class PageController {
     public String performLogout(HttpServletRequest request, HttpServletResponse response, RedirectAttributes rm) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
+        int langKey = language.getKey() == 2 ? 2 : 1;
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
-            rm.addFlashAttribute("logoutMessage", "You have successfully logged out");
+            rm.addFlashAttribute("logoutMessage", messageSource.getMessage("logout.success", null, language.setLocale(langKey)));
         }
 
-        return "redirect:login?logout";
+        return "redirect:login?logout&language="+language.getLocale();
     }
 
 }

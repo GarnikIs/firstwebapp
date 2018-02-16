@@ -24,20 +24,20 @@ public class UserAddress implements Serializable {
     private User user;
 
     @Column(name = "address_line")
-    @NotBlank(message = "Please enter your address")
+//    @NotBlank(message = "Please enter your address")
     private String addressLine;
 
-    @NotBlank(message = "Please enter your city")
+//    @NotBlank(message = "Please enter your city")
     private String city;
 
-    @NotBlank(message = "Please enter your state")
+//    @NotBlank(message = "Please enter your state")
     private String state;
 
     @Column(name = "zip_code")
-    @NotBlank(message = "Please enter your zip code")
+//    @NotBlank(message = "Please enter your zip code")
     private String zipCode;
 
-    @NotBlank(message = "Please enter your country")
+//    @NotBlank(message = "Please enter your country")
     private String country;
 
     private boolean shipping;
@@ -116,19 +116,19 @@ public class UserAddress implements Serializable {
         this.billing = billing;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "addressId=" + addressId +
-                ", userId='" + user.getUserId() + '\'' +
-                ", addressLineOne='" + addressLine + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", shipping=" + shipping +
-                ", billing=" + billing +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Address{" +
+//                "addressId=" + addressId +
+//                ", userId='" + user.getUserId() + '\'' +
+//                ", addressLineOne='" + addressLine + '\'' +
+//                ", city='" + city + '\'' +
+//                ", state='" + state + '\'' +
+//                ", country='" + country + '\'' +
+//                ", zipCode='" + zipCode + '\'' +
+//                ", shipping=" + shipping +
+//                ", billing=" + billing +
+//                '}';
+//    }
 
 }

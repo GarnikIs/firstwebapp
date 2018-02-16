@@ -7,11 +7,40 @@
 --%>
 
 
-<%--<div class="container">--%>
-    <%--<div class="row">--%>
-        <%--<h1>Contact List</h1>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-        <%--<h2>This is a page of our contact</h2>--%>
-    <%--</div>--%>
-<%--</div>--%>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <h4><u><i><spring:message code="crazy.contacts"/></i></u></h4>
+            <label>
+                <u><i><spring:message code="crazy.contact.email"/>:</i></u>
+            </label>
+            <div class="position-relative">
+                <span>
+                    <spring:message code="crazy.email.1"/>
+                </span>
+                <span>
+                    <spring:message code="crazy.email.2"/>
+                </span>
+                <span>
+                    <spring:message code="crazy.email.3"/>
+                </span>
+                <br>
+                <br>
+                <label for="phoneNumber">
+                    <u><i><spring:message code="crazy.contact.phone"/>:</i></u>
+                </label>
+                <span id="phoneNumber">
+                    <spring:message code="crazy.phone"/>
+                </span>
+            </div>
+            <hr/>
+            <label for="founder">
+                <u><i><spring:message code="crazy.founder.title"/>:</i></u>
+            </label>
+            <br>
+            <span style="font-size: 20px; font-weight: bold;" id="founder">
+                    <i><spring:message code="crazy.founder"/></i>
+            </span>
+        </div>
+    </div>
+</div>

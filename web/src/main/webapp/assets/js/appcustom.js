@@ -10,18 +10,33 @@ $(function () {
         case "Home":
             $("#home").addClass("active");
             break;
+        case "Главная":
+            $("#home").addClass("active");
+            break;
         case "About Us":
+            $("#about").addClass("active");
+            break;
+        case "О Нас":
             $("#about").addClass("active");
             break;
         case "Products":
             $("#products").addClass("active");
             break;
+        case "Продукты":
+            $("#products").addClass("active");
+            break;
         case "Manage Products":
             $("#manageProducts").addClass("active");
             break;
-        // case "Contact":
-        //     $("#contact").addClass("active");
-        //     break;
+        case "Управление Продуктами":
+            $("#manageProducts").addClass("active");
+            break;
+        case "Contacts":
+            $("#contact").addClass("active");
+            break;
+        case "Контакты":
+            $("#contact").addClass("active");
+            break;
         case (category):
             $("#products").addClass("active");
             if (category != "") {
@@ -34,7 +49,13 @@ $(function () {
         case ("Login"):
             $("#login").addClass("active");
             break;
+        case ("Войти"):
+            $("#login").addClass("active");
+            break;
         case ("Registration"):
+            $("#register").addClass("active");
+            break;
+        case ("Регистрация"):
             $("#register").addClass("active");
             break;
         default:
@@ -77,12 +98,6 @@ $(function () {
             {data: 'productName'},
             {data: 'productDescription'},
             {
-                data: 'unitPrice',
-                mRender: function (data, type, row) {
-                    return '&#8381; ' + data
-                }
-            },
-            {
                 data: 'productType',
                 bSortable: false,
                 mRender: function (data, type, row) {
@@ -94,8 +109,25 @@ $(function () {
             }
         ];
 
+        if (userRole == 'USER') {
+            tableColumns.push(
+                {
+                    data: 'unitPrice',
+                    mRender: function (data, type, row) {
+                        return '&#8381; ' + data
+                    }
+                }
+            )
+        }
+
         if (userRole == 'ADMIN') {
             tableColumns.push(
+                {
+                    data: 'unitPrice',
+                    mRender: function (data, type, row) {
+                        return '&#8381; ' + data
+                    }
+                },
                 {
                     data: 'productType',
                     bSortable: false,
@@ -212,11 +244,12 @@ $(function () {
                     var checked = checkbox.prop("checked");
                     var value = checkbox.prop("value");
                     var pName = $adminProductsTable.find("#" + value + "").attr('name');
-                    var dMsg = (checked) ? "Do you want to activate '" + pName + "' ?" :
-                        "Do you want to deactivate '" + pName + "' ?";
+                    var dMsg = (checked) ? popup_active_question + " " + pName + "' ?" :
+                        popup_deactive_question + " " + pName + "' ?";
                     bootbox.confirm({
                         size: "medium",
-                        title: "Activate or Deactivate Product",
+                        // title: "Activate or Deactivate Product",
+                        title: popup_title,
                         message: dMsg,
                         callback: function (confirmed) {
                             if (confirmed) {
@@ -225,7 +258,8 @@ $(function () {
                                 $.post(activationUrl, function (data) {
                                     bootbox.alert({
                                         size: "medium",
-                                        title: "Information",
+                                        // title: "Information",
+                                        title: popup_title_info,
                                         message: data
                                     });
                                 });
@@ -257,12 +291,12 @@ $(function () {
             },
             messages: {
                 categoryNameEn: {
-                    required: "Please add the Category name in English",
-                    minlength: "The Category name should not be less then 2 characters"
+                    required: error_add_prop_en,
+                    minlength: error_min_length
                 },
                 categoryNameRu: {
-                    required: "Please add the Category name in Russian",
-                    minlength: "The Category name should not be less then 2 characters"
+                    required: error_add_prop_ru,
+                    minlength: error_min_length
                 }
             },
             errorElement: "em",
@@ -274,6 +308,167 @@ $(function () {
     }
     /*-----------------------------------------------------------*/
 
+    //  JQuery validation for adding product
+
+    var $productForm = $("#productForm");
+    if ($productForm.length) {
+        $productForm.validate({
+            rules: {
+                productNameEn: {
+                    required: true,
+                    minlength: 2
+                },
+                productNameRu: {
+                    required: true,
+                    minlength: 2
+                },
+                productDescriptionEn: {
+                    required: true,
+                    minlength: 2
+                },
+                productDescriptionRu: {
+                    required: true,
+                    minlength: 2
+                },
+                unitPrice: {
+                    required: true,
+                    minlength: 2
+                },
+            },
+            messages: {
+                productNameEn: {
+                    required: error_add_prop_en,
+                    minlength: error_min_length
+                },
+                productNameRu: {
+                    required: error_add_prop_ru,
+                    minlength: error_min_length
+                },
+                productDescriptionEn: {
+                    required: error_add_prop_en,
+                    minlength: error_min_length
+                },
+                productDescriptionRu: {
+                    required: error_add_prop_ru,
+                    minlength: error_min_length
+                },
+                unitPrice: {
+                    required: error_add_price,
+                    minlength: error_price_min_value
+                },
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                error.addClass("help-block");
+                error.insertAfter(element);
+            }
+        });
+    }
+    /*-----------------------------------------------------------*/
+
+    //  JQuery validation for register-personal form
+
+    var $registerForm = $("#registerForm");
+    if ($registerForm.length) {
+        $registerForm.validate({
+            rules: {
+                firstName: {
+                    required: true,
+                },
+                lastName: {
+                    required: true,
+                },
+                email: {
+                    required: true,
+                },
+                phoneNumber: {
+                    required: true,
+                },
+                password: {
+                    required: true,
+                },
+                confirmPassword: {
+                    required: true,
+                },
+            },
+            messages: {
+                firstName: {
+                    required: error_blank_first_name,
+                },
+                lastName: {
+                    required: error_blank_last_name,
+                },
+                email: {
+                    required: error_blank_email
+                },
+                phoneNumber: {
+                    required: error_blank_phone
+                },
+                password: {
+                    required: error_blank_password
+                },
+                confirmPassword: {
+                    required: error_blank_confirm_password
+                },
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                error.addClass("help-block");
+                error.insertAfter(element);
+            }
+        });
+    }
+    /*-----------------------------------------------------------*/
+
+    //  JQuery validation for register-billing form
+
+    var $billingForm = $("#billingForm");
+    if ($billingForm.length) {
+        $billingForm.validate({
+            rules: {
+                addressLine: {
+                    required: true,
+                },
+                city: {
+                    required: true,
+                },
+                zipCode: {
+                    required: true,
+                },
+                state: {
+                    required: true,
+                },
+                country: {
+                    required: true,
+                },
+            },
+            messages: {
+                addressLine: {
+                    required: error_blank_address_line,
+                },
+                city: {
+                    required: error_blank_city,
+                },
+                zipCode: {
+                    required: error_blank_zip_code
+                },
+                state: {
+                    required: error_blank_state
+                },
+                country: {
+                    required: error_blank_country
+                },
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                error.addClass("help-block");
+                error.insertAfter(element);
+            }
+        });
+    }
+    /*-----------------------------------------------------------*/
+
+
     //  JQuery validation for login form
 
     var $loginForm = $("#loginForm");
@@ -282,7 +477,6 @@ $(function () {
             rules: {
                 username: {
                     required: true,
-                    email: true
                 },
                 password: {
                     required: true,
@@ -290,11 +484,10 @@ $(function () {
             },
             messages: {
                 username: {
-                    required: "Username must not be blank",
-                    email: "Please enter valid email address"
+                    required: error_blank_email
                 },
                 password: {
-                    required: "Password must not be blank",
+                    required: error_blank_password
                 }
             },
             errorElement: "em",
