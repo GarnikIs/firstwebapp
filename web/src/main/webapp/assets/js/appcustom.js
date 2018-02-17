@@ -90,8 +90,10 @@ $(function () {
             {
                 data: 'code',
                 mRender: function (data, type, row) {
-                    var image = "<img class='dataTableImg' alt='Image ot available' src='" +
-                                window.contextRoot + "/resources/images/" + data + ".jpg'/>";
+                    var image = "<a rel='lightbox' href='" + window.contextRoot + "/resources/images/" + data + ".jpg'" +
+                        "data-lightbox=" + data + ">" +
+                        "<img class='dataTableImg' alt='Image ot available'" +
+                        "src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/></a>";
                     return image;
                 }
             },
@@ -190,7 +192,9 @@ $(function () {
                     data: 'code',
                     bSortable: false,
                     mRender: function (data, type, row) {
-                        var image = "<img class='adminDataTableImg' alt='Image not available' src='"
+                        var image = "\"<a rel='lightbox' href='" + window.contextRoot + "/resources/images/" + data + ".jpg'" +
+                            "data-lightbox=" + data + ">" +
+                            "<img class='adminDataTableImg' alt='Image not available' src='"
                             + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
                         return image;
                     }

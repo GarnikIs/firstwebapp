@@ -49,7 +49,10 @@
                 <c:forEach items="${products}" var="product">
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" id="${product.productName}" src="${contextRoot}/resources/images/${product.code}.jpg" alt="${product.productName}"></a>
+                            <a href="${images}/${product.code}.jpg" data-lightbox="${product.code}">
+                                <img class="card-img-top" id="${product.productName}"
+                                     src="${contextRoot}/resources/images/${product.code}.jpg" alt="${product.productName}">
+                            </a>
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a href="${contextRoot}/product/${product.productType.productTypeId}/details">

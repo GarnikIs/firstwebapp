@@ -19,7 +19,9 @@
         <%-- Displaying product image --%>
         <div class="col-xs-12 col-sm-4">
             <div class="thumbnail">
-                <img src="${images}/${product.code}.jpg" class="img img-responsive">
+                <a href="${images}/${product.code}.jpg" data-lightbox="${product.code}">
+                    <img src="${images}/${product.code}.jpg" class="img img-responsive">
+                </a>
             </div>
         </div>
         <%-- Displaying product description --%>
@@ -40,7 +42,7 @@
                 <%--</c:when>--%>
                 <%--<c:otherwise>--%>
                     <%--<h6>Available - ${product.quantity}</h6>--%>
-                    <h6><spring:message code="product.details.views"/> - ${product.views}</h6>
+                    <h6><spring:message code="product.details.views"/>   - ${product.views}</h6>
                     <%--<h6>Purchases - ${product.purchases}</h6>--%>
                 <%--</c:otherwise>--%>
             <%--</c:choose>--%>

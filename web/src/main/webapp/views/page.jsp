@@ -60,6 +60,8 @@
     <%-- Language Bar Support CSS --%>
     <link rel="stylesheet" href="${css}/languageswitcher.css">
 
+    <%-- lightbox.css --%>
+    <link rel="stylesheet" href="${css}/lightbox.css">
     <%-- END CSS --%>
 
 
@@ -93,15 +95,18 @@
     <%--<script src="${js}/jquery.min.1.5.0.js"></script>--%>
     <script src="${js}/languageswitcher.js"></script>
 
+    <%-- Lightbox JS --%>
+    <script src="${js}/lightbox.js"></script>
+
     <!-- Angular -->
-    <script src="${js}/angular.js"></script>
+    <%--<script src="${js}/angular.js"></script>--%>
 
 
     <!-- NPM  -->
     <%--<script src="${js}/npm.js"></script>--%>
 
     <!-- Products Controller  -->
-    <script src="${js}/productsController.js"></script>
+    <%--<script src="${js}/productsController.js"></script>--%>
 
     <%-- END JS --%>
 

@@ -5,6 +5,12 @@
   Time: 02:04
   To change this template use File | Settings | File Templates.
 --%>
+<script>
+    lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true
+    })
+</script>
 
 <div class="container">
     <div class="row">
