@@ -13,6 +13,9 @@ import org.springframework.binding.message.MessageContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static gar.iso.web.controller.GlobalController.language;
 
 
@@ -30,6 +33,10 @@ public class RegisterHandler {
 
     @Autowired
     private MessageSource messageSource;
+
+    private static final String VALID_PASSWORD_PATTER = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+
+    private static final String VALID_EMAIL_PATTER = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
     public RegisterModel init() {
         RegisterModel registerModel = new RegisterModel();
@@ -106,6 +113,18 @@ public class RegisterHandler {
                     .build());
             transitionValue = "failure";
         }
+
+        //        validates email to matc pattern
+        if (!isValidEmail(user.getEmail())) {
+            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.email.not.match.pattern", null, language.setLocale(langKey))
+                    : messageSource.getMessage("error.message.email.not.match.pattern", null, language.setLocale(langKey));
+            errorMessage.addMessage(new MessageBuilder().error()
+                    .source("email")
+                    .defaultText(errMessEmptyUserName)
+                    .build());
+            transitionValue = "failure";
+        }
+
 //        validates phone number not to be blank
         if (user.getPhoneNumber() == null || user.getPhoneNumber().isEmpty()) {
             String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.insert.phone.number", null, language.setLocale(langKey))
@@ -127,6 +146,17 @@ public class RegisterHandler {
             transitionValue = "failure";
         }
 //        validates confirm password not to be blank
+        if (!user.getPassword().matches(VALID_PASSWORD_PATTER)) {
+            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.password.not.match.pattern", null, language.setLocale(langKey))
+                    : messageSource.getMessage("error.message.password.not.match.pattern", null, language.setLocale(langKey));
+            errorMessage.addMessage(new MessageBuilder().error()
+                    .source("password")
+                    .defaultText(errMessEmptyUserName)
+                    .build());
+            transitionValue = "failure";
+        }
+
+//        validates password with pattern
         if (user.getConfirmPassword() == null || user.getConfirmPassword().isEmpty()) {
             String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.insert.confirm.password", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.insert.confirm.password", null, language.setLocale(langKey));
@@ -136,6 +166,7 @@ public class RegisterHandler {
                     .build());
             transitionValue = "failure";
         }
+
 //        validates passwords equality
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
             String errMessPassMisMatch = langKey == 2 ? messageSource.getMessage("error.message.register.password.mismatch", null, language.setLocale(langKey))
@@ -228,9 +259,14 @@ public class RegisterHandler {
                 transitionValue = "failure";
             }
         }
-
-
-
         return transitionValue;
     }
+
+    public boolean isValidEmail(final String email) {
+        Pattern pattern = Pattern.compile(VALID_EMAIL_PATTER, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+
+    }
+
 }

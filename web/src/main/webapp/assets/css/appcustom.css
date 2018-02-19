@@ -59,6 +59,30 @@ footer {
     margin: 0;
 }
 
+
+.fa {
+    display: table-footer-group !important;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    color: #99c2ec;
+}
+
+.fa-instagram {
+    color: white;
+}
+
+a.fa.fa-2x.fa-instagram {
+    text-decoration: none;
+    color: white;
+}
+
+a.fa.fa-2x.fa-instagram:link, a.fa.fa-2x.fa-instagram:visited  {
+    text-decoration: none;
+    color: white;
+}
+
 /*
 	custom styling
 */
