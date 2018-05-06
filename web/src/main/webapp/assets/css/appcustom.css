@@ -159,6 +159,26 @@ a.fa.fa-2x.fa-instagram:link, a.fa.fa-2x.fa-instagram:visited  {
     text-align: center;
 }
 
+.carousel-item img {
+    width: 100%;
+    max-width: 820px;
+    height: auto;
+    max-height: 520px;
+}
+
+img.product_images_div {
+    width: auto;
+    max-width: 255px;
+    height: auto !important;
+    max-height: max-content;
+}
+
+img.product_images {
+    width: auto;
+    max-width: 252px;
+    height: auto;
+    max-height: max-content;
+}
 /*End*/
 /*
 * Custom css for Manage products page
