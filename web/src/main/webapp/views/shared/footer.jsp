@@ -9,14 +9,15 @@
 <footer class="py-5 bg-dark footer">
     <div class="container">
         <div class="row">
-            <!--Instagram link-->
-            <div class="col-md-2">
-                <a href="https://www.instagram.com/crazy_handmade/" target="_blank" class="fa fa-2x fa-instagram"></a>
-            </div>
-            <div class="col-md-8">
-                <p class="m-0 text-center text-white">Copyright &copy; CrazyHandMade 2018</p>
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-12">
+                <!--Instagram link-->
+                <div class="float-left">
+                    <a href="https://www.instagram.com/crazy_handmade/"
+                       target="_blank" class="fa fa-2x fa-instagram"></a>
+                </div>
+                <div>
+                    <p class="m-0 text-center text-white">Copyright &copy; CrazyHandMade 2018</p>
+                </div>
             </div>
         </div>
     </div>
