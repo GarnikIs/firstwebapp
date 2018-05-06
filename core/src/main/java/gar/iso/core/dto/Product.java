@@ -13,6 +13,7 @@ import java.util.UUID;
  * Created by Gor on 11/19/2017.
  */
 @Entity
+@Table(name = "product")
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
