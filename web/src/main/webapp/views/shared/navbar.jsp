@@ -44,43 +44,43 @@
                 <a class="nav-link" href="${contextRoot}/contact"><spring:message code="navbar.title.contacts"/></a>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
-            <security:authorize access="isAnonymous()">
-                <li id="register" class="nav-item">
-                    <a class="nav-link" href="${contextRoot}/register">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <spring:message code="navbar.title.registration"/>
-                    </a>
-                </li>
-                <li id="login" class="nav-item">
-                    <a class="nav-link" href="${contextRoot}/login">
-                        <span class="glyphicon glyphicon-log-in"></span>
-                        <spring:message code="navbar.title.login"/>
-                    </a>
-                </li>
-            </security:authorize>
-            <security:authorize access="hasAuthority('ADMIN') || hasAuthority('USER')">
-                <li class="dropdown" id="userCart">
-                    <a href="javascript:void(0)" style="display: inline-block"
-                       class="nav-link dropdown-toggle"
-                       id="dropdownMenu1" data-toggle="dropdown">${userModel.fullName}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <%--<security:authorize access="hasAuthority('USER')">--%>
-                            <%--<li>--%>
-                                <%--<a href="${contextRoot}/cart/show">--%>
-                                    <%--<span class="glyphicon glyphicon-shopping-cart"></span>--%>
-                                    <%--<span class="badge">${userModel.cart.cartLines}</span>--%>
-                                    <%--- &#8381; ${userModel.cart.grandTotal}--%>
-                                <%--</a>--%>
-                            <%--</li>--%>
-                            <%--<li class="devider" role="separator"></li>--%>
-                        <%--</security:authorize>--%>
-                        <li><a href="${contextRoot}/perform-logout">Logout</a></li>
-                    </ul>
-                </li>
-            </security:authorize>
-        </ul>
+        <%--<ul class="navbar-nav ml-auto">--%>
+            <%--<security:authorize access="isAnonymous()">--%>
+                <%--<li id="register" class="nav-item">--%>
+                    <%--<a class="nav-link" href="${contextRoot}/register">--%>
+                        <%--<span class="glyphicon glyphicon-user"></span>--%>
+                        <%--<spring:message code="navbar.title.registration"/>--%>
+                    <%--</a>--%>
+                <%--</li>--%>
+                <%--<li id="login" class="nav-item">--%>
+                    <%--<a class="nav-link" href="${contextRoot}/login">--%>
+                        <%--<span class="glyphicon glyphicon-log-in"></span>--%>
+                        <%--<spring:message code="navbar.title.login"/>--%>
+                    <%--</a>--%>
+                <%--</li>--%>
+            <%--</security:authorize>--%>
+            <%--<security:authorize access="hasAuthority('ADMIN') || hasAuthority('USER')">--%>
+                <%--<li class="dropdown" id="userCart">--%>
+                    <%--<a href="javascript:void(0)" style="display: inline-block"--%>
+                       <%--class="nav-link dropdown-toggle"--%>
+                       <%--id="dropdownMenu1" data-toggle="dropdown">${userModel.fullName}--%>
+                    <%--</a>--%>
+                    <%--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">--%>
+                        <%--&lt;%&ndash;<security:authorize access="hasAuthority('USER')">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<li>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<a href="${contextRoot}/cart/show">&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;<span class="glyphicon glyphicon-shopping-cart"></span>&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;<span class="badge">${userModel.cart.cartLines}</span>&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;- &#8381; ${userModel.cart.grandTotal}&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<li class="devider" role="separator"></li>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;</security:authorize>&ndash;%&gt;--%>
+                        <%--<li><a href="${contextRoot}/perform-logout">Logout</a></li>--%>
+                    <%--</ul>--%>
+                <%--</li>--%>
+            <%--</security:authorize>--%>
+        <%--</ul>--%>
     </div>
     <%@include file="language_bar.jsp" %>
 </nav>
