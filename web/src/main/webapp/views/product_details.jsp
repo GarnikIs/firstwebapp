@@ -31,10 +31,10 @@
             <hr/>
             <u><i><spring:message code="product.details.description"/></i></u>
             <h6>${product.productDescription}</h6>
-            <security:authorize access="hasAuthority('USER')">
+            <%--<security:authorize access="hasAuthority('USER')">--%>
                 <hr/>
                 <h4>Price:<strong> - &#8381; ${product.unitPrice}</strong></h4>
-            </security:authorize>
+            <%--</security:authorize>--%>
             <hr/>
             <%--<c:choose>--%>
                 <%--<c:when test="${product.quantity < 1}">--%>

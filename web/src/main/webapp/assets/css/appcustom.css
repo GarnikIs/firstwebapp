@@ -179,6 +179,14 @@ img.product_images {
     height: auto;
     max-height: max-content;
 }
+
+img.product_data_table_images {
+    width: auto;
+    max-width: 90px;
+    height: auto;
+    max-height: max-content;
+}
+
 /*End*/
 /*
 * Custom css for Manage products page

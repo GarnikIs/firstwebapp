@@ -55,10 +55,10 @@
                 </div>
             <div class="row">
                 <c:forEach items="${products}" var="product">
-                    <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="col-lg-4 col-md-6 mb-4 text-center">
                         <div class="card h-100 product_images_div">
                             <a href="${images}/${product.code}.jpg" data-lightbox="${product.code}">
-                                <img class="card-img-top product_images" id="${product.productName}"
+                                <img style="margin-left: auto; margin-right: auto"  class="card-img-top product_images" id="${product.productName}"
                                      src="${contextRoot}/resources/images/${product.code}.jpg" alt="${product.productName}">
                             </a>
                             <div class="card-body">
@@ -67,9 +67,9 @@
                                             ${product.productName}
                                     </a>
                                 </h4>
-                                <security:authorize access="hasAuthority('USER')">
+                                <%--<security:authorize access="hasAuthority('USER')">--%>
                                     <p>&#8381;&nbsp; ${product.unitPrice}</p>
-                                </security:authorize>
+                                <%--</security:authorize>--%>
                                 <p class="card-text">${product.productDescription}</p>
                             </div>
                         </div>

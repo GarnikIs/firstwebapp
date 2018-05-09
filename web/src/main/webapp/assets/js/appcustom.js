@@ -92,7 +92,7 @@ $(function () {
                 mRender: function (data, type, row) {
                     var image = "<a rel='lightbox' href='" + window.contextRoot + "/resources/images/" + data + ".jpg'" +
                         "data-lightbox=" + data + ">" +
-                        "<img class='dataTableImg' alt='Image ot available'" +
+                        "<img class='dataTableImg product_data_table_images' alt='Image ot available'" +
                         "src='" + window.contextRoot + "/resources/images/" + data + ".jpg'/></a>";
                     return image;
                 }
@@ -108,19 +108,25 @@ $(function () {
                         "class='btn btn-primary' title='Product Details'><span class='glyphicon glyphicon-eye-open'></span></a>";
                     return src;
                 }
+            },
+            {
+                data: 'unitPrice',
+                mRender: function (data, type, row) {
+                    return '&#8381; ' + data
+                }
             }
         ];
 
-        if (userRole == 'USER') {
-            tableColumns.push(
-                {
-                    data: 'unitPrice',
-                    mRender: function (data, type, row) {
-                        return '&#8381; ' + data
-                    }
-                }
-            )
-        }
+        // if (userRole == 'isAnonymous()') {
+        //     tableColumns.push(
+        //         {
+        //             data: 'unitPrice',
+        //             mRender: function (data, type, row) {
+        //                 return '&#8381; ' + data
+        //             }
+        //         }
+        //     )
+        // }
 
         if (userRole == 'ADMIN') {
             tableColumns.push(
@@ -194,7 +200,7 @@ $(function () {
                     mRender: function (data, type, row) {
                         var image = "\<a rel='lightbox' href='" + window.contextRoot + "/resources/images/" + data + ".jpg'" +
                             "data-lightbox=" + data + ">" +
-                            "<img class='adminDataTableImg' alt='Image not available' src='"
+                            "<img class='adminDataTableImg product_data_table_images' alt='Image not available' src='"
                             + window.contextRoot + "/resources/images/" + data + ".jpg'/>";
                         return image;
                     }
