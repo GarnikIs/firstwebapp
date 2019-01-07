@@ -23,11 +23,11 @@
                     <spring:message code="navbar.title.home"/>
                 </a>
             </li>
-            <li id="products" class="nav-item">
-                <a class="nav-link" href="${contextRoot}/show/all/products">
-                    <spring:message code="navbar.title.products"/>
-                </a>
-            </li>
+            <%--<li id="products" class="nav-item">--%>
+                <%--<a class="nav-link" href="${contextRoot}/show/all/products">--%>
+                    <%--<spring:message code="navbar.title.products"/>--%>
+                <%--</a>--%>
+            <%--</li>--%>
             <security:authorize access="hasAuthority('ADMIN')">
                 <li id="manageProducts" class="nav-item">
                     <a class="nav-link" href="${contextRoot}/manage/products">

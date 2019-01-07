@@ -5,12 +5,12 @@
   <%--Time: 02:16--%>
   <%--To change this template use File | Settings | File Templates.--%>
 <%--&ndash;%&gt;--%>
-<%--<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">--%>
-    <%--<div class="container">--%>
-        <%--<div class="navbar-header">--%>
-            <%--<a class="navbar-brand" href="${flowExecutionUrl}&_eventId_home">--%>
-                <%--<spring:message code="navbar.title.home"/>--%>
-            <%--</a>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</nav>--%>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="${flowExecutionUrl}&_eventId_home">
+                <spring:message code="navbar.title.home"/>
+            </a>
+        </div>
+    </div>
+</nav>

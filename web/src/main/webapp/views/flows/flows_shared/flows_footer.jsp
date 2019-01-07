@@ -6,21 +6,21 @@
   <%--To change this template use File | Settings | File Templates.--%>
 <%--&ndash;%&gt;--%>
 
-<%--<!-- Footer is included here -->--%>
-<%--&lt;%&ndash;<%@include file="../../shared/footer.jsp" %>&ndash;%&gt;--%>
-<%--<footer class="py-5 bg-dark footer">--%>
-    <%--<div class="container">--%>
-        <%--<div class="row">--%>
-            <%--<div class="col-md-12">--%>
-                <%--<!--Instagram link-->--%>
+<!-- Footer is included here -->
+<%--<%@include file="../../shared/footer.jsp" %>--%>
+<footer class="py-5 bg-dark footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Instagram link-->
                 <%--<div class="float-left">--%>
                     <%--<a href="https://www.instagram.com/crazy_handmade/"--%>
                        <%--target="_blank" class="fa fa-2x fa-instagram"></a>--%>
                 <%--</div>--%>
-                <%--<div>--%>
-                    <%--<p class="m-0 text-center text-white">Copyright &copy; CrazyHandMade 2018</p>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</footer>--%>
+                <div>
+                    <p class="m-0 text-center text-white">Copyright &copy; LabTech 2018</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

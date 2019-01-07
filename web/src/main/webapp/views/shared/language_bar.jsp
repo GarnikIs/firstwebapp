@@ -10,7 +10,8 @@
     <form action="${currentUrl}">
         <select class="form_control" id="country-options" name="country-options">
             <option data-lang-id="1" value="en">English</option>
-            <option data-lang-id="2" value="ru">Russian</option>
+            <%--<option data-lang-id="2" value="ru">Russian</option>--%>
+            <option data-lang-id="3" value="arm">Armenian</option>
         </select>
         <input value="Select" type="submit"/>
     </form>

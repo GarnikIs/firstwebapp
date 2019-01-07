@@ -11,7 +11,7 @@
         <%-- Displaying product image --%>
         <div class="col-xs-12 col-sm-4">
             <div class="thumbnail">
-                <img src="${images}/Gazzan.jpg" class="img img-responsive">
+                <img src="${images}/face.jpg" class="img img-responsive">
             </div>
             <label for="founder">
                 <u><i><spring:message code="crazy.founder.title"/>:</i></u>
@@ -29,12 +29,12 @@
                 <span>
                     <spring:message code="crazy.email.1"/>
                 </span>
-                <span>
-                    <spring:message code="crazy.email.2"/>
-                </span>
-                <span>
-                    <spring:message code="crazy.email.3"/>
-                </span>
+                <%--<span>--%>
+                    <%--<spring:message code="crazy.email.2"/>--%>
+                <%--</span>--%>
+                <%--<span>--%>
+                    <%--<spring:message code="crazy.email.3"/>--%>
+                <%--</span>--%>
                 <br>
                 <br>
                 <label for="phoneNumber">

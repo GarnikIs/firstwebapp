@@ -130,12 +130,12 @@ $(function () {
 
         if (userRole == 'ADMIN') {
             tableColumns.push(
-                {
-                    data: 'unitPrice',
-                    mRender: function (data, type, row) {
-                        return '&#8381; ' + data
-                    }
-                },
+                // {
+                //     data: 'unitPrice',
+                //     mRender: function (data, type, row) {
+                //         return '&#8381; ' + data
+                //     }
+                // },
                 {
                     data: 'productType',
                     bSortable: false,

@@ -59,7 +59,7 @@
 
 #country-select .dropdown dt a {
     background: url(../images/converter_to.png);
-    padding: 3px 10px 4px 10px;
+    padding: 3px 20px 4px 20px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -105,7 +105,7 @@
 }
 
 #country-select .dropdown dd ul li a {
-    padding: 2px 10px;
+    padding: 2px 20px;
 }
 
 #country-select .dropdown dd ul li a span,
@@ -125,6 +125,10 @@
 
 .en a span {
     background-position: -16px -275px;
+}
+
+.arm a span {
+    background-position: 0px -66px;
 }
 
 #country-select .dropdown dd ul li a em,

@@ -46,7 +46,7 @@ $(document).ready(function () {
         if (window.currentLang == 1) {
             $("#country-options option[value='en']").attr("selected", true);
         } else {
-            $("#country-options option[value='ru']").attr("selected", true);
+            $("#country-options option[value='arm']").attr("selected", true);
         }
         var selected = source.find("option:selected");
         var options = $("option", source);
@@ -56,10 +56,12 @@ $(document).ready(function () {
             '<span class="flag"></span><em>' + selected.text() + '</em><span class="ddArrow"></span></a></dt>');
         $("#target").append('<dd><ul></ul></dd>');
         if (selected.val() == "en") {
-            $("#target dd ul").append('<li class="ru"><a href="' + window.currentUrl + '?language=ru"><span class="flag"></span><em>Russian</em></a></li>');
-        } else if (selected.val() == "ru") {
+            $("#target dd ul").append('<li class="arm"><a href="' + window.currentUrl + '?language=arm"><span class="flag"></span><em>Armenian</em></a></li>');
+        } else if (selected.val() == "arm") {
             $("#target dd ul").append('<li class="en"><a href="' + window.currentUrl + '?language=en"><span class="flag"></span><em>English</em></a></li>');
-        }
+        } /*else if (selected.val() == "ru") {
+            $("#target dd ul").append('<li class="en"><a href="' + window.currentUrl + '?language=en"><span class="flag"></span><em>Russian</em></a></li>');
+        }*/
     }
 
 });

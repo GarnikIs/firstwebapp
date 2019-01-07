@@ -18,12 +18,12 @@
                 <span>
                     <spring:message code="crazy.email.1"/>
                 </span>
-                <span>
-                    <spring:message code="crazy.email.2"/>
-                </span>
-                <span>
-                    <spring:message code="crazy.email.3"/>
-                </span>
+                <%--<span>--%>
+                    <%--<spring:message code="crazy.email.2"/>--%>
+                <%--</span>--%>
+                <%--<span>--%>
+                    <%--<spring:message code="crazy.email.3"/>--%>
+                <%--</span>--%>
                 <br>
                 <br>
                 <label for="phoneNumber">

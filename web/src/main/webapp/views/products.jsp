@@ -65,7 +65,7 @@
                                             <th><spring:message code="table.column.price"/></th>
                                         <%--</security:authorize>--%>
                                         <security:authorize access="hasAuthority('ADMIN')">
-                                            <th><spring:message code="table.column.price"/></th>
+                                            <%--<th><spring:message code="table.column.price"/></th>--%>
                                             <th><spring:message code="table.column.edit"/></th>
                                         </security:authorize>
                                     </tr>

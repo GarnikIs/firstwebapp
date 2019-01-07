@@ -6,15 +6,15 @@
   <%--To change this template use File | Settings | File Templates.--%>
 <%--&ndash;%&gt;--%>
 
-<%--<div class="wrapper">--%>
+<div class="wrapper">
 
-<%--&lt;%&ndash; Include Flows Header &ndash;%&gt;--%>
-<%--<%@include file="../flows_shared/flows_header.jsp" %>--%>
+<%-- Include Flows Header --%>
+<%@include file="../flows_shared/flows_header.jsp" %>
 
-<%--&lt;%&ndash; Include Flows Content &ndash;%&gt;--%>
-<%--<%@include file="../flows_shared/flows_content.jsp" %>--%>
+<%-- Include Flows Content --%>
+<%@include file="../flows_shared/flows_content.jsp" %>
 
-<%--&lt;%&ndash; Include Flows Footer &ndash;%&gt;--%>
-<%--<%@include file="../flows_shared/flows_footer.jsp" %>--%>
+<%-- Include Flows Footer --%>
+<%@include file="../flows_shared/flows_footer.jsp" %>
 
-<%--</div>--%>
+</div>

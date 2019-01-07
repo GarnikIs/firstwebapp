@@ -19,4 +19,8 @@ public interface CategoryDao {
 
     Category getCategoryById(int categoryId, int langKey);
 
+    default void test() {
+
+    }
+
 }
