@@ -37,11 +37,15 @@
                 <%--</span>--%>
                 <br>
                 <br>
-                <label for="phoneNumber">
-                    <u><i><spring:message code="crazy.contact.phone"/>:</i></u>
-                </label>
+            </div>
+            <label for="phoneNumber">
+                <u><i><spring:message code="crazy.contact.phone"/>:</i></u>
+            </label>
+            <div class="position-relative">
                 <span id="phoneNumber">
-                    <spring:message code="crazy.phone"/>
+                    <spring:message code="crazy.phone.1"/>
+                    <br>
+                    <spring:message code="crazy.phone.2"/>
                 </span>
             </div>
         </div>

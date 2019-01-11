@@ -47,7 +47,7 @@ public class ManagementController {
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public ModelAndView showManageProducts(@RequestParam(name = "operation", required = false) String operation) {
-        int langKey = (language.getKey() == 2) ? 2 : 1;
+        int langKey = (language.getKey() == 3) ? 3 : 1;
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", messageSource.getMessage("navbar.title.manage.products", null, language.setLocale(langKey)));
         mv.addObject("userClickedManageProducts", true);
@@ -83,7 +83,7 @@ public class ManagementController {
                                               BindingResult results, Model model, HttpServletRequest request) {
         String operation;
         ProductType productType;
-        int langKey = (language.getKey() == 2) ? 2 : 1;
+        int langKey = (language.getKey() == 3) ? 3 : 1;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userDao.getUserByEmail(auth.getName());
         mProduct.setProductUser(user);
@@ -145,7 +145,7 @@ public class ManagementController {
                                                     produces = "text/plain; charset=UTF-8")
     @ResponseBody
     public String handleProductActivation(@PathVariable int productId) {
-        int langKey = (language.getKey() == 2) ? 2 : 1;
+        int langKey = (language.getKey() == 3) ? 3 : 1;
         Product product = productDao.getProductById(productId, langKey);
         boolean isProductActive = product.isActive();
         product.setActive(!product.isActive());
@@ -165,7 +165,7 @@ public class ManagementController {
     //    handle changing product details
     @RequestMapping(value = "/{productId}/product", method = RequestMethod.GET)
     public ModelAndView showEditProduct(@PathVariable int productId) {
-        int langKey = (language.getKey() == 2) ? 2 : 1;
+        int langKey = (language.getKey() == 3) ? 3 : 1;
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", messageSource.getMessage("navbar.title.manage.products", null, language.setLocale(langKey)));
         mv.addObject("userClickedManageProducts", true);
@@ -179,7 +179,7 @@ public class ManagementController {
     public String handleCategorySubmission(@ModelAttribute Category nCategory) {
         String operation;
 
-        int langKey = language.getKey() == 2 ? 2 :1;
+        int langKey = language.getKey() == 3 ? 3 :1;
 
         CategoryType categoryType = new CategoryType();
         categoryType.setCategoryTypeName(nCategory.getCategoryNameEn());

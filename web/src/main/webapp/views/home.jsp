@@ -78,4 +78,11 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-center coming_soon_font_size"><spring:message code="coming.soon"/></h1>
+        </div>
+    </div>
+
 </div>

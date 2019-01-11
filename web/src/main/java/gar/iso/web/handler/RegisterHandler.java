@@ -40,7 +40,7 @@ public class RegisterHandler {
 
     public RegisterModel init() {
         RegisterModel registerModel = new RegisterModel();
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         registerModel.setTitle(messageSource.getMessage("registration.title", null, language.setLocale(langKey)));
         registerModel.setLanguage(Language.getLanguage());
         return registerModel;
@@ -82,7 +82,7 @@ public class RegisterHandler {
 
     public String validateUser(User user, UserAddress billingAddress, MessageContext errorMessage) {
         String transitionValue = "success";
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
 //        validates first name not to be blank
         if (user.getFirstName() == null || user.getFirstName().isEmpty()) {
             String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.insert.first.name", null, language.setLocale(langKey))

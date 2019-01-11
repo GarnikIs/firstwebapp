@@ -27,8 +27,8 @@ public class JsonDataController {
     @RequestMapping(value = "/all/products")
     @ResponseBody
     public List<Product> getActiveProductList(){
-        if (language.getKey() == 2) {
-            langKey = 2;
+        if (language.getKey() == 3) {
+            langKey = 3;
         } else {
             langKey = 1;
         }
@@ -38,8 +38,8 @@ public class JsonDataController {
     @RequestMapping(value = "/admin/all/products")
     @ResponseBody
     public List<Product> getActiveProductListForAdmin(){
-        if (language.getKey() == 2) {
-            langKey = 2;
+        if (language.getKey() == 3) {
+            langKey = 3;
         } else {
             langKey = 1;
         }
@@ -49,7 +49,7 @@ public class JsonDataController {
     @RequestMapping(value = "/category/{categoryId}/products")
     @ResponseBody
     public List<Product> getActiveProductListByCategoryId(@PathVariable("categoryId") int categoryId){
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         List<Product> products = productDao.getActiveProductListByCategoryId(categoryId, langKey);
         return products;
     }

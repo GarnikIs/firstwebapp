@@ -300,6 +300,10 @@ input:checked + .slider:before {
     vertical-align: middle;
 }
 
+.coming_soon_font_size {
+    font-size: 120px;
+}
+
 @media screen and (max-width: 600px) {
     table#cart tbody td .form-control {
         width: 20%;
@@ -347,6 +351,10 @@ input:checked + .slider:before {
 
     table#cart tfoot td .btn {
         display: block;
+    }
+
+    .coming_soon_font_size {
+        font-size: 60px;
     }
 }
 
@@ -439,6 +447,10 @@ ul.navbar-nav li {
     .navbar-toggler {
         font-size: 2.0rem;
         margin: 20px auto 15px auto;
+    }
+
+    .coming_soon_font_size {
+        font-size: 40px;
     }
 }
 

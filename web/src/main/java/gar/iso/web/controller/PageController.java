@@ -46,7 +46,7 @@ public class PageController {
     @RequestMapping(value = {"/", "/home", "/index"})
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("page");
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         List<Product> products = productDao.getActiveProductList(langKey);
         mv.addObject("title", messageSource.getMessage("navbar.title.home", null, language.setLocale(langKey)));
 
@@ -64,7 +64,7 @@ public class PageController {
     @RequestMapping (value = "/about")
     public ModelAndView about() {
         ModelAndView mv = new ModelAndView("page");
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         mv.addObject("title",messageSource.getMessage("navbar.title.about", null, language.setLocale(langKey)));
         mv.addObject("userClickedAbout", true);
         return mv;
@@ -73,7 +73,7 @@ public class PageController {
     @RequestMapping(value = "/contact")
     public ModelAndView contact() {
         ModelAndView mv = new ModelAndView("page");
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         mv.addObject("title", messageSource.getMessage("navbar.title.contacts", null, language.setLocale(langKey)));
         mv.addObject("userClickedContact", true);
         return mv;
@@ -83,7 +83,7 @@ public class PageController {
     @RequestMapping(value = "/show/all/products")
     public ModelAndView listOfProducts() {
         ModelAndView mv = new ModelAndView("page");
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         mv.addObject("title", messageSource.getMessage("show.all.products", null, language.setLocale(langKey)));
 
         //        passing category list from core
@@ -96,7 +96,7 @@ public class PageController {
     @RequestMapping(value = "/show/category/{id}/products")
     public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("page");
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
 
 //        categoryDao to fetch a single category
         Category category = null;
@@ -121,7 +121,7 @@ public class PageController {
     @RequestMapping(value = "/product/{productId}/details")
     public ModelAndView getProductDetailById(@PathVariable("productId") int productId) throws ProductNotFoundException {
         ModelAndView mv = new ModelAndView("page");
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         Product product = productDao.getProductById(productId, langKey);
 
         if (product == null) {
@@ -143,7 +143,7 @@ public class PageController {
     public ModelAndView loginPage(@RequestParam(name = "error", required = false) String error,
                                   @RequestParam(name = "logout", required = false) String logout) {
         ModelAndView mv = new ModelAndView("login");
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
 
         if (error != null) {
             mv.addObject("errorMessage", messageSource.getMessage("invalid.username.password", null, language.setLocale(langKey)));
@@ -160,7 +160,7 @@ public class PageController {
     @RequestMapping(value = "/access-denied")
     public ModelAndView accessDenied() {
         ModelAndView mv = new ModelAndView("error");
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         mv.addObject("title", messageSource.getMessage("no.access.title", null, language.setLocale(langKey)));
         mv.addObject("errorTitle", messageSource.getMessage("no.access.еrror.title", null, language.setLocale(langKey)));
         mv.addObject("errorDescription", messageSource.getMessage("no.access.еrror.description", null, language.setLocale(langKey)));
@@ -172,7 +172,7 @@ public class PageController {
     public String performLogout(HttpServletRequest request, HttpServletResponse response, RedirectAttributes rm) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
             rm.addFlashAttribute("logoutMessage", messageSource.getMessage("logout.success", null, language.setLocale(langKey)));

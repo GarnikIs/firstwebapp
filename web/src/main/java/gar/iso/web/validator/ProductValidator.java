@@ -28,7 +28,7 @@ public class ProductValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Product product = (Product) target;
-        int langKey = language.getKey() == 2 ? 2 : 1;
+        int langKey = language.getKey() == 3 ? 3 : 1;
         messageSource.setBasename("ResourceBundle.my_messages");
 
         if (product.getFile() == null || product.getFile().getOriginalFilename().equals("")) {

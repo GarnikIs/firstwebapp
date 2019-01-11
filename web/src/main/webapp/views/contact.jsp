@@ -19,18 +19,22 @@
                     <spring:message code="crazy.email.1"/>
                 </span>
                 <%--<span>--%>
-                    <%--<spring:message code="crazy.email.2"/>--%>
+                <%--<spring:message code="crazy.email.2"/>--%>
                 <%--</span>--%>
                 <%--<span>--%>
-                    <%--<spring:message code="crazy.email.3"/>--%>
+                <%--<spring:message code="crazy.email.3"/>--%>
                 <%--</span>--%>
                 <br>
                 <br>
-                <label for="phoneNumber">
-                    <u><i><spring:message code="crazy.contact.phone"/>:</i></u>
-                </label>
+            </div>
+            <label for="phoneNumber">
+                <u><i><spring:message code="crazy.contact.phone"/>:</i></u>
+            </label>
+            <div class="position-relative">
                 <span id="phoneNumber">
-                    <spring:message code="crazy.phone"/>
+                    <spring:message code="crazy.phone.1"/>
+                    <br>
+                    <spring:message code="crazy.phone.2"/>
                 </span>
             </div>
             <hr/>
