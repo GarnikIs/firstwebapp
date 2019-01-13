@@ -59,9 +59,7 @@ $(document).ready(function () {
             $("#target dd ul").append('<li class="arm"><a href="' + window.currentUrl + '?language=arm"><span class="flag"></span><em>Armenian</em></a></li>');
         } else if (selected.val() == "arm") {
             $("#target dd ul").append('<li class="en"><a href="' + window.currentUrl + '?language=en"><span class="flag"></span><em>English</em></a></li>');
-        } /*else if (selected.val() == "ru") {
-            $("#target dd ul").append('<li class="en"><a href="' + window.currentUrl + '?language=en"><span class="flag"></span><em>Russian</em></a></li>');
-        }*/
+        }
     }
 
 });

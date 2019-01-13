@@ -104,7 +104,7 @@ public class ManagementController {
             return "page";
         }
 
-        if (language.getKey() == 2) {
+        if (language.getKey() == 3) {
             mProduct.setProductName(mProduct.getProductNameRu());
             mProduct.setProductDescription(mProduct.getProductDescriptionRu());
             mProduct.setProductLangId(language.getKey());
@@ -186,7 +186,7 @@ public class ManagementController {
 
         nCategory.setCategoryType(categoryType);
 
-        if (langKey == 2) {
+        if (langKey == 3) {
             nCategory.setCategoryName(nCategory.getCategoryNameRu());
             nCategory.setCategoryLangId(language.getKey());
         } else {

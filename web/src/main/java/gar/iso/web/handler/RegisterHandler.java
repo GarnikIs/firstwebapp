@@ -34,9 +34,9 @@ public class RegisterHandler {
     @Autowired
     private MessageSource messageSource;
 
-    private static final String VALID_PASSWORD_PATTER = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+    private static final String VALID_PASSWORD_PATTERN = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 
-    private static final String VALID_EMAIL_PATTER = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+    private static final String VALID_EMAIL_PATTERN = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
     public RegisterModel init() {
         RegisterModel registerModel = new RegisterModel();
@@ -85,7 +85,7 @@ public class RegisterHandler {
         int langKey = language.getKey() == 3 ? 3 : 1;
 //        validates first name not to be blank
         if (user.getFirstName() == null || user.getFirstName().isEmpty()) {
-            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.insert.first.name", null, language.setLocale(langKey))
+            String errMessEmptyUserName = langKey == 3 ? messageSource.getMessage("error.message.insert.first.name", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.insert.first.name", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("firstName")
@@ -95,7 +95,7 @@ public class RegisterHandler {
         }
 //        validates last name not to be blank
         if (user.getLastName() == null || user.getLastName().isEmpty()) {
-            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.insert.last.name", null, language.setLocale(langKey))
+            String errMessEmptyUserName = langKey == 3 ? messageSource.getMessage("error.message.insert.last.name", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.insert.last.name", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("lastName")
@@ -105,7 +105,7 @@ public class RegisterHandler {
         }
 //        validates email not to be blank
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
-            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.blank.email", null, language.setLocale(langKey))
+            String errMessEmptyUserName = langKey == 3 ? messageSource.getMessage("error.message.blank.email", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.blank.email", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("email")
@@ -114,9 +114,9 @@ public class RegisterHandler {
             transitionValue = "failure";
         }
 
-        //        validates email to matc pattern
+        //        validates email to match pattern
         if (!isValidEmail(user.getEmail())) {
-            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.email.not.match.pattern", null, language.setLocale(langKey))
+            String errMessEmptyUserName = langKey == 3 ? messageSource.getMessage("error.message.email.not.match.pattern", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.email.not.match.pattern", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("email")
@@ -127,7 +127,7 @@ public class RegisterHandler {
 
 //        validates phone number not to be blank
         if (user.getPhoneNumber() == null || user.getPhoneNumber().isEmpty()) {
-            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.insert.phone.number", null, language.setLocale(langKey))
+            String errMessEmptyUserName = langKey == 3 ? messageSource.getMessage("error.message.insert.phone.number", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.insert.phone.number", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("phoneNumber")
@@ -137,7 +137,7 @@ public class RegisterHandler {
         }
 //        validates password not to be blank
         if (user.getPassword() == null || user.getPassword().isEmpty()) {
-            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.insert.password", null, language.setLocale(langKey))
+            String errMessEmptyUserName = langKey == 3 ? messageSource.getMessage("error.message.insert.password", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.insert.password", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("password")
@@ -146,8 +146,8 @@ public class RegisterHandler {
             transitionValue = "failure";
         }
 //        validates confirm password not to be blank
-        if (!user.getPassword().matches(VALID_PASSWORD_PATTER)) {
-            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.password.not.match.pattern", null, language.setLocale(langKey))
+        if (!user.getPassword().matches(VALID_PASSWORD_PATTERN)) {
+            String errMessEmptyUserName = langKey == 3 ? messageSource.getMessage("error.message.password.not.match.pattern", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.password.not.match.pattern", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("password")
@@ -158,7 +158,7 @@ public class RegisterHandler {
 
 //        validates password with pattern
         if (user.getConfirmPassword() == null || user.getConfirmPassword().isEmpty()) {
-            String errMessEmptyUserName = langKey == 2 ? messageSource.getMessage("error.message.insert.confirm.password", null, language.setLocale(langKey))
+            String errMessEmptyUserName = langKey == 3 ? messageSource.getMessage("error.message.insert.confirm.password", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.insert.confirm.password", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("confirmPassword")
@@ -169,7 +169,7 @@ public class RegisterHandler {
 
 //        validates passwords equality
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-            String errMessPassMisMatch = langKey == 2 ? messageSource.getMessage("error.message.register.password.mismatch", null, language.setLocale(langKey))
+            String errMessPassMisMatch = langKey == 3 ? messageSource.getMessage("error.message.register.password.mismatch", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.register.password.mismatch", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("confirmPassword")
@@ -180,7 +180,7 @@ public class RegisterHandler {
 
 //        validates email not to be duplicate
         if (userDao.getUserByEmail(user.getEmail()) != null) {
-            String errMessDuplEmail = langKey == 2 ? messageSource.getMessage("error.message.register.duplicate.email", null, language.setLocale(langKey))
+            String errMessDuplEmail = langKey == 3 ? messageSource.getMessage("error.message.register.duplicate.email", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.register.duplicate.email", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("email")
@@ -190,7 +190,7 @@ public class RegisterHandler {
         }
 //        validates phone number not to be duplicate
         if (userDao.getUserByPhoneNumber(user.getPhoneNumber()) != null) {
-            String errMessDuplPhone = langKey == 2 ? messageSource.getMessage("error.message.register.duplicate.phone.number", null, language.setLocale(langKey))
+            String errMessDuplPhone = langKey == 3 ? messageSource.getMessage("error.message.register.duplicate.phone.number", null, language.setLocale(langKey))
                     : messageSource.getMessage("error.message.register.duplicate.phone.number", null, language.setLocale(langKey));
             errorMessage.addMessage(new MessageBuilder().error()
                     .source("phoneNumber")
@@ -202,7 +202,7 @@ public class RegisterHandler {
 //        validates address line not to be duplicate phone number
         if (billingAddress.getAddressLine() != null) {
             if(billingAddress.getAddressLine().isEmpty()) {
-                String errMessAddressLine = langKey == 2 ? messageSource.getMessage("error.message.insert.address.line", null, language.setLocale(langKey))
+                String errMessAddressLine = langKey == 3 ? messageSource.getMessage("error.message.insert.address.line", null, language.setLocale(langKey))
                         : messageSource.getMessage("error.message.insert.address.line", null, language.setLocale(langKey));
                 errorMessage.addMessage(new MessageBuilder().error()
                         .source("addressLine")
@@ -214,7 +214,7 @@ public class RegisterHandler {
 //        validates city not to be duplicate phone number
         if (billingAddress.getCity() != null) {
             if (billingAddress.getCity().isEmpty()) {
-                String errMessCity = langKey == 2 ? messageSource.getMessage("error.message.insert.city", null, language.setLocale(langKey))
+                String errMessCity = langKey == 3 ? messageSource.getMessage("error.message.insert.city", null, language.setLocale(langKey))
                         : messageSource.getMessage("error.message.insert.city", null, language.setLocale(langKey));
                 errorMessage.addMessage(new MessageBuilder().error()
                         .source("city")
@@ -226,7 +226,7 @@ public class RegisterHandler {
 //        validates zip code not to be duplicate phone number
         if ( billingAddress.getZipCode() != null) {
             if (billingAddress.getZipCode().isEmpty()) {
-                String errMessZipcode = langKey == 2 ? messageSource.getMessage("error.message.insert.zip.code", null, language.setLocale(langKey))
+                String errMessZipcode = langKey == 3 ? messageSource.getMessage("error.message.insert.zip.code", null, language.setLocale(langKey))
                         : messageSource.getMessage("error.message.insert.zip.code", null, language.setLocale(langKey));
                 errorMessage.addMessage(new MessageBuilder().error()
                         .source("zipCode")
@@ -238,7 +238,7 @@ public class RegisterHandler {
 //        validates state not to be duplicate phone number
         if (billingAddress.getState() != null) {
             if(billingAddress.getState().isEmpty()) {
-                String errMessState = langKey == 2 ? messageSource.getMessage("error.message.insert.state", null, language.setLocale(langKey))
+                String errMessState = langKey == 3 ? messageSource.getMessage("error.message.insert.state", null, language.setLocale(langKey))
                         : messageSource.getMessage("error.message.insert.state", null, language.setLocale(langKey));
                 errorMessage.addMessage(new MessageBuilder().error()
                         .source("state")
@@ -250,7 +250,7 @@ public class RegisterHandler {
 //        validates country line not to be duplicate phone number
         if (billingAddress.getCountry() != null) {
             if(billingAddress.getCountry().isEmpty()) {
-                String errMessCountry = langKey == 2 ? messageSource.getMessage("error.message.insert.country", null, language.setLocale(langKey))
+                String errMessCountry = langKey == 3 ? messageSource.getMessage("error.message.insert.country", null, language.setLocale(langKey))
                         : messageSource.getMessage("error.message.insert.country", null, language.setLocale(langKey));
                 errorMessage.addMessage(new MessageBuilder().error()
                         .source("country")
@@ -263,7 +263,7 @@ public class RegisterHandler {
     }
 
     public boolean isValidEmail(final String email) {
-        Pattern pattern = Pattern.compile(VALID_EMAIL_PATTER, Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(VALID_EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
 
