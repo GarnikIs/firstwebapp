@@ -13,11 +13,11 @@
             <div class="thumbnail">
                 <img src="${images}/face.jpg" class="img img-responsive">
             </div>
-            <label for="founder">
-                <u><i><spring:message code="crazy.founder.title"/>:</i></u>
+            <label for="founder" style="font-size: 20px; font-weight: bold;">
+                <u><i><spring:message code="crazy.founder.title"/></i></u>
             </label>
             <br>
-            <span style="font-size: 20px; font-weight: bold;" id="founder">
+            <span style="font-size: 18px; font-weight: bold;" id="founder">
                 <i><spring:message code="crazy.founder"/></i>
             </span>
             <hr/>
