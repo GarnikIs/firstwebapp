@@ -13,8 +13,8 @@ import java.io.IOException;
  */
 public class FileUploadUtility {
 
-//    private static final String ABS_PATH = "G:\\IntellIj\\onlineshopping\\web\\src\\main\\webapp\\assets\\images\\";
-    private static final String ABS_PATH = "/var/lib/tomcat8/webapps/web/assets/images/";
+    private static final String ABS_PATH = "G:\\IntellIj\\onlineshopping\\web\\src\\main\\webapp\\assets\\images\\";
+//    private static final String ABS_PATH = "/var/lib/tomcat8/webapps/web/assets/images/";
     private static String REAL_PATH = "";
     private static final Logger log = LoggerFactory.getLogger(FileUploadUtility.class);
 

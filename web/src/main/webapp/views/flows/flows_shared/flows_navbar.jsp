@@ -1,10 +1,10 @@
-<%--&lt;%&ndash;--%>
-  <%--Created by IntelliJ IDEA.--%>
-  <%--User: Gor--%>
-  <%--Date: 11/30/2017--%>
-  <%--Time: 02:16--%>
-  <%--To change this template use File | Settings | File Templates.--%>
-<%--&ndash;%&gt;--%>
+<%--
+  Created by IntelliJ IDEA.
+  User: Gor
+  Date: 11/30/2017
+  Time: 02:16
+  To change this template use File | Settings | File Templates.
+--%>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
     <div class="container">
         <div class="navbar-header">

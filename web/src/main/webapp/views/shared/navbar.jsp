@@ -23,11 +23,11 @@
                     <spring:message code="navbar.title.home"/>
                 </a>
             </li>
-            <%--<li id="products" class="nav-item">--%>
-                <%--<a class="nav-link" href="${contextRoot}/show/all/products">--%>
-                    <%--<spring:message code="navbar.title.products"/>--%>
-                <%--</a>--%>
-            <%--</li>--%>
+            <li id="products" class="nav-item">
+                <a class="nav-link" href="${contextRoot}/show/all/products">
+                    <spring:message code="navbar.title.products"/>
+                </a>
+            </li>
             <security:authorize access="hasAuthority('ADMIN')">
                 <li id="manageProducts" class="nav-item">
                     <a class="nav-link" href="${contextRoot}/manage/products">
@@ -45,22 +45,22 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <%--<security:authorize access="isAnonymous()">--%>
-                <%--<li id="register" class="nav-item">--%>
-                    <%--<a class="nav-link" href="${contextRoot}/register">--%>
-                        <%--<span class="glyphicon glyphicon-user"></span>--%>
-                        <%--<spring:message code="navbar.title.registration"/>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li id="login" class="nav-item">--%>
-                    <%--<a class="nav-link" href="${contextRoot}/login">--%>
-                        <%--<span class="glyphicon glyphicon-log-in"></span>--%>
-                        <%--<spring:message code="navbar.title.login"/>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-            <%--</security:authorize>--%>
-            <%--<security:authorize access="hasAuthority('ADMIN') || hasAuthority('USER')">--%>
-            <security:authorize access="hasAuthority('ADMIN')">
+            <security:authorize access="isAnonymous()">
+                <li id="register" class="nav-item">
+                    <a class="nav-link" href="${contextRoot}/register">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <spring:message code="navbar.title.registration"/>
+                    </a>
+                </li>
+                <li id="login" class="nav-item">
+                    <a class="nav-link" href="${contextRoot}/login">
+                        <span class="glyphicon glyphicon-log-in"></span>
+                        <spring:message code="navbar.title.login"/>
+                    </a>
+                </li>
+            </security:authorize>
+            <security:authorize access="hasAuthority('ADMIN') || hasAuthority('USER')">
+            <%--<security:authorize access="hasAuthority('ADMIN')">--%>
                 <li class="dropdown" id="userCart">
                     <a href="javascript:void(0)" style="display: inline-block"
                        class="nav-link dropdown-toggle"

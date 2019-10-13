@@ -138,19 +138,19 @@
         </c:if>
 
         <%-- Products content for All Products or Category Products --%>
-        <%--<c:if test="${userClickedAllProducts == true || userClickedCategoryProducts == true}">--%>
-            <%--<%@include file="products.jsp" %>--%>
-        <%--</c:if>--%>
+        <c:if test="${userClickedAllProducts == true || userClickedCategoryProducts == true}">
+            <%@include file="products.jsp" %>
+        </c:if>
 
         <%-- Manage Products content --%>
-        <%--<c:if test="${userClickedManageProducts == true}">--%>
-            <%--<%@include file="manage_products.jsp" %>--%>
-        <%--</c:if>--%>
+        <c:if test="${userClickedManageProducts == true}">
+            <%@include file="manage_products.jsp" %>
+        </c:if>
 
         <%-- Single product content --%>
-        <%--<c:if test="${userClickedProductDetails == true}">--%>
-            <%--<%@include file="product_details.jsp" %>--%>
-        <%--</c:if>--%>
+        <c:if test="${userClickedProductDetails == true}">
+            <%@include file="product_details.jsp" %>
+        </c:if>
 
         <%-- Show Cart content --%>
         <%--<c:if test="${userClickedShowCart == true}">--%>
