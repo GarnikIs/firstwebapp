@@ -119,9 +119,9 @@
     cursor: pointer;
 }
 
-/*.ru a span {*/
-    /*background-position: -48px -319px;*/
-/*}*/
+.ru a span {
+    background-position: -48px -319px;
+}
 
 .en a span {
     background-position: -16px -275px;

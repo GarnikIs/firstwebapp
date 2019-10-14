@@ -7,6 +7,7 @@ import java.util.Locale;
  */
 public enum Language {
     ENGLISH(1, new Locale("en"), "English"),
+    RUSSIAN(2, new Locale("ru"), "Russian"),
     ARMENIAN(3, new Locale("arm"), "Armenian");
 
     private int langId;
@@ -34,9 +35,11 @@ public enum Language {
     }
 
     public Locale setLocale(int langKey) {
-        Locale locale = (langKey == 3) ? new Locale("arm")
-                        : new Locale("en");
-        return locale;
+        return (langKey == 3)
+                ? new Locale("arm")
+                : (langKey == 2)
+                    ? new Locale("ru")
+                    :  new Locale("en");
     }
 
     public String getLangName() {
@@ -45,7 +48,8 @@ public enum Language {
 
     public static void setLanguage(String langLocale) throws IllegalArgumentException {
         if (langLocale.equalsIgnoreCase("English")
-                || langLocale.equalsIgnoreCase("Armenian")) {
+                || langLocale.equalsIgnoreCase("Armenian")
+                    || langLocale.equalsIgnoreCase("Russian")) {
             language = Language.valueOf(langLocale.toUpperCase());
         } else {
             language = Language.valueOf("ENGLISH");
