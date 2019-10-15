@@ -2,14 +2,13 @@ package gar.iso.core.dao.impl;
 
 import gar.iso.core.dao.UserDao;
 //import gar.iso.core.dto.Cart;
-import gar.iso.core.dto.User;
-import gar.iso.core.dto.UserAddress;
+import gar.iso.core.model.User;
+import gar.iso.core.model.UserAddress;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

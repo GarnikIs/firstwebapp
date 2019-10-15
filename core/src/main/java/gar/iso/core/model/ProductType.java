@@ -1,4 +1,4 @@
-package gar.iso.core.dto;
+package gar.iso.core.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

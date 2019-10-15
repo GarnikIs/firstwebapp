@@ -1,6 +1,5 @@
-package gar.iso.core.dto;
+package gar.iso.core.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 

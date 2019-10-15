@@ -1,8 +1,8 @@
 package gar.iso.core.dao.impl;
 
 import gar.iso.core.dao.ProductDao;
-import gar.iso.core.dto.Product;
-import gar.iso.core.dto.ProductType;
+import gar.iso.core.model.Product;
+import gar.iso.core.model.ProductType;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;

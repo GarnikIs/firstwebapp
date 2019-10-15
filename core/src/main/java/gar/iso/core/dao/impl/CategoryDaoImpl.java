@@ -1,8 +1,8 @@
 package gar.iso.core.dao.impl;
 
 import gar.iso.core.dao.CategoryDao;
-import gar.iso.core.dto.Category;
-import gar.iso.core.dto.CategoryType;
+import gar.iso.core.model.Category;
+import gar.iso.core.model.CategoryType;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,4 @@
-package gar.iso.core.dto;
-
-import org.hibernate.validator.constraints.NotBlank;
+package gar.iso.core.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

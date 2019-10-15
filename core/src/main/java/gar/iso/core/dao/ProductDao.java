@@ -1,7 +1,7 @@
 package gar.iso.core.dao;
 
-import gar.iso.core.dto.Product;
-import gar.iso.core.dto.ProductType;
+import gar.iso.core.model.Product;
+import gar.iso.core.model.ProductType;
 
 import java.util.List;
 

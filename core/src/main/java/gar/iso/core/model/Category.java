@@ -1,4 +1,4 @@
-package gar.iso.core.dto;
+package gar.iso.core.model;
 
 import org.hibernate.validator.constraints.NotBlank;
 
