@@ -43,12 +43,12 @@ public class CategoryDaoImpl implements CategoryDao {
             sessionFactory.getCurrentSession().persist(category);
             sessionFactory.getCurrentSession().clear();
             if (category.getCategoryLangId() == 2) {
-                category.setCategoryId(0);
+                category.setId(0L);
                 category.setCategoryLangId(1);
                 category.setCategoryName(category.getCategoryNameEn());
                 sessionFactory.getCurrentSession().persist(category);
             } else {
-                category.setCategoryId(0);
+                category.setId(0L);
                 category.setCategoryLangId(2);
                 category.setCategoryName(category.getCategoryNameRu());
                 sessionFactory.getCurrentSession().persist(category);

@@ -1,58 +1,46 @@
 package gar.iso.core.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * Created by Gor on 11/17/2017.
  */
 @Entity
 @Table(name = "category")
-public class Category implements Serializable {
+public class Category extends AbstractEntity {
 
-    private static final long serialVersionUID = 1L;
-
-//    category id
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private int categoryId;
-
-//    category type
+    //    category type
     @ManyToOne
     @JoinColumn(name = "category_type",
             foreignKey = @ForeignKey(name = "fk_categoryType"))
     private CategoryType categoryType;
 
-//    language id
+    //    language id
     @Column(name = "category_lang_id")
     private int categoryLangId;
 
-//    single category name
+    //    single category name
     @Column(name = "category_name")
     private String categoryName;
 
-//    list category name in English
+    //    list category name in English
     @Transient
     @NotBlank(message = "error.message.add.property.english")
     private String categoryNameEn;
 
-//    list category name in Russian
+    //    list category name in Russian
     @Transient
     @NotBlank(message = "error.message.add.property.russian")
     private String categoryNameRu;
-
-
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
 
     public CategoryType getCategoryType() {
         return categoryType;
@@ -96,10 +84,12 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "categoryId=" + categoryId +
-                ", categoryNameEn='" + categoryNameEn + '\'' +
-                ", categoryNameRu='" + categoryNameRu + '\'' +
-                '}';
+        return new ToStringBuilder(this)
+                .append("categoryType", categoryType)
+                .append("categoryLangId", categoryLangId)
+                .append("categoryName", categoryName)
+                .append("categoryNameEn", categoryNameEn)
+                .append("categoryNameRu", categoryNameRu)
+                .toString();
     }
 }

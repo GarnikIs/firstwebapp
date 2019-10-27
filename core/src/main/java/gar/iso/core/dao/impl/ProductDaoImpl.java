@@ -40,24 +40,24 @@ public class ProductDaoImpl implements ProductDao {
     public boolean addProduct(Product product) {
         try {
             if (product.getProductLangId() == 2) {
-                product.setProductId(0);
+                product.setId(0L);
                 product.setProductLangId(1);
                 product.setProductName(product.getProductNameEn());
                 product.setProductDescription(product.getProductDescriptionEn());
                 sessionFactory.getCurrentSession().persist(product);
-                product.setProductId(0);
+                product.setId(0L);
                 product.setProductLangId(2);
                 product.setProductName(product.getProductNameRu());
                 product.setProductDescription(product.getProductDescriptionRu());
                 sessionFactory.getCurrentSession().clear();
                 sessionFactory.getCurrentSession().persist(product);
             } else {
-                product.setProductId(0);
+                product.setId(0L);
                 product.setProductLangId(2);
                 product.setProductName(product.getProductNameRu());
                 product.setProductDescription(product.getProductDescriptionRu());
                 sessionFactory.getCurrentSession().persist(product);
-                product.setProductId(0);
+                product.setId(0L);
                 product.setProductLangId(1);
                 product.setProductName(product.getProductNameEn());
                 product.setProductDescription(product.getProductDescriptionEn());
@@ -86,7 +86,7 @@ public class ProductDaoImpl implements ProductDao {
                         + " AND product_lang_id = " + 1;
                 query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
                 selectedProduct = (Product) query.list().get(0);
-                product.setProductId(selectedProduct.getProductId());
+                product.setId(selectedProduct.getId());
                 product.setProductLangId(1);
                 product.setProductDescription(product.getProductDescriptionEn());
                 product.setProductName(product.getProductNameEn());
@@ -98,7 +98,7 @@ public class ProductDaoImpl implements ProductDao {
                         + " AND product_lang_id = " + 2;
                 query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
                 selectedProduct = (Product) query.list().get(0);
-                product.setProductId(selectedProduct.getProductId());
+                product.setId(selectedProduct.getId());
                 product.setProductLangId(2);
                 product.setProductDescription(product.getProductDescriptionRu());
                 product.setProductName(product.getProductNameRu());
@@ -110,7 +110,7 @@ public class ProductDaoImpl implements ProductDao {
                         + " AND product_lang_id = " + 2;
                 query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
                 selectedProduct = (Product) query.list().get(0);
-                product.setProductId(selectedProduct.getProductId());
+                product.setId(selectedProduct.getId());
                 product.setProductLangId(2);
                 product.setProductDescription(product.getProductDescriptionRu());
                 product.setProductName(product.getProductNameRu());
@@ -122,7 +122,7 @@ public class ProductDaoImpl implements ProductDao {
                         + " AND product_lang_id = " + 1;
                 query = sessionFactory.getCurrentSession().createQuery(selectProdByTypeAndLangId);
                 selectedProduct = (Product) query.list().get(0);
-                product.setProductId(selectedProduct.getProductId());
+                product.setId(selectedProduct.getId());
                 product.setProductLangId(1);
                 product.setProductDescription(product.getProductDescriptionEn());
                 product.setProductName(product.getProductNameEn());
@@ -134,7 +134,7 @@ public class ProductDaoImpl implements ProductDao {
             return true;
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
-            System.out.println("EntityNotFound exception is thrown while updating single category: " + product.getProductId() + ",/ " + e.getMessage());
+            System.out.println("EntityNotFound exception is thrown while updating single category: " + product.getId() + ",/ " + e.getMessage());
             return false;
         }
     }
@@ -148,7 +148,7 @@ public class ProductDaoImpl implements ProductDao {
             return true;
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
-            System.out.println("EntityNotFound exception is thrown while deleting (or making active flag as 'false') single product: " + product.getProductId() + ",/ " + e.getMessage());
+            System.out.println("EntityNotFound exception is thrown while deleting (or making active flag as 'false') single product: " + product.getId() + ",/ " + e.getMessage());
             return false;
         }
     }

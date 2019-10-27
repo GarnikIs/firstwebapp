@@ -1,11 +1,19 @@
 package gar.iso.core.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -13,14 +21,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "product")
-public class Product implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private int productId;
+public class Product extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "product_type",
@@ -87,13 +88,6 @@ public class Product implements Serializable {
         this.code = "PRD" + UUID.randomUUID().toString().substring(26).toUpperCase();
     }
 
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
 
     public ProductType getProductType() {
         return productType;
@@ -232,20 +226,57 @@ public class Product implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        return 31 * super.hashCode() + Objects.hash(productType, productLangId, code, productName, productNameEn, productNameRu, productDescription, productDescriptionEn, productDescriptionRu, unitPrice, active, productCategoryType, productUser, views, file);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        return Objects.equals(this.productType, other.productType)
+                && Objects.equals(this.productLangId, other.productLangId)
+                && Objects.equals(this.code, other.code)
+                && Objects.equals(this.productName, other.productName)
+                && Objects.equals(this.productNameEn, other.productNameEn)
+                && Objects.equals(this.productNameRu, other.productNameRu)
+                && Objects.equals(this.productDescription, other.productDescription)
+                && Objects.equals(this.productDescriptionEn, other.productDescriptionEn)
+                && Objects.equals(this.productDescriptionRu, other.productDescriptionRu)
+                && Objects.equals(this.unitPrice, other.unitPrice)
+                && Objects.equals(this.active, other.active)
+                && Objects.equals(this.productCategoryType, other.productCategoryType)
+                && Objects.equals(this.productUser, other.productUser)
+                && Objects.equals(this.views, other.views)
+                && Objects.equals(this.file, other.file);
+    }
+
+    @Override
     public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", code='" + code + '\'' +
-                ", nameEn='" + productNameEn + '\'' +
-                ", nameRu='" + productNameRu + '\'' +
-                ", descriptionEn='" + productDescriptionEn + '\'' +
-                ", descriptionRu='" + productDescriptionRu + '\'' +
-                ", unitPrice=" + unitPrice +
-                ", active=" + active +
-                ", productCategoryId=" + ((productCategoryType == null) ? "Not Selected" : productCategoryType.getCategoryTypeId()) +
-                ", productUserId=" + ((productUser == null) ? "Not Authorized" : productUser.getUserId()) +
-//                ", purchase=" + purchases +
-                ", views=" + views +
-                '}';
+        return new ToStringBuilder(this)
+                .append("productType", productType)
+                .append("productLangId", productLangId)
+                .append("code", code)
+                .append("productName", productName)
+                .append("productNameEn", productNameEn)
+                .append("productNameRu", productNameRu)
+                .append("productDescription", productDescription)
+                .append("productDescriptionEn", productDescriptionEn)
+                .append("productDescriptionRu", productDescriptionRu)
+                .append("unitPrice", unitPrice)
+                .append("active", active)
+                .append("productCategoryType", productCategoryType)
+                .append("productUser", productUser)
+                .append("views", views)
+                .append("file", file)
+                .toString();
     }
 }

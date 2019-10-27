@@ -1,26 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-
     <parent>
         <groupId>gar.iso</groupId>
-        <artifactId>onlineshopping</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>online-shopping</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>web</artifactId>
+    <artifactId>online-shopping-web</artifactId>
     <packaging>war</packaging>
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>web</name>
-    <url>http://maven.apache.org</url>
-
-    <properties>
-        <javaee.version>7.0</javaee.version>
-        <spring.security.version>4.2.2.RELEASE</spring.security.version>
-    </properties>
+    <name>online-shopping-web</name>
 
     <dependencies>
         <!-- Link to core -->
